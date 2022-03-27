@@ -31,14 +31,14 @@ sample_a = []
 sample_b = []
 
 
-def collect_data():
+def collect_data(sample):
     """ Collect sample values from user input """
     while True:
         qty = int(input("Enter the number of subjects in this sample: "))
         for i in range(0, qty):
             num = int(input("Enter a value and press Enter: "))
-            sample_a.append(num)
-        print(sample_a)
+            sample.append(num)
+        print(sample)
         confirmation = input("Is this data correct? Y/N ")
         if confirmation.upper() == "Y":
             print("Move on to next collection.")
@@ -50,7 +50,10 @@ def collect_data():
             break
 
 
-collect_data()
+collect_data(sample_a)
+collect_data(sample_b)
+print(f"The value of Sample A is {sample_a}")
+print(f"The value of Sample B is {sample_b}")
 
 
 def output_result():
