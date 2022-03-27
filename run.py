@@ -27,6 +27,22 @@ sig_result = stats.ttest_ind(sig_a, sig_b)
 non_sig_result = stats.ttest_ind(non_sig_a, non_sig_b)
 
 ALPHA = 0.05  # significance level
+sample_a = []
+sample_b = []
+
+
+def collect_data():
+    """ Collect sample values from user input """
+    while True:
+        qty = int(input("Enter the number of subjects in this sample: "))
+        for i in range(0, qty):
+            num = int(input("Enter a value and press Enter: "))
+            sample_a.append(num)
+        print(sample_a)
+        break
+
+
+collect_data()
 
 
 def output_result():
@@ -43,5 +59,4 @@ def output_result():
         print("No statistically significant difference")
 
 
-output_result()
 # Reminder: Expect a terminal of 80 characters wide and 24 rows high.
