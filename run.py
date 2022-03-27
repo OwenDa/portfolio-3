@@ -39,7 +39,15 @@ def collect_data():
             num = int(input("Enter a value and press Enter: "))
             sample_a.append(num)
         print(sample_a)
-        break
+        confirmation = input("Is this data correct? Y/N ")
+        if confirmation.upper() == "Y":
+            print("Move on to next collection.")
+            break
+        elif confirmation.upper() == "N":
+            print("Repeat this collection.")
+        else:
+            print("Error: Incorrect input.")
+            break
 
 
 collect_data()
