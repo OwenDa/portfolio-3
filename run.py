@@ -18,13 +18,10 @@ data = SHEET.worksheet('data')
 past_data = data.get_all_values()
 print(past_data)  # Testing sheet
 
-non_sig_a = [66.1, 69.9, 67.7, 69.6, 71.1]  # Test data
-non_sig_b = [66.1, 69.9, 67.7, 69.6, 71.1]  # Test data
-sig_a = [83.70, 81.50, 80.60, 83.90, 84.40]
-sig_b = [66.1, 69.9, 67.7, 69.6, 71.1]
-
-sig_result = stats.ttest_ind(sig_a, sig_b)
-non_sig_result = stats.ttest_ind(non_sig_a, non_sig_b)
+# non_sig_a = [66.1, 69.9, 67.7, 69.6, 71.1]  # Test data
+# non_sig_b = [66.1, 69.9, 67.7, 69.6, 71.1]  # Test data
+# sig_a = [83.70, 81.50, 80.60, 83.90, 84.40]
+# sig_b = [66.1, 69.9, 67.7, 69.6, 71.1]
 
 ALPHA = 0.05  # significance level
 sample_a = []
@@ -48,6 +45,7 @@ def collect_data(sample):
         else:
             print("Error: Incorrect input.")
             break
+    return sample
 
 
 collect_data(sample_a)
@@ -55,19 +53,20 @@ collect_data(sample_b)
 print(f"The value of Sample A is {sample_a}")
 print(f"The value of Sample B is {sample_b}")
 
+result = stats.ttest_ind(sample_a, sample_b)
+
 
 def output_result():
     """
     Outputs results of t-tests to terminal in terms of significance
     """
-    if non_sig_result[1] < ALPHA:
+    if result[1] < ALPHA:
         print("Statistically significant difference")
     else:
         print("No statistically significant difference")
-    if sig_result[1] < ALPHA:
-        print("Statistically significant difference")
-    else:
-        print("No statistically significant difference")
+
+
+output_result()
 
 
 # Reminder: Expect a terminal of 80 characters wide and 24 rows high.
