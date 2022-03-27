@@ -18,22 +18,29 @@ data = SHEET.worksheet('data')
 past_data = data.get_all_values()
 print(past_data)  # Testing sheet
 
-sample_a = [66.1, 69.9, 67.7, 69.6, 71.1]  # Test data
-sample_b = [83.7, 81.5, 80.6, 83.9, 84.4]  # Test data
+non_sig_a = [66.1, 69.9, 67.7, 69.6, 71.1]  # Test data
+non_sig_b = [66.1, 69.9, 67.7, 69.6, 71.1]  # Test data
+sig_a = [83.70, 81.50, 80.60, 83.90, 84.40]
+sig_b = [66.1, 69.9, 67.7, 69.6, 71.1]
 
-result = stats.ttest_ind(sample_a, sample_b)
+sig_result = stats.ttest_ind(sig_a, sig_b)
+non_sig_result = stats.ttest_ind(non_sig_a, non_sig_b)
 
 ALPHA = 0.05  # significance level
 
 
 def output_result():
     """
-    Outputs result of t-test to terminal in terms of significance
+    Outputs results of t-tests to terminal in terms of significance
     """
-    if result[1] < ALPHA:
-        print("significance")
+    if non_sig_result[1] < ALPHA:
+        print("Statistically significant difference")
     else:
-        print("non stat-sig")
+        print("No statistically significant difference")
+    if sig_result[1] < ALPHA:
+        print("Statistically significant difference")
+    else:
+        print("No statistically significant difference")
 
 
 output_result()
