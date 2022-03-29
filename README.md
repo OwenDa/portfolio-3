@@ -1,6 +1,6 @@
 ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
-Welcome OwenDa,
+Welcome,
 
 This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
 
@@ -28,4 +28,6 @@ Connect your GitHub repository and deploy as normal.
 The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
 
 -----
-Happy coding!
+## Development Notes (live area):
+Levene's Test as carried out in Python is covered on this [Statology Article](https://www.statology.org/levenes-test-python/).  
+Independent t-tests (also known as Student's t-test) is covered in this [Data Camp video](https://www.youtube.com/watch?v=YpZlT64kFGA).

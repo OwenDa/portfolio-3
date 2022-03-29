@@ -34,16 +34,16 @@ def homogeneity_of_variance_check(a, b):
     """
     Performs Levene's Test and prints result
     """
-    levene_result = stats.levene(a, b)
-    if levene_result[1] < .05:
-        print("Equal not variance assumed")
+    result = stats.levene(a, b)
+    if result[1] < .05:
+        print("Equal not variance assumed.")
     else:
-        print("Equal variance assumed")
+        print("Equal variance assumed.")
+    return result
 
 
-homogeneity_of_variance_check(sig_a, sig_b)
-
-print(stats.levene(sig_a, sig_b))
+levene_result = homogeneity_of_variance_check(sig_a, sig_b)
+print(levene_result)
 
 
 # Standard Variables:
@@ -59,7 +59,7 @@ def collect_data(sample):
     while True:
         qty = int(input("Enter the number of subjects in this sample: "))
         for i in range(0, qty):
-            num = int(input("Enter a value and press Enter: "))
+            num = float(input("Enter a value and press Enter: "))
             sample.append(num)
         print(sample)
         confirmation = input("Is this data correct? Y/N ")
@@ -76,20 +76,21 @@ def collect_data(sample):
 
 collect_data(sample_a)
 collect_data(sample_b)
-print(f"The value of Sample A is {sample_a}")
-print(f"The value of Sample B is {sample_b}")
+print(f"Sample A: {sample_a}")
+print(f"Sample B: {sample_b}")
 
-result = stats.ttest_ind(sample_a, sample_b)
-mean_a = mean(sample_a)
-mean_b = mean(sample_b)
-print(mean_a, mean_b)
+t_test_result = stats.ttest_ind(sample_a, sample_b)
+mean_a = round(mean(sample_a), 3)
+mean_b = round(mean(sample_b), 3)
+print(f"Sample A mean = {mean_a}.")
+print(f"Sample B mean = {mean_b}.")
 
 
 def output_result():
     """
     Outputs results of t-tests to terminal in terms of significance
     """
-    if result[1] < ALPHA:
+    if t_test_result[1] < ALPHA:
         print("Statistically significant difference")
     else:
         print("No statistically significant difference")
