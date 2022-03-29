@@ -1,6 +1,7 @@
 import gspread
 from google.oauth2.service_account import Credentials
 from scipy import stats
+from numpy import mean
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -54,6 +55,9 @@ print(f"The value of Sample A is {sample_a}")
 print(f"The value of Sample B is {sample_b}")
 
 result = stats.ttest_ind(sample_a, sample_b)
+mean_a = mean(sample_a)
+mean_b = mean(sample_b)
+print(mean_a, mean_b)
 
 
 def output_result():
