@@ -1,3 +1,12 @@
+"""
+Python program for data entry via terminal.
+Once data is entered, a sequence of statistical
+operations are carried out, until or unless:
+  A) data is found unsuitable (input error, unequal variances),
+  B) the expected flow of the program is completed,
+  C) the user exits the program.
+"""
+
 import gspread
 from google.oauth2.service_account import Credentials
 from scipy import stats
