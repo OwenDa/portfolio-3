@@ -3,6 +3,7 @@ from google.oauth2.service_account import Credentials
 from scipy import stats
 from numpy import mean
 
+# APIs and Google Sheets:
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -19,18 +20,42 @@ data = SHEET.worksheet('data')
 past_data = data.get_all_values()
 print(past_data)  # Testing sheet
 
-# non_sig_a = [66.1, 69.9, 67.7, 69.6, 71.1]  # Test data
-# non_sig_b = [66.1, 69.9, 67.7, 69.6, 71.1]  # Test data
-# sig_a = [83.70, 81.50, 80.60, 83.90, 84.40]
-# sig_b = [66.1, 69.9, 67.7, 69.6, 71.1]
 
+# Data for testing significant/non-significant sets:
+non_sig_a = [66.1, 69.9, 67.7, 69.6, 71.1]  # Test data // m = 68.88
+non_sig_b = [66.1, 69.9, 67.7, 69.6, 71.1]  # Test data // m = 68.88
+sig_a = [83.70, 81.50, 80.60, 83.90, 84.40]  # Test data // m = 82.82
+sig_b = [66.1, 69.9, 67.7, 69.6, 71.1]  # Test data // m = 68.88
+
+
+# Levene's Test Data and Testing Area:
+
+def homogeneity_of_variance_check(a, b):
+    """
+    Performs Levene's Test and prints result
+    """
+    levene_result = stats.levene(a, b)
+    if levene_result[1] < .05:
+        print("Equal not variance assumed")
+    else:
+        print("Equal variance assumed")
+
+
+homogeneity_of_variance_check(sig_a, sig_b)
+
+print(stats.levene(sig_a, sig_b))
+
+
+# Standard Variables:
 ALPHA = 0.05  # significance level
 sample_a = []
 sample_b = []
 
 
 def collect_data(sample):
-    """ Collect sample values from user input """
+    """
+    Collect sample values from user input
+    """
     while True:
         qty = int(input("Enter the number of subjects in this sample: "))
         for i in range(0, qty):
