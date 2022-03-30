@@ -37,30 +37,6 @@ sig_a = [83.70, 81.50, 80.60, 83.90, 84.40]  # Test data // m = 82.82
 sig_b = [66.1, 69.9, 67.7, 69.6, 71.1]  # Test data // m = 68.88
 
 
-# Levene's Test Data and Testing Area:
-
-def homogeneity_of_variance_check(a, b):
-    """
-    Performs Levene's Test and prints result
-    """
-    result = stats.levene(a, b)
-    if result[1] < .05:
-        print("Equal not variance assumed.")
-    else:
-        print("Equal variance assumed.")
-    return result
-
-
-levene_result = homogeneity_of_variance_check(sig_a, sig_b)
-print(levene_result)
-
-
-# Standard Variables:
-ALPHA = 0.05  # significance level
-sample_a = []
-sample_b = []
-
-
 def collect_data(sample):
     """
     Collect sample values from user input
@@ -83,16 +59,26 @@ def collect_data(sample):
     return sample
 
 
-collect_data(sample_a)
-collect_data(sample_b)
-print(f"Sample A: {sample_a}")
-print(f"Sample B: {sample_b}")
+def describe(sample):
+    """ Output descriptive stats (mean and values) """
+    print(f"Sample: {sample}")
+    mean_avg = round(mean(sample), 3)
+    print(f"Mean = {mean_avg}.")
+    return mean_avg
 
-t_test_result = stats.ttest_ind(sample_a, sample_b)
-mean_a = round(mean(sample_a), 3)
-mean_b = round(mean(sample_b), 3)
-print(f"Sample A mean = {mean_a}.")
-print(f"Sample B mean = {mean_b}.")
+
+# Levene's Test Data and Testing Area:
+
+def homogeneity_of_variance_check(a, b):
+    """
+    Performs Levene's Test and prints result
+    """
+    result = stats.levene(a, b)
+    if result[1] < .05:
+        print("Equal not variance assumed.")
+    else:
+        print("Equal variance assumed.")
+    return result
 
 
 def output_result():
@@ -105,6 +91,20 @@ def output_result():
         print("No statistically significant difference")
 
 
+# Standard Variables:
+ALPHA = 0.05  # significance level
+sample_a = []
+sample_b = []
+
+
+# Approximate Flow:
+collect_data(sample_a)
+collect_data(sample_b)
+mean_a = describe(sample_a)
+mean_b = describe(sample_b)
+levene_result = homogeneity_of_variance_check(sig_a, sig_b)
+print(levene_result)
+t_test_result = stats.ttest_ind(sample_a, sample_b)
 output_result()
 
 
