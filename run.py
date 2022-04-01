@@ -37,6 +37,12 @@ sig_a = [83.70, 81.50, 80.60, 83.90, 84.40]  # Test data // m = 82.82
 sig_b = [66.1, 69.9, 67.7, 69.6, 71.1]  # Test data // m = 68.88
 
 
+# Standard Variables:
+ALPHA = 0.05  # significance level
+sample_a = []
+sample_b = []
+
+
 def collect_data(sample):
     """
     Collect sample values from user input
@@ -85,27 +91,25 @@ def output_result():
     """
     Outputs results of t-tests to terminal in terms of significance
     """
+    t_test_result = stats.ttest_ind(sample_a, sample_b)
     if t_test_result[1] < ALPHA:
         print("Statistically significant difference")
     else:
         print("No statistically significant difference")
 
 
-# Standard Variables:
-ALPHA = 0.05  # significance level
-sample_a = []
-sample_b = []
+def main():
+    """
+    Main function to run all other functions in appropriate order
+    """
+    collect_data(sample_a)
+    collect_data(sample_b)
+    mean_a = describe(sample_a)
+    mean_b = describe(sample_b)
+    levene_result = homogeneity_of_variance_check(sig_a, sig_b)
+    print(levene_result)
+    output_result()
 
 
-# Approximate Flow:
-collect_data(sample_a)
-collect_data(sample_b)
-mean_a = describe(sample_a)
-mean_b = describe(sample_b)
-levene_result = homogeneity_of_variance_check(sig_a, sig_b)
-print(levene_result)
-t_test_result = stats.ttest_ind(sample_a, sample_b)
-output_result()
-
-
+main()
 # Reminder: Expect a terminal of 80 characters wide and 24 rows high.
