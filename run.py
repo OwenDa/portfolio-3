@@ -24,7 +24,7 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('pp3')
 
-data = SHEET.worksheet('data')
+data_sheet = SHEET.worksheet('data')
 
 # past_data = data.get_all_values()
 # print(past_data)  # Testing sheet
@@ -50,7 +50,7 @@ def collect_data():
     raw_data = input("Enter the values separated by commas: ")
     print(f"Raw data = {raw_data}")
     sample = format_data(raw_data)
-    print(sample)
+    return sample
 
 
 def format_data(data):
