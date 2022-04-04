@@ -50,7 +50,7 @@ def collect_data():
     raw_data = input("Enter the values separated by commas: ")
     sample = format_data(raw_data)
     validate_data(sample, qty)
-    confirm_data(sample)
+    confirm_proceed(sample)
     return sample
 
 
@@ -63,18 +63,27 @@ def format_data(data):
     return data
 
 
-def confirm_data(sample):
+def confirm_proceed(last_input):
     """
-    In development; not currently called
+    Generic function in which the user can confirm their last input if correct.
+
+    Deployed within loops:
+    pass if correct, continue to repeat input.
     """
-    print(f"Data entered: {sample}")
-    confirmation = input("Is this data correct? Y/N ")
-    if confirmation.upper() == "Y":
-        print("Move on to next collection.")
-    elif confirmation.upper() == "N":
-        print("Repeat this collection.")
-    else:
-        print("Error: Incorrect input.")
+    while True:
+        print(f"You entered: {last_input}")
+        answer = input("Is this correct? Y/N ")
+        if answer.upper() == "Y":
+            print("Proceeding to next step...")
+            return True
+        elif answer.upper() == "N":
+            print("Returning to previous step...")
+            return False
+        else:
+            print("- - - - - - - - - - - Error - - - - - - - - - - - - ")
+            print("Press Y if correct, or press N to re-enter the data.")
+            print("- - - - - - - - - - - - - - - - - - - - - - - - - - ")
+            continue
 
 
 def validate_data(sample, qty):
