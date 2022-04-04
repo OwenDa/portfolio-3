@@ -39,31 +39,32 @@ sig_b = [66.1, 69.9, 67.7, 69.6, 71.1]  # Test data // m = 68.88
 
 # Standard Variables:
 ALPHA = 0.05  # significance level
-sample_a = []
-sample_b = []
 
 
 # INPUT AREA:
-def collect_data(sample):
+def collect_data():
     """
     Collect sample values from user input
     """
-    while True:
-        qty = int(input("Enter the number of subjects in this sample: "))
-        for i in range(0, qty):
-            num = float(input("Enter a value and press Enter: "))
-            sample.append(num)
-        print(f"Data entered: {sample}")
-        confirmation = input("Is this data correct? Y/N ")
-        if confirmation.upper() == "Y":
-            print("Move on to next collection.")
-            break
-        elif confirmation.upper() == "N":
-            print("Repeat this collection.")
-        else:
-            print("Error: Incorrect input.")
-            break
-    return sample
+    qty = int(input("Enter the number of subjects in this sample: "))
+    raw_data = input("Enter the values separated by commas: ")
+    print(f"Raw data = {raw_data}")
+    print(qty)
+    return raw_data
+
+
+def confirm_data():
+    """
+    In development; not currently called
+    """
+    print("Data entered:")
+    confirmation = input("Is this data correct? Y/N ")
+    if confirmation.upper() == "Y":
+        print("Move on to next collection.")
+    elif confirmation.upper() == "N":
+        print("Repeat this collection.")
+    else:
+        print("Error: Incorrect input.")
 
 
 # OPERATIONS AREA:
@@ -88,11 +89,11 @@ def homogeneity_of_variance_check(a, b):
 
 
 # OUTPUT AREA:
-def output_result():
+def output_result(first_sample, second_sample):
     """
     Outputs results of t-tests to terminal in terms of significance
     """
-    t_test_result = stats.ttest_ind(sample_a, sample_b)
+    t_test_result = stats.ttest_ind(first_sample, second_sample)
     if t_test_result[1] < ALPHA:
         print("Statistically significant difference")
     else:
@@ -103,14 +104,15 @@ def main():
     """
     Main function to run all other functions in appropriate order
     """
-    collect_data(sample_a)
-    collect_data(sample_b)
+    sample_a = collect_data()
+    sample_b = collect_data()
     #  mean_a = describe(sample_a)
     #  mean_b = describe(sample_b)
     levene_result = homogeneity_of_variance_check(sig_a, sig_b)
     print(levene_result)
-    output_result()
+    output_result(sample_a, sample_b)
 
 
 main()
+
 # Reminder: Expect a terminal of 80 characters wide and 24 rows high.
