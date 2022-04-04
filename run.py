@@ -49,8 +49,17 @@ def collect_data():
     qty = int(input("Enter the number of subjects in this sample: "))
     raw_data = input("Enter the values separated by commas: ")
     print(f"Raw data = {raw_data}")
-    print(qty)
-    return raw_data
+    sample = format_data(raw_data)
+    print(sample)
+
+
+def format_data(data):
+    """ Format data and remove errant characters """
+    data = data.replace(" ", "")
+    data = data.replace(",,", ",")
+    data = data.split(",")
+    data = list(filter(None, data))
+    return data
 
 
 def confirm_data():
@@ -113,6 +122,6 @@ def main():
     output_result(sample_a, sample_b)
 
 
-main()
+collect_data()
 
 # Reminder: Expect a terminal of 80 characters wide and 24 rows high.
