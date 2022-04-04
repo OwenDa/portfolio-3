@@ -48,8 +48,8 @@ def collect_data():
     """
     qty = int(input("Enter the number of subjects in this sample: "))
     raw_data = input("Enter the values separated by commas: ")
-    print(f"Raw data = {raw_data}")
     sample = format_data(raw_data)
+    validate_data(sample, qty)
     confirm_data(sample)
     return sample
 
@@ -75,6 +75,16 @@ def confirm_data(sample):
         print("Repeat this collection.")
     else:
         print("Error: Incorrect input.")
+
+
+def validate_data(sample, qty):
+    """
+    Ensures correct number of values per sample
+    """
+    if len(sample) == qty:
+        print("Match")
+    else:
+        print("Not a match")
 
 
 # OPERATIONS AREA:
