@@ -46,12 +46,23 @@ def collect_data():
     """
     Collect sample values from user input
     """
-    qty = int(input("Enter the number of subjects in this sample: "))
-    raw_data = input("Enter the values separated by commas: ")
-    sample = format_data(raw_data)
-    validate_data(sample, qty)
-    confirm_proceed(sample)
-    return sample
+    while True:
+        qty = int(input("Enter the number of subjects in this sample: "))
+        if confirm_proceed(qty):
+            pass
+        else:
+            continue
+        raw_data = input("Enter the values separated by commas: ")
+        sample = format_data(raw_data)
+        if validate_data(sample, qty):
+            pass
+        else:
+            continue
+        if confirm_proceed(sample):
+            pass
+        else:
+            continue
+        return sample
 
 
 def format_data(data):
@@ -91,9 +102,13 @@ def validate_data(sample, qty):
     Ensures correct number of values per sample
     """
     if len(sample) == qty:
-        print("Match")
+        return True
     else:
-        print("Not a match")
+        print("- - - - - - - - - - - Error - - - - - - - - - - - - ")
+        print("Number of values entered does not match the number of")
+        print("subjects expected. Please begin this sample again.")
+        print("- - - - - - - - - - - - - - - - - - - - - - - - - - ")
+        return False
 
 
 # OPERATIONS AREA:
@@ -143,6 +158,6 @@ def main():
 
 
 sample_a = collect_data()
-print(sample_a)
+print(f"Sample A is: {sample_a}")
 
 # Reminder: Expect a terminal of 80 characters wide and 24 rows high.
