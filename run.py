@@ -50,6 +50,7 @@ def collect_data():
     raw_data = input("Enter the values separated by commas: ")
     print(f"Raw data = {raw_data}")
     sample = format_data(raw_data)
+    confirm_data(sample)
     return sample
 
 
@@ -62,11 +63,11 @@ def format_data(data):
     return data
 
 
-def confirm_data():
+def confirm_data(sample):
     """
     In development; not currently called
     """
-    print("Data entered:")
+    print(f"Data entered: {sample}")
     confirmation = input("Is this data correct? Y/N ")
     if confirmation.upper() == "Y":
         print("Move on to next collection.")
@@ -113,7 +114,7 @@ def main():
     """
     Main function to run all other functions in appropriate order
     """
-    sample_a = collect_data()
+    # sample_a = collect_data()
     sample_b = collect_data()
     #  mean_a = describe(sample_a)
     #  mean_b = describe(sample_b)
@@ -122,6 +123,7 @@ def main():
     output_result(sample_a, sample_b)
 
 
-collect_data()
+sample_a = collect_data()
+print(sample_a)
 
 # Reminder: Expect a terminal of 80 characters wide and 24 rows high.
