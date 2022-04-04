@@ -26,8 +26,8 @@ SHEET = GSPREAD_CLIENT.open('pp3')
 
 data = SHEET.worksheet('data')
 
-past_data = data.get_all_values()
-print(past_data)  # Testing sheet
+# past_data = data.get_all_values()
+# print(past_data)  # Testing sheet
 
 
 # Data for testing significant/non-significant sets:
@@ -43,6 +43,7 @@ sample_a = []
 sample_b = []
 
 
+# INPUT AREA:
 def collect_data(sample):
     """
     Collect sample values from user input
@@ -52,7 +53,7 @@ def collect_data(sample):
         for i in range(0, qty):
             num = float(input("Enter a value and press Enter: "))
             sample.append(num)
-        print(sample)
+        print(f"Data entered: {sample}")
         confirmation = input("Is this data correct? Y/N ")
         if confirmation.upper() == "Y":
             print("Move on to next collection.")
@@ -65,6 +66,7 @@ def collect_data(sample):
     return sample
 
 
+# OPERATIONS AREA:
 def describe(sample):
     """ Output descriptive stats (mean and values) """
     print(f"Sample: {sample}")
@@ -72,8 +74,6 @@ def describe(sample):
     print(f"Mean = {mean_avg}.")
     return mean_avg
 
-
-# Levene's Test Data and Testing Area:
 
 def homogeneity_of_variance_check(a, b):
     """
@@ -87,6 +87,7 @@ def homogeneity_of_variance_check(a, b):
     return result
 
 
+# OUTPUT AREA:
 def output_result():
     """
     Outputs results of t-tests to terminal in terms of significance
@@ -104,8 +105,8 @@ def main():
     """
     collect_data(sample_a)
     collect_data(sample_b)
-    mean_a = describe(sample_a)
-    mean_b = describe(sample_b)
+    #  mean_a = describe(sample_a)
+    #  mean_b = describe(sample_b)
     levene_result = homogeneity_of_variance_check(sig_a, sig_b)
     print(levene_result)
     output_result()
