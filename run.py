@@ -94,7 +94,7 @@ def format_data(data):
     data = data.replace(",,", ",")
     data = data.split(",")
     data = list(filter(None, data))
-    data = [int(i) for i in data]
+    data = [float(i) for i in data]
     return data
 
 
@@ -160,6 +160,8 @@ sample_a = collect_data()
 sample_b = collect_data()
 mean_a = describe(sample_a)
 mean_b = describe(sample_b)
-print(mean_a, mean_b)
+levene_result = homogeneity_of_variance_check(sig_a, sig_b)
+print(levene_result)
+output_result(sample_a, sample_b)
 
 # Reminder: Expect a terminal of 80 characters wide and 24 rows high.
