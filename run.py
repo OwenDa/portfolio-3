@@ -121,14 +121,18 @@ def describe(sample):
 
 def homogeneity_of_variance_check(a, b):
     """
-    Performs Levene's Test and prints result
+    Performs Levene's Test to check suitability of data for t-test
+      True = Suitable (p = >.05), null hypothesis cannot be rejected
+      and equality of variance assumed.
+      False = Unsuitable (p = <.05), reject null hypothesis,
+      data is too heterogenous meet assumptions of ind. t-test.
     """
-    result = stats.levene(a, b)
-    if result[1] < .05:
-        print("Equal not variance assumed.")
+    result = stats.levene(a, b, center='mean')
+    print(result)
+    if result[1] > .05:
+        return True
     else:
-        print("Equal variance assumed.")
-    return result
+        return False
 
 
 # OUTPUT AREA:
@@ -143,25 +147,25 @@ def output_result(first_sample, second_sample):
         print("No statistically significant difference")
 
 
-#  def main():
+def main():
     """
     Main function to run all other functions in appropriate order
     """
-    #  sample_a = collect_data()
-    #  sample_b = collect_data()
-    #  mean_a = describe(sample_a)
-    #  mean_b = describe(sample_b)
-    #  levene_result = homogeneity_of_variance_check(sig_a, sig_b)
-    #  print(levene_result)
-    #  output_result(sample_a, sample_b)
+    sample_a = collect_data()
+    sample_b = collect_data()
+    #  mean_a = describe(sample_a) // Not in use yet.
+    #  mean_b = describe(sample_b) // Not in use yet.
+    levene_result = homogeneity_of_variance_check(sample_a, sample_b)
+    print(levene_result)
+    if levene_result:
+        output_result(sample_a, sample_b)
+    else:
+        print("Data is unsuitable for t-test")
+        print("(Reason: lacks homogeneity of variance)")
+        print("Terminating program.")
 
 
-sample_a = collect_data()
-sample_b = collect_data()
-mean_a = describe(sample_a)
-mean_b = describe(sample_b)
-levene_result = homogeneity_of_variance_check(sig_a, sig_b)
-print(levene_result)
-output_result(sample_a, sample_b)
+main()
+
 
 # Reminder: Expect a terminal of 80 characters wide and 24 rows high.
