@@ -65,15 +65,6 @@ def collect_data():
         return sample
 
 
-def format_data(data):
-    """ Format data and remove errant characters """
-    data = data.replace(" ", "")
-    data = data.replace(",,", ",")
-    data = data.split(",")
-    data = list(filter(None, data))
-    return data
-
-
 def confirm_proceed(last_input):
     """
     Generic function in which the user can confirm their last input if correct.
@@ -97,6 +88,16 @@ def confirm_proceed(last_input):
             continue
 
 
+def format_data(data):
+    """ Format data and remove errant characters """
+    data = data.replace(" ", "")
+    data = data.replace(",,", ",")
+    data = data.split(",")
+    data = list(filter(None, data))
+    data = [int(i) for i in data]
+    return data
+
+
 def validate_data(sample, qty):
     """
     Ensures correct number of values per sample
@@ -114,9 +115,7 @@ def validate_data(sample, qty):
 # OPERATIONS AREA:
 def describe(sample):
     """ Output descriptive stats (mean and values) """
-    print(f"Sample: {sample}")
     mean_avg = round(mean(sample), 3)
-    print(f"Mean = {mean_avg}.")
     return mean_avg
 
 
@@ -144,20 +143,23 @@ def output_result(first_sample, second_sample):
         print("No statistically significant difference")
 
 
-def main():
+#  def main():
     """
     Main function to run all other functions in appropriate order
     """
-    # sample_a = collect_data()
-    sample_b = collect_data()
+    #  sample_a = collect_data()
+    #  sample_b = collect_data()
     #  mean_a = describe(sample_a)
     #  mean_b = describe(sample_b)
-    levene_result = homogeneity_of_variance_check(sig_a, sig_b)
-    print(levene_result)
-    output_result(sample_a, sample_b)
+    #  levene_result = homogeneity_of_variance_check(sig_a, sig_b)
+    #  print(levene_result)
+    #  output_result(sample_a, sample_b)
 
 
 sample_a = collect_data()
-print(f"Sample A is: {sample_a}")
+sample_b = collect_data()
+mean_a = describe(sample_a)
+mean_b = describe(sample_b)
+print(mean_a, mean_b)
 
 # Reminder: Expect a terminal of 80 characters wide and 24 rows high.
