@@ -1,4 +1,4 @@
-# pylint: disable=unused-argument, line-too-long, invalid-name
+# pylint: disable=invalid-name
 """
 Python program for data entry via terminal.
 Once data is entered, a sequence of statistical
@@ -8,6 +8,7 @@ operations are carried out, until or unless:
   C) the user exits the program.
 """
 
+import datetime
 import gspread
 from google.oauth2.service_account import Credentials
 from scipy import stats
@@ -24,7 +25,6 @@ CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('pp3')
-# test_records = SHEET.worksheet('test_records')
 
 
 # Data for testing significant/non-significant sets:
@@ -165,7 +165,7 @@ def validate_data(sample, qty):
 # OPERATIONS AREA:
 def describe(sample):
     """ Output descriptive stats (mean and values) """
-    mean_avg = round(mean(sample), 3)
+    mean_avg = round(mean(sample), 2)
     return mean_avg
 
 
@@ -216,6 +216,14 @@ def update_test_records(*args):
     print("Record successfully updated.")
 
 
+def date_and_time():
+    """ Get time and date of test for records """
+    now = datetime.datetime.now()
+    test_time = now.strftime("%H:%M")
+    test_date = now.strftime("%d.%m.%y")
+    return test_date, test_time
+
+
 # ERROR FORMATTING:
 def error_wrapper(msg):
     """ Wraps around error messages for greater legibility """
@@ -242,7 +250,9 @@ def main():
     else:
         print("Data is unsuitable for t-test.")
         print("Reason: lacks homogeneity of variance.")
-    update_test_records(tester_id, mean_a, mean_b, outcome)
+    date_time = date_and_time()
+    update_test_records(
+        date_time[0], date_time[1], tester_id, mean_a, mean_b, outcome)
 
 
 print("  🆃-🆃🅴🆂🆃🅴🆁")
