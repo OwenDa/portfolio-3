@@ -185,8 +185,9 @@ def main():
     """
     sample_a = collect_data()
     sample_b = collect_data()
-    #  mean_a = describe(sample_a) // Not in use yet.
-    #  mean_b = describe(sample_b) // Not in use yet.
+    mean_a = describe(sample_a)
+    mean_b = describe(sample_b)
+    print(mean_a, mean_b)
     levene_result = homogeneity_of_variance_check(sample_a, sample_b)
     print(levene_result)
     if levene_result:
