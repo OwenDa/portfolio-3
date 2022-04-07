@@ -71,7 +71,7 @@ def get_qty_subjects():
     """
     while True:
         try:
-            qty = int(input("Enter the number of subjects in this sample: "))
+            qty = int(input("Enter the number of subjects in this sample: \n"))
         except ValueError:
             print("- - - - - - - - - - - Error - - - - - - - - - - - - ")
             print("Must be numeric value. Try again.")
@@ -89,7 +89,7 @@ def confirm_proceed(last_input):
     """
     while True:
         print(f"You entered: {last_input}")
-        answer = input("Is this correct? Y/N ")
+        answer = input("Is this correct? Y/N \n")
         if answer.upper() == "Y":
             print("Proceeding to next step...")
             return True
@@ -108,7 +108,7 @@ def get_sample():
     Requests values contained within sample
     """
     while True:
-        raw_data = input("Enter the values separated by commas: ")
+        raw_data = input("Enter the values separated by commas: \n")
         try:
             sample = format_data(raw_data)
         except ValueError:
