@@ -1,3 +1,4 @@
+# pylint: disable=unused-argument, disable=line-too-long, disable=invalid-name
 """
 Python program for data entry via terminal.
 Once data is entered, a sequence of statistical
@@ -26,7 +27,7 @@ SHEET = GSPREAD_CLIENT.open('pp3')
 
 data_sheet = SHEET.worksheet('data')
 
-# past_data = data.get_all_values()
+# past_data = data_sheet.get_all_values()
 # print(past_data)  # Testing sheet
 
 
@@ -68,7 +69,6 @@ def collect_data():
 def confirm_proceed(last_input):
     """
     Generic function in which the user can confirm their last input if correct.
-
     Deployed within loops:
     pass if correct, continue to repeat input.
     """
