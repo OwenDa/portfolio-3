@@ -1,4 +1,4 @@
-# pylint: disable=unused-argument, disable=line-too-long, disable=invalid-name
+# pylint: disable=unused-argument, line-too-long, invalid-name
 """
 Python program for data entry via terminal.
 Once data is entered, a sequence of statistical
@@ -71,7 +71,14 @@ def get_qty_subjects():
     """
     while True:
         try:
-            qty = int(input("Enter the number of subjects in this sample: \n"))
+            while True:
+                qty = int(input("Enter the number of subjects in this sample: \n"))
+                if qty < 5:
+                    print("- - - - - - - - - - - Error - - - - - - - - - - - - ")
+                    print("Five or more subjects required.")
+                    print("- - - - - - - - - - - - - - - - - - - - - - - - - - ")
+                    continue
+                break
         except ValueError:
             print("- - - - - - - - - - - Error - - - - - - - - - - - - ")
             print("Must be numeric value. Try again.")
@@ -137,10 +144,8 @@ def validate_data(sample, qty):
     if len(sample) == qty:
         return True
     else:
-        print("- - - - - - - - - - - Error - - - - - - - - - - - - ")
-        print("Number of values entered does not match the number of")
-        print("subjects expected. Please begin this sample again.")
-        print("- - - - - - - - - - - - - - - - - - - - - - - - - - ")
+        msg = "Number of values entered does not match the number of subjects expected. Please begin this sample again."
+        error_wrapper(msg)
         return False
 
 
@@ -179,6 +184,14 @@ def output_result(first_sample, second_sample):
         print("No statistically significant difference")
 
 
+# ERROR FORMATTING:
+def error_wrapper(msg):
+    """ Wraps around error messages for greater legibility """
+    print("- - - - - - - - - - - Error - - - - - - - - - - - - ")
+    print(msg)
+    print("- - - - - - - - - - - - - - - - - - - - - - - - - - ")
+
+
 def main():
     """
     Main function to run all other functions in appropriate order
@@ -198,7 +211,7 @@ def main():
         print("Terminating program.")
 
 
-print("🆃-🆃🅴🆂🆃🅴🆁")
+print("  🆃-🆃🅴🆂🆃🅴🆁")
 main()
 
 
