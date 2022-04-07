@@ -236,6 +236,7 @@ def main():
     """
     Main function to run all other functions in appropriate order
     """
+    print("  🆃-🆃🅴🆂🆃🅴🆁")
     tester_id = get_tester_id()
     sample_a = collect_data()
     sample_b = collect_data()
@@ -248,14 +249,14 @@ def main():
         if outcome == "Statistically significant difference.":
             output_means(mean_a, mean_b)
     else:
+        outcome = "T-test not conducted due to unequal variance."
         print("Data is unsuitable for t-test.")
-        print("Reason: lacks homogeneity of variance.")
+        print("Reason: Lacks homogeneity of variance.")
     date_time = date_and_time()
     update_test_records(
-        date_time[0], date_time[1], tester_id, mean_a, mean_b, outcome)
+            date_time[0], date_time[1], tester_id, mean_a, mean_b, outcome)
 
 
-print("  🆃-🆃🅴🆂🆃🅴🆁")
 main()
 
 
