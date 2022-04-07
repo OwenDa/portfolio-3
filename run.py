@@ -24,11 +24,7 @@ CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('pp3')
-
-data_sheet = SHEET.worksheet('data')
-
-# past_data = data_sheet.get_all_values()
-# print(past_data)  # Testing sheet
+# test_records = SHEET.worksheet('test_records')
 
 
 # Data for testing significant/non-significant sets:
@@ -188,6 +184,18 @@ def output_means(a, b):
         print(f"The mean average of Sample B ({b}) \nwas greater than Sample A ({a}).")
 
 
+# DATA HANDLING:
+def update_test_records(*args):
+    """
+    Updates test records stored in Google Sheets
+    Currently uses *args for flexible development
+    """
+    print("Updating test records...")
+    test_records = SHEET.worksheet('test_records')
+    test_records.append_row(args)
+    print("Record successfully updated.")
+
+
 # ERROR FORMATTING:
 def error_wrapper(msg):
     """ Wraps around error messages for greater legibility """
@@ -213,7 +221,7 @@ def main():
     else:
         print("Data is unsuitable for t-test.")
         print("Reason: lacks homogeneity of variance.")
-        print("Terminating program.")
+    update_test_records(mean_a, mean_b, outcome)
 
 
 print("  🆃-🆃🅴🆂🆃🅴🆁")
