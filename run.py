@@ -53,8 +53,7 @@ def collect_data():
             pass
         else:
             continue
-        raw_data = input("Enter the values separated by commas: ")
-        sample = format_data(raw_data)
+        sample = get_sample()
         if validate_data(sample, qty):
             pass
         else:
@@ -82,6 +81,33 @@ def get_qty_subjects():
             return qty
 
 
+def get_sample():
+    """
+    Requests values contained within sample
+    """
+    while True:
+        raw_data = input("Enter the values separated by commas: ")
+        try:
+            sample = format_data(raw_data)
+        except ValueError:
+            print("- - - - - - - - - - - Error - - - - - - - - - - - - ")
+            print("Non-numeric value(s) detected. Try again.")
+            print("- - - - - - - - - - - - - - - - - - - - - - - - - - ")
+            continue
+        else:
+            return sample
+        
+
+def format_data(data):
+    """ Format data and remove errant characters """
+    data = data.replace(" ", "")
+    data = data.replace(",,", ",")
+    data = data.split(",")
+    data = list(filter(None, data))
+    data = [float(i) for i in data]
+    return data
+
+
 def confirm_proceed(last_input):
     """
     Generic function in which the user can confirm their last input if correct.
@@ -102,16 +128,6 @@ def confirm_proceed(last_input):
             print("Press Y if correct, or press N to re-enter the data.")
             print("- - - - - - - - - - - - - - - - - - - - - - - - - - ")
             continue
-
-
-def format_data(data):
-    """ Format data and remove errant characters """
-    data = data.replace(" ", "")
-    data = data.replace(",,", ",")
-    data = data.split(",")
-    data = list(filter(None, data))
-    data = [float(i) for i in data]
-    return data
 
 
 def validate_data(sample, qty):
