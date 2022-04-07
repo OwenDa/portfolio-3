@@ -141,7 +141,7 @@ def validate_data(sample, qty):
     if len(sample) == qty:
         return True
     else:
-        msg = f"{len(sample)} values entered. Expected {qty}.\nPlease begin this sample again."
+        msg = (f"{len(sample)} values entered. Expected {qty}.\nPlease begin this sample again.")
         error_wrapper(msg)
         return False
 
@@ -162,23 +162,30 @@ def homogeneity_of_variance_check(a, b):
       data is too heterogenous meet assumptions of ind. t-test.
     """
     result = stats.levene(a, b, center='mean')
-    print(result)
     if result[1] > .05:
         return True
     else:
         return False
 
 
-# OUTPUT AREA:
-def output_result(first_sample, second_sample):
+def t_test(first_sample, second_sample):
     """
     Outputs results of t-tests to terminal in terms of significance
     """
-    t_test_result = stats.ttest_ind(first_sample, second_sample)
-    if t_test_result[1] < ALPHA:
-        print("Statistically significant difference")
+    test_values = stats.ttest_ind(first_sample, second_sample)
+    if test_values[1] < ALPHA:
+        t_test_result = "Statistically significant difference."
     else:
-        print("No statistically significant difference")
+        t_test_result = "No statistically significant difference."
+    return t_test_result
+
+
+def output_means(a, b):
+    """ Outputs mean averages in order of precedence """
+    if a > b:
+        print(f"The mean average of Sample A ({a}) \nwas greater than Sample B ({b}).")
+    else:
+        print(f"The mean average of Sample B ({b}) \nwas greater than Sample A ({a}).")
 
 
 # ERROR FORMATTING:
@@ -197,14 +204,15 @@ def main():
     sample_b = collect_data()
     mean_a = describe(sample_a)
     mean_b = describe(sample_b)
-    print(mean_a, mean_b)
     levene_result = homogeneity_of_variance_check(sample_a, sample_b)
-    print(levene_result)
     if levene_result:
-        output_result(sample_a, sample_b)
+        outcome = t_test(sample_a, sample_b)
+        print(outcome)
+        if outcome == "Statistically significant difference.":
+            output_means(mean_a, mean_b)
     else:
-        print("Data is unsuitable for t-test")
-        print("(Reason: lacks homogeneity of variance)")
+        print("Data is unsuitable for t-test.")
+        print("Reason: lacks homogeneity of variance.")
         print("Terminating program.")
 
 
