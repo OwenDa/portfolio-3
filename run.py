@@ -39,6 +39,26 @@ ALPHA = 0.05  # significance level
 
 
 # INPUT AREA:
+def get_tester_id():
+    """
+    Request user's name or organisational ID for records.
+    Currently allows any name; however, in professional environments,
+    an organisation ID may be required. """
+    while True:
+        tester_id = input("Enter a username or ID of your choice: \n")
+        if tester_id == "":
+            msg = "Username or ID required (e.g. 'SamBeckett', 'User1' etc.)"
+            error_wrapper(msg)
+            continue
+        elif len(tester_id) < 2:
+            msg = "Username must be at least 2 characters in length."
+            error_wrapper(msg)
+            continue
+        else:
+            print(f"Welcome, {tester_id}.")
+            return tester_id
+
+
 def collect_data():
     """
     Collect sample values from user input
@@ -208,6 +228,7 @@ def main():
     """
     Main function to run all other functions in appropriate order
     """
+    tester_id = get_tester_id()
     sample_a = collect_data()
     sample_b = collect_data()
     mean_a = describe(sample_a)
@@ -221,7 +242,7 @@ def main():
     else:
         print("Data is unsuitable for t-test.")
         print("Reason: lacks homogeneity of variance.")
-    update_test_records(mean_a, mean_b, outcome)
+    update_test_records(tester_id, mean_a, mean_b, outcome)
 
 
 print("  🆃-🆃🅴🆂🆃🅴🆁")
