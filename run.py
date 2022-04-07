@@ -48,7 +48,13 @@ def collect_data():
     Collect sample values from user input
     """
     while True:
-        qty = int(input("Enter the number of subjects in this sample: "))
+        try:
+            qty = int(input("Enter the number of subjects in this sample: "))
+        except ValueError:
+            print("- - - - - - - - - - - Error - - - - - - - - - - - - ")
+            print("Must be numeric value. Try again.")
+            print("- - - - - - - - - - - - - - - - - - - - - - - - - - ")
+            continue
         if confirm_proceed(qty):
             pass
         else:
