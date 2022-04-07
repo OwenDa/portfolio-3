@@ -72,17 +72,16 @@ def get_qty_subjects():
     while True:
         try:
             while True:
-                qty = int(input("Enter the number of subjects in this sample: \n"))
+                qty = int(input(
+                    "Enter the number of subjects in this sample: \n"))
                 if qty < 5:
-                    print("- - - - - - - - - - - Error - - - - - - - - - - - - ")
-                    print("Five or more subjects required.")
-                    print("- - - - - - - - - - - - - - - - - - - - - - - - - - ")
+                    msg = "Five or more subjects required."
+                    error_wrapper(msg)
                     continue
                 break
         except ValueError:
-            print("- - - - - - - - - - - Error - - - - - - - - - - - - ")
-            print("Must be numeric value. Try again.")
-            print("- - - - - - - - - - - - - - - - - - - - - - - - - - ")
+            msg = "Must be numeric value. Try again."
+            error_wrapper(msg)
             continue
         else:
             return qty
@@ -104,9 +103,8 @@ def confirm_proceed(last_input):
             print("Returning to previous step...")
             return False
         else:
-            print("- - - - - - - - - - - Error - - - - - - - - - - - - ")
-            print("Press Y if correct, or press N to re-enter the data.")
-            print("- - - - - - - - - - - - - - - - - - - - - - - - - - ")
+            msg = "Press Y if correct, or press N to re-enter the data."
+            error_wrapper(msg)
             continue
 
 
@@ -119,9 +117,8 @@ def get_sample():
         try:
             sample = format_data(raw_data)
         except ValueError:
-            print("- - - - - - - - - - - Error - - - - - - - - - - - - ")
-            print("Non-numeric value(s) detected. Try again.")
-            print("- - - - - - - - - - - - - - - - - - - - - - - - - - ")
+            msg = "Non-numeric value(s) detected. Try again."
+            error_wrapper(msg)
             continue
         else:
             return sample
@@ -144,7 +141,7 @@ def validate_data(sample, qty):
     if len(sample) == qty:
         return True
     else:
-        msg = "Number of values entered does not match the number of subjects expected. Please begin this sample again."
+        msg = f"{len(sample)} values entered. Expected {qty}.\nPlease begin this sample again."
         error_wrapper(msg)
         return False
 
