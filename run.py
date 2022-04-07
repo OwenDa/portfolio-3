@@ -197,7 +197,8 @@ def main():
         print("(Reason: lacks homogeneity of variance)")
         print("Terminating program.")
 
-print("Welcome to T-Tester")
+
+print("🆃-🆃🅴🆂🆃🅴🆁")
 main()
 
 
