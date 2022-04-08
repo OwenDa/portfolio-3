@@ -100,7 +100,7 @@ def return_to_main_menu():
             else:
                 raise ValueError
         except ValueError:
-            msg = ("No other operations available. "
+            msg = ("No other operations available at this time. "
                    "Press Y to return to Main Menu.")
             error_wrapper(msg)
             continue
@@ -109,13 +109,13 @@ def return_to_main_menu():
 # GLOBAL VARIABLE(S):
 ALPHA = 0.05  # Standard significance level
 test_records = SHEET.worksheet('test_records')  # Records sheet
+records = test_records.get_all_values()  # Records values as nested lists
 
 # RECORDS TABLE AREA:
 
 
 def build_table():
     """ Build table from previous records """
-    records = test_records.get_all_values()
     table = Table(title="Test Records")
     for heading in records[0]:
         table.add_column(f"{heading}")
@@ -123,6 +123,66 @@ def build_table():
         table.add_row(*row)
     console = Console()
     console.print(table)
+    records_menu()
+
+
+def records_menu():
+    """ Records Area Menu """
+    while True:
+        print("- - - - - - - - - - - - - Options - - - - - - - - - - - - -")
+        try:
+            choice = int(input("""
+                        1. Return to Main Menu
+                        2. Delete Last Record
+
+                        Enter a number to make a selection,
+                        and then press the "Enter" key:
+        \n"""))
+            if choice == 1:
+                main_menu()
+            elif choice == 2:
+                delete_last_record()
+            else:
+                raise ValueError
+        except ValueError:
+            msg = "Invalid Selection. Please choose 1 or 2."
+            error_wrapper(msg)
+            continue
+
+
+def delete_last_record():
+    """ Experimental feature """
+
+    def exit_with_feedback(feedback):
+        """ Returns to previous menu with ample warning to user """
+        print(feedback)
+        sleep(2.5)
+        records_menu()
+
+    print("\nCaution: Deletion cannot be undone.")
+    print("You are about to delete the most recent test record.")
+    while True:
+        confirm_delete = input("To confirm this action, type 'DELETE'. "
+                               "Otherwise, press any key to cancel.\n")
+        if confirm_delete == "delete":
+            print("\nThis option is case-sensitive. To delete, type 'DELETE'")
+            print("To exit, press any other key and hit Enter.\n")
+            continue
+        elif confirm_delete == "DELETE":
+            try:
+                test_records.delete_rows(len(records))
+                feedback = ("Last record successfully deleted. "
+                            "Returning to previous menu...")
+                exit_with_feedback(feedback)
+            except Exception as ex:
+                msg = ("Operation failed. Reason unknown. \n"
+                       "Please try again or contact developer.")
+                error_wrapper(msg)
+                feedback = "Exiting without making changes...\n"
+                exit_with_feedback(feedback)
+        else:
+            feedback = "Exiting without making changes...\n"
+            exit_with_feedback(feedback)
 
 
 # DATA COLLECTION:
