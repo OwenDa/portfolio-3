@@ -13,6 +13,8 @@ import datetime
 from time import sleep
 import gspread
 from google.oauth2.service_account import Credentials
+from rich.console import Console
+from rich.table import Table
 from scipy import stats
 from numpy import mean
 
@@ -82,10 +84,31 @@ def main_menu():
 
 
 # GLOBAL VARIABLE(S):
-ALPHA = 0.05  # standard significance level
+ALPHA = 0.05  # Standard significance level
+test_records = SHEET.worksheet('test_records')  # Records sheet
+
+
+# EXPERIMENTAL AREA:
+
+
+def build_table():
+    """ Build table from previous records """
+    records = test_records.get_all_values()
+    table = Table(title="Test Records")
+    print(table)
+    for heading in records[0]:
+        table.add_column(f"{heading}")
+    for row in records[1::1]:
+        i = range(len(records)-1)
+        print(i)
+        table.add_row(f"{row[0]}")
+    console = Console()
+    console.print(table)
 
 
 # DATA COLLECTION:
+
+
 def get_tester_id():
     """
     Request user's name or organisational ID for records.
@@ -265,7 +288,6 @@ def update_test_records(*args):
     Currently uses *args for flexible development
     """
     print("\nUpdating test records...\n")
-    test_records = SHEET.worksheet('test_records')
     test_records.append_row(args)
     sleep(.5)
     print("Record successfully updated.")
@@ -311,7 +333,10 @@ def testing_main():
             date_time[0], date_time[1], tester_id, mean_a, mean_b, outcome)
 
 
-main_menu()
+build_table()
+
+
+# main_menu()
 
 
 # Reminder: Expect a terminal of 80 characters wide and 24 rows high.
