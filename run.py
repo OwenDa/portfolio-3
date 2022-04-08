@@ -15,7 +15,6 @@ from google.oauth2.service_account import Credentials
 from scipy import stats
 from numpy import mean
 
-
 # APIs and Google Sheets:
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -28,6 +27,41 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('pp3')
 
+
+# EXPERIMENTAL:
+
+def help_func():
+    """ Temporary function for experimentation only """
+    print("Help text.")
+
+
+def test_func():
+    """ Temporary function for experimentation only """
+    print("Pretending to run tests...")
+
+
+def quit_func():
+    """ Temporary function for experimentation only """
+    print("Pretending to quit...")
+
+
+def menu():
+    """ Experimental feature """
+    print("- - - - - - - - - - - - - Main Menu - - - - - - - - - - - - -")
+    try:
+        choice = int(input("""
+                    1. Help
+                    2. Run Tests
+                    3. Quit
+
+                    Enter a number to make a selection:
+    """))
+        print(choice)
+    except ValueError:
+        print("go back")
+
+
+menu()
 
 # GLOBAL VARIABLE(S):
 ALPHA = 0.05  # standard significance level
