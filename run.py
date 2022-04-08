@@ -31,6 +31,17 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('pp3')
 
+# GLOBAL VARIABLE(S):
+ALPHA = 0.05  # Standard significance level
+test_records = SHEET.worksheet('test_records')  # Records sheet
+records = test_records.get_all_values()  # Records values as nested lists
+custom_theme = Theme(
+    {"menu": "bright_green",
+     "highlight": "bold bright_cyan",
+     "error": "bright_red"})
+console = Console(theme=custom_theme)
+# Console object for use with rich.console
+
 
 # MAIN MENU AND MAIN MENU OPTIONS:
 def testing_mode():
@@ -109,31 +120,25 @@ def return_to_main_menu():
             quit_func()
 
 
-# GLOBAL VARIABLE(S):
-ALPHA = 0.05  # Standard significance level
-test_records = SHEET.worksheet('test_records')  # Records sheet
-records = test_records.get_all_values()  # Records values as nested lists
-custom_theme = Theme(
-    {"menu": "bright_green",
-     "highlight": "bright_cyan",
-     "error": "bright_red"})
-console = Console(theme=custom_theme)
-# Console object for use with rich.console
-
-
 # HELP SECTION:
-help_topic = ("Some Topic", "Another Topic", "A Third Topic")
+help_topic = (
+    """Running Tests in T-Tester""",
+    """Viewing Records""",
+    """Deleting Records""",
+    """More information""",)
 
 
 def help_text(topic):
     """ In development """
     try:
         if topic == 2:
-            console.print(f"{help_topic[0]}")
+            console.print(help_topic[0])
         elif topic == 3:
             console.print(help_topic[1])
         elif topic == 4:
             console.print(help_topic[2])
+        elif topic == 5:
+            console.print(help_topic[3])
         else:
             raise ValueError
     except ValueError as e:
@@ -153,6 +158,7 @@ def help_menu():
                         2. Running Tests in T-Tester
                         3. Viewing Records
                         4. Deleting Records
+                        5. More information
                         """, style="menu")
             choice = int(input("""
                         Enter a number to make a selection,
@@ -160,13 +166,13 @@ def help_menu():
         \n"""))
             if choice == 1:
                 main_menu()
-            elif choice > 1 and choice < 5:
+            elif choice > 1 and choice < 6:
                 topic = choice
                 help_text(topic)
             else:
                 raise ValueError
         except ValueError:
-            msg = "Invalid Selection. Enter a number from the options above."
+            msg = "Invalid Selection. Enter a number from the options shown."
             error_wrapper(msg)
             continue
         except Exception as e:
@@ -245,7 +251,7 @@ def delete_last_record():
         sleep(2.5)
         records_menu()
 
-    console.print("\nCaution: Deletion cannot be undone.", style="highlight")
+    console.print("\nCaution: Deletion cannot be undone.\n", style="highlight")
     print("You are about to delete the most current test record on the table.")
     while True:
         confirm_delete = input("To confirm this action, type 'DELETE'. "
@@ -348,13 +354,14 @@ def confirm_proceed(last_input):
     """
     while True:
         console.print(f"\nYou entered: {last_input}")
-        answer = input("Is this correct? Y/N \n", style="highlight")
+        answer = input("Is this correct? Y/N \n")
         if answer.upper() == "Y":
-            print("\nProceeding to next step...\n")
+            console.print("\nProceeding to next step...\n", style="highlight")
             sleep(.5)
             return True
         elif answer.upper() == "N":
-            print("\nReturning to previous step...\n")
+            console.print(
+                "\nReturning to previous step...\n", style="highlight")
             sleep(.5)
             return False
         else:
@@ -480,7 +487,7 @@ def update_test_records(*args):
     Updates test records stored in Google Sheets
     Currently uses *args for flexible development
     """
-    print("\nUpdating test records...\n")
+    console.print("\nUpdating test records...\n", style="highlight")
     test_records.append_row(args)
     sleep(.5)
     print("Record successfully updated.")
