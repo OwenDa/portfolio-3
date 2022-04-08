@@ -55,7 +55,7 @@ def get_tester_id():
             error_wrapper(msg)
             continue
         else:
-            print(f"Welcome, {tester_id}.")
+            print(f"\nWelcome, {tester_id}.\n")
             return tester_id
 
 
@@ -110,13 +110,13 @@ def confirm_proceed(last_input):
     pass if correct, continue to repeat input.
     """
     while True:
-        print(f"You entered: {last_input}")
+        print(f"\nYou entered: {last_input}")
         answer = input("Is this correct? Y/N \n")
         if answer.upper() == "Y":
-            print("Proceeding to next step...")
+            print("\nProceeding to next step...\n")
             return True
         elif answer.upper() == "N":
-            print("Returning to previous step...")
+            print("\nReturning to previous step...\n")
             return False
         else:
             msg = "Press Y if correct, or press N to re-enter the data."
@@ -210,7 +210,7 @@ def update_test_records(*args):
     Updates test records stored in Google Sheets
     Currently uses *args for flexible development
     """
-    print("Updating test records...")
+    print("\nUpdating test records...\n")
     test_records = SHEET.worksheet('test_records')
     test_records.append_row(args)
     print("Record successfully updated.")
@@ -227,9 +227,9 @@ def date_and_time():
 # ERROR FORMATTING:
 def error_wrapper(msg):
     """ Wraps around error messages for greater legibility """
-    print("- - - - - - - - - - - Error - - - - - - - - - - - - ")
+    print("\n- - - - - - - - - - - Error - - - - - - - - - - - - ")
     print(msg)
-    print("- - - - - - - - - - - - - - - - - - - - - - - - - - ")
+    print("- - - - - - - - - - - - - - - - - - - - - - - - - - \n")
 
 
 def main():
