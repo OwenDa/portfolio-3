@@ -64,7 +64,8 @@ def main_menu():
             choice = int(input("""
                         1. Help
                         2. Run Tests
-                        3. Quit
+                        3. View Records
+                        4. Quit
 
                         Enter a number to make a selection,
                         and then press the "Enter" key:
@@ -74,11 +75,13 @@ def main_menu():
             elif choice == 2:
                 testing_mode()
             elif choice == (3):
+                build_table()
+            elif choice == (4):
                 quit_func()
             else:
                 raise ValueError
         except ValueError:
-            msg = "Invalid Selection. Please choose 1, 2 or 3."
+            msg = "Invalid Selection. Please choose 1, 2, 3 or 4."
             error_wrapper(msg)
             continue
 
@@ -104,6 +107,9 @@ def build_table():
         table.add_row(f"{row[0]}")
     console = Console()
     console.print(table)
+    print("This feature is under development.")
+    print("Please use the menu below to explore other features.")
+    main_menu()
 
 
 # DATA COLLECTION:
@@ -333,10 +339,7 @@ def testing_main():
             date_time[0], date_time[1], tester_id, mean_a, mean_b, outcome)
 
 
-build_table()
-
-
-# main_menu()
+main_menu()
 
 
 # Reminder: Expect a terminal of 80 characters wide and 24 rows high.
