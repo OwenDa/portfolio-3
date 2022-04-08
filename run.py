@@ -32,7 +32,6 @@ SHEET = GSPREAD_CLIENT.open('pp3')
 
 
 # MENUS:
-
 def help_func():
     """ Offers user help in using the program """
     print("Help text has yet to be added.")
@@ -116,10 +115,10 @@ def return_to_main_menu():
 ALPHA = 0.05  # Standard significance level
 test_records = SHEET.worksheet('test_records')  # Records sheet
 records = test_records.get_all_values()  # Records values as nested lists
+console = Console()  # Console object for use with rich.console
+
 
 # RECORDS TABLE AREA:
-
-
 def build_table():
     """ Build table from previous records """
     table = Table(title="Test Records")
@@ -127,7 +126,6 @@ def build_table():
         table.add_column(f"{heading}")
     for row in records[1::1]:
         table.add_row(*row)
-    console = Console()
     console.print(table)
     records_menu()
 
@@ -139,7 +137,7 @@ def records_menu():
         try:
             choice = int(input("""
                         1. Return to Main Menu
-                        2. Delete Last Record
+                        2. Delete Last Record Shown
 
                         Enter a number to make a selection,
                         and then press the "Enter" key:
@@ -160,7 +158,10 @@ def records_menu():
 
 
 def delete_last_record():
-    """ Experimental feature """
+    """
+    Allows the user to delete the last record shown on the table
+    or exit without making changes should they wish to abort.
+    """
 
     def exit_with_feedback(feedback):
         """ Returns to previous menu with ample warning to user """
@@ -169,7 +170,7 @@ def delete_last_record():
         records_menu()
 
     print("\nCaution: Deletion cannot be undone.")
-    print("You are about to delete the most recent test record.")
+    print("You are about to delete the most current test record on the table.")
     while True:
         confirm_delete = input("To confirm this action, type 'DELETE'. "
                                "Otherwise, press any key to cancel.\n")
@@ -194,8 +195,6 @@ def delete_last_record():
 
 
 # DATA COLLECTION:
-
-
 def get_tester_id():
     """
     Request user's name or organisational ID for records.
@@ -324,7 +323,7 @@ def validate_data(sample, qty):
     if len(sample) == qty:
         return True
     else:
-        msg = (f"{len(sample)} values entered."
+        msg = (f"{len(sample)} values entered. "
                f"Expected {qty}.\nPlease begin this sample again.")
         error_wrapper(msg)
         return False
@@ -374,6 +373,31 @@ def output_means(a, b):
               f"was greater than Sample A ({a}).")
 
 
+def testing_main():
+    """
+    Main test-mode function to run all other test-related functions
+    """
+    tester_id = get_tester_id()
+    sample_a = collect_data()
+    sample_b = collect_data()
+    mean_a = describe(sample_a)
+    mean_b = describe(sample_b)
+    levene_result = homogeneity_of_variance_check(sample_a, sample_b)
+    if levene_result:
+        outcome = t_test(sample_a, sample_b)
+        print(outcome)
+        if outcome == "Statistically significant difference.":
+            output_means(mean_a, mean_b)
+    else:
+        outcome = "T-test not conducted due to unequal variance."
+        print("Data is unsuitable for t-test.")
+        print("Reason: Lacks homogeneity of variance.")
+    date_time = date_and_time()
+    update_test_records(
+            date_time[0], date_time[1], tester_id, mean_a, mean_b, outcome)
+    return_to_main_menu()
+
+
 # DATA HANDLING:
 def update_test_records(*args):
     """
@@ -384,6 +408,8 @@ def update_test_records(*args):
     test_records.append_row(args)
     sleep(.5)
     print("Record successfully updated.")
+    print("You may need to re-start the program to view this "
+          "record in the 'View Records' section.")
 
 
 def date_and_time():
@@ -412,32 +438,5 @@ def except_str(e):
     sleep(1)
 
 
-def testing_main():
-    """
-    Main test-mode function to run all other test-related functions
-    """
-    tester_id = get_tester_id()
-    sample_a = collect_data()
-    sample_b = collect_data()
-    mean_a = describe(sample_a)
-    mean_b = describe(sample_b)
-    levene_result = homogeneity_of_variance_check(sample_a, sample_b)
-    if levene_result:
-        outcome = t_test(sample_a, sample_b)
-        print(outcome)
-        if outcome == "Statistically significant difference.":
-            output_means(mean_a, mean_b)
-    else:
-        outcome = "T-test not conducted due to unequal variance."
-        print("Data is unsuitable for t-test.")
-        print("Reason: Lacks homogeneity of variance.")
-    date_time = date_and_time()
-    update_test_records(
-            date_time[0], date_time[1], tester_id, mean_a, mean_b, outcome)
-    return_to_main_menu()
-
-
+# MAIN AS MAIN_MENU
 main_menu()
-
-
-# Reminder: Expect a terminal of 80 characters wide and 24 rows high.
