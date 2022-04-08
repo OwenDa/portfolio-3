@@ -117,7 +117,7 @@ ALPHA = 0.05  # Standard significance level
 test_records = SHEET.worksheet('test_records')  # Records sheet
 records = test_records.get_all_values()  # Records values as nested lists
 custom_theme = Theme(
-    {"menu": "green", "highlight": "yellow", "error": "bright_red"})
+    {"menu": "green", "highlight": "bright_yellow", "error": "bright_red"})
 console = Console(theme=custom_theme)
 # Console object for use with rich.console
 
@@ -127,10 +127,10 @@ def build_table():
     """ Build table from previous records """
     table = Table(title="Test Records")
     for heading in records[0]:
-        table.add_column(f"{heading}", style="sky_blue3")
+        table.add_column(f"{heading}", style="yellow")
     for row in records[1::1]:
         table.add_row(*row)
-    console.print(table, style="light_cyan1", justify="center")
+    console.print(table, style="bright_yellow", justify="center")
     records_menu()
 
 
