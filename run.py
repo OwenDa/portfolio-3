@@ -53,7 +53,7 @@ def quit_func():
     quit()
 
 
-def menu():
+def main_menu():
     """ Experimental feature """
     while True:
         print("                          🆃-🆃🅴🆂🆃🅴🆁")
@@ -289,7 +289,7 @@ def error_wrapper(msg):
 
 def testing_main():
     """
-    Main test-mode function to run all other test-related functions in appropriate order
+    Main test-mode function to run all other test-related functions
     """
     tester_id = get_tester_id()
     sample_a = collect_data()
@@ -310,10 +310,8 @@ def testing_main():
     update_test_records(
             date_time[0], date_time[1], tester_id, mean_a, mean_b, outcome)
 
-# testing_main()
 
-
-menu()
+main_menu()
 
 
 # Reminder: Expect a terminal of 80 characters wide and 24 rows high.

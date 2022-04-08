@@ -31,7 +31,8 @@ The deployment terminal is set to 80 columns by 24 rows. That means that each li
 ## Development Notes (live area):
 Levene's Test as carried out in Python is covered on this [Statology Article](https://www.statology.org/levenes-test-python/).  
 Independent t-tests (also known as Student's t-test) is covered in this [Data Camp video](https://www.youtube.com/watch?v=YpZlT64kFGA).  
-
+The Main Menu function is partly based on that designed within this [How To Create a Menu in Python video](https://www.youtube.com/watch?v=P6azEyNIQDQ), with particular reference to the use of [sleep function](https://www.programiz.com/python-programming/time/sleep).  
+  
 ## Sample Datasets:  
 To test different outcomes, the reader may wish to make use of the following datasets.  
   
