@@ -31,7 +31,7 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('pp3')
 
 
-# MAIN MENU:
+# MENUS:
 
 def help_func():
     """ Offers user help in using the program """
@@ -72,12 +72,16 @@ def main_menu():
         \n"""))
             if choice == 1:
                 help_func()
+                continue
             elif choice == 2:
                 testing_mode()
+                break
             elif choice == (3):
                 build_table()
+                break
             elif choice == (4):
                 quit_func()
+                break
             else:
                 raise ValueError
         except ValueError:
@@ -86,10 +90,25 @@ def main_menu():
             continue
 
 
+def return_to_main_menu():
+    """ Guides user back to Main Menu screen when ready """
+    while True:
+        try:
+            choice = input("Returning to Main Menu. Press Y to confirm.\n")
+            if choice.upper() == "Y":
+                main_menu()
+            else:
+                raise ValueError
+        except ValueError:
+            msg = ("No other operations available. "
+                   "Press Y to return to Main Menu.")
+            error_wrapper(msg)
+            continue
+
+
 # GLOBAL VARIABLE(S):
 ALPHA = 0.05  # Standard significance level
 test_records = SHEET.worksheet('test_records')  # Records sheet
-
 
 # RECORDS TABLE AREA:
 
@@ -331,6 +350,7 @@ def testing_main():
     date_time = date_and_time()
     update_test_records(
             date_time[0], date_time[1], tester_id, mean_a, mean_b, outcome)
+    return_to_main_menu()
 
 
 main_menu()
