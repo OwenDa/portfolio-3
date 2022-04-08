@@ -47,21 +47,30 @@ def quit_func():
 
 def menu():
     """ Experimental feature """
-    print("- - - - - - - - - - - - - Main Menu - - - - - - - - - - - - -")
-    try:
-        choice = int(input("""
-                    1. Help
-                    2. Run Tests
-                    3. Quit
+    while True:
+        print("- - - - - - - - - - - - - Main Menu - - - - - - - - - - - - -")
+        try:
+            choice = int(input("""
+                        1. Help
+                        2. Run Tests
+                        3. Quit
 
-                    Enter a number to make a selection:
-    """))
-        print(choice)
-    except ValueError:
-        print("go back")
+                        Enter a number to make a selection,
+                        and then press the "Enter" key:
+        """))
+            if choice == 1:
+                print("1")
+            elif choice == 2:
+                print("2")
+            elif choice == (3):
+                print("3")
+            else:
+                raise ValueError
+        except ValueError:
+            msg = "Invalid Selection. Please choose 1, 2 or 3."
+            error_wrapper(msg)
+            continue
 
-
-menu()
 
 # GLOBAL VARIABLE(S):
 ALPHA = 0.05  # standard significance level
@@ -288,8 +297,10 @@ def main():
     update_test_records(
             date_time[0], date_time[1], tester_id, mean_a, mean_b, outcome)
 
+# main()
 
-main()
+
+menu()
 
 
 # Reminder: Expect a terminal of 80 characters wide and 24 rows high.
