@@ -10,6 +10,7 @@ operations are carried out, until or unless:
 
 # IMPORTS:
 import datetime
+from time import sleep
 import gspread
 from google.oauth2.service_account import Credentials
 from scipy import stats
@@ -28,21 +29,27 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('pp3')
 
 
-# EXPERIMENTAL:
+# MAIN MENU:
 
 def help_func():
     """ Temporary function for experimentation only """
     print("Help text.")
 
 
-def test_func():
-    """ Temporary function for experimentation only """
-    print("Pretending to run tests...")
+def testing_mode():
+    """
+    Triggers testing_main() function when selected from Menu
+    """
+    print("Entering Testing Mode...")
+    sleep(1)
+    testing_main()
 
 
 def quit_func():
     """ Temporary function for experimentation only """
-    print("Pretending to quit...")
+    print("Quitting program...")
+    sleep(1)
+    quit()
 
 
 def menu():
@@ -59,11 +66,11 @@ def menu():
                         and then press the "Enter" key:
         """))
             if choice == 1:
-                print("1")
+                help_func()
             elif choice == 2:
-                print("2")
+                testing_mode()
             elif choice == (3):
-                print("3")
+                quit_func()
             else:
                 raise ValueError
         except ValueError:
@@ -273,7 +280,7 @@ def error_wrapper(msg):
     print("- - - - - - - - - - - - - - - - - - - - - - - - - - \n")
 
 
-def main():
+def testing_main():
     """
     Main function to run all other functions in appropriate order
     """
@@ -297,7 +304,7 @@ def main():
     update_test_records(
             date_time[0], date_time[1], tester_id, mean_a, mean_b, outcome)
 
-# main()
+# testing_main()
 
 
 menu()
