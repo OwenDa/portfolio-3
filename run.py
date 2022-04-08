@@ -1,4 +1,4 @@
-# pylint: disable=invalid-name
+# pylint: disable=invalid-name, broad-except
 """
 Python program for data entry via terminal.
 Once data is entered, a sequence of statistical
@@ -88,6 +88,9 @@ def main_menu():
             msg = "Invalid Selection. Please choose 1, 2, 3 or 4."
             error_wrapper(msg)
             continue
+        except Exception as e:
+            except_str(e)
+            quit_func()
 
 
 def return_to_main_menu():
@@ -104,6 +107,9 @@ def return_to_main_menu():
                    "Press Y to return to Main Menu.")
             error_wrapper(msg)
             continue
+        except Exception as e:
+            except_str(e)
+            quit_func()
 
 
 # GLOBAL VARIABLE(S):
@@ -148,6 +154,9 @@ def records_menu():
             msg = "Invalid Selection. Please choose 1 or 2."
             error_wrapper(msg)
             continue
+        except Exception as e:
+            except_str(e)
+            return_to_main_menu()
 
 
 def delete_last_record():
@@ -174,9 +183,8 @@ def delete_last_record():
                 feedback = ("Last record successfully deleted. "
                             "Returning to previous menu...")
                 exit_with_feedback(feedback)
-            except Exception as ex:
-                msg = ("Operation failed. Reason unknown. \n"
-                       "Please try again or contact developer.")
+            except Exception as e:
+                msg = (f"Operation failed.\nError: {e}.")
                 error_wrapper(msg)
                 feedback = "Exiting without making changes...\n"
                 exit_with_feedback(feedback)
@@ -248,6 +256,9 @@ def get_qty_subjects():
             msg = "Must be numeric value. Try again."
             error_wrapper(msg)
             continue
+        except Exception as e:
+            except_str(e)
+            return_to_main_menu()
         else:
             return qty
 
@@ -289,6 +300,9 @@ def get_sample():
             msg = "Non-numeric value(s) detected. Try again."
             error_wrapper(msg)
             continue
+        except Exception as e:
+            except_str(e)
+            return_to_main_menu()
         else:
             return sample
 
@@ -380,12 +394,22 @@ def date_and_time():
     return test_date, test_time
 
 
-# ERROR FORMATTING:
+# ERROR HANDLING & FORMATTING:
 def error_wrapper(msg):
     """ Wraps around error messages for greater legibility """
     print("\n- - - - - - - - - - - Error - - - - - - - - - - - - ")
     print(msg)
     print("- - - - - - - - - - - - - - - - - - - - - - - - - - \n")
+
+
+def except_str(e):
+    """
+    Formatted feedback for Exceptions.
+    Does not interfere with BaseException.
+    """
+    print("Sorry, something went wrong.")
+    print(f"Error: {e}.")
+    sleep(1)
 
 
 def testing_main():
