@@ -56,7 +56,7 @@ def quit_func():
 
 
 def main_menu():
-    """ Experimental feature """
+    """ Main Menu and welcome screen. """
     while True:
         print("                          🆃-🆃🅴🆂🆃🅴🆁")
         print("- - - - - - - - - - - - - Main Menu - - - - - - - - - - - - -")
@@ -91,25 +91,19 @@ ALPHA = 0.05  # Standard significance level
 test_records = SHEET.worksheet('test_records')  # Records sheet
 
 
-# EXPERIMENTAL AREA:
+# RECORDS TABLE AREA:
 
 
 def build_table():
     """ Build table from previous records """
     records = test_records.get_all_values()
     table = Table(title="Test Records")
-    print(table)
     for heading in records[0]:
         table.add_column(f"{heading}")
     for row in records[1::1]:
-        i = range(len(records)-1)
-        print(i)
-        table.add_row(f"{row[0]}")
+        table.add_row(*row)
     console = Console()
     console.print(table)
-    print("This feature is under development.")
-    print("Please use the menu below to explore other features.")
-    main_menu()
 
 
 # DATA COLLECTION:
