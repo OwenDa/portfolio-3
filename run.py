@@ -35,8 +35,20 @@ SHEET = GSPREAD_CLIENT.open('pp3')
 # MENUS:
 def help_func():
     """ Offers user help in using the program """
-    print("Help text has yet to be added.")
-    print("Please make another selection.")
+    console.print("""[bold][bright_cyan]Welcome to T-Tester's Help section.[/][/]
+This guide aims to instruct the user on the basic functions and processes of
+the T-Tester program.
+
+[bold][bright_cyan]To Exit the Program:[/][/]
+Press Ctrl+C (Windows) or Cmd+C (Mac) at any time to quit the program.
+Note that your work may not be saved.
+
+Alternatively, you may select the Quit option from the Main Menu.
+To reach the Main Menu now, you may choose from the options below.
+
+[bold][bright_cyan]To Use this Guide:[/][/]
+Select a topic from the options below, and a brief guide will be displayed.
+At the end of each topic, you will be prompted to return here when ready.""")
 
 
 def testing_mode():
@@ -75,7 +87,7 @@ def main_menu():
         \n"""))
             if choice == 1:
                 help_func()
-                continue
+                break
             elif choice == 2:
                 testing_mode()
                 break
@@ -94,6 +106,40 @@ def main_menu():
         except Exception as e:
             except_str(e)
             quit_func()
+
+
+def help_menu():
+    """ Help Section Menu """
+    while True:
+        console.print("\nＯｐｔｉｏｎｓ", style="menu", justify="center")
+        try:
+            console.print("""
+                        1. Return to Main Menu
+                        2. Running Tests in T-Tester
+                        3. Viewing Records
+                        4. Deleting Records
+                        """, style="menu")
+            choice = int(input("""
+                        Enter a number to make a selection,
+                        and then press the "Enter" key:
+        \n"""))
+            if choice == 1:
+                main_menu()
+            elif choice == 2:
+                pass  # Running Tests in T-Tester
+            elif choice == 3:
+                pass  # Viewing Records
+            elif choice == 4:
+                pass  # Deleting Records
+            else:
+                raise ValueError
+        except ValueError:
+            msg = "Invalid Selection. Enter a number from the options above."
+            error_wrapper(msg)
+            continue
+        except Exception as e:
+            except_str(e)
+            return_to_main_menu()
 
 
 def return_to_main_menu():
