@@ -32,21 +32,22 @@ SHEET = GSPREAD_CLIENT.open('pp3')
 # MAIN MENU:
 
 def help_func():
-    """ Temporary function for experimentation only """
-    print("Help text.")
+    """ Offers user help in using the program """
+    print("Help text has yet to be added.")
+    print("Please make another selection.")
 
 
 def testing_mode():
     """
     Triggers testing_main() function when selected from Menu
     """
-    print("Entering Testing Mode...")
+    print("Entering Testing Mode...\n")
     sleep(1)
     testing_main()
 
 
 def quit_func():
-    """ Temporary function for experimentation only """
+    """ Quits program after a short delay of 1 second """
     print("Quitting program...")
     sleep(1)
     quit()
@@ -55,6 +56,7 @@ def quit_func():
 def menu():
     """ Experimental feature """
     while True:
+        print("                          🆃-🆃🅴🆂🆃🅴🆁")
         print("- - - - - - - - - - - - - Main Menu - - - - - - - - - - - - -")
         try:
             choice = int(input("""
@@ -64,7 +66,7 @@ def menu():
 
                         Enter a number to make a selection,
                         and then press the "Enter" key:
-        """))
+        \n"""))
             if choice == 1:
                 help_func()
             elif choice == 2:
@@ -150,7 +152,9 @@ def get_qty_subjects():
 
 def confirm_proceed(last_input):
     """
-    Generic function in which the user can confirm their last input if correct.
+    Generic function in which the user can:
+    - confirm their last input if correct or
+    - return to previous step.
     Deployed within loops:
     pass if correct, continue to repeat input.
     """
@@ -159,9 +163,11 @@ def confirm_proceed(last_input):
         answer = input("Is this correct? Y/N \n")
         if answer.upper() == "Y":
             print("\nProceeding to next step...\n")
+            sleep(.5)
             return True
         elif answer.upper() == "N":
             print("\nReturning to previous step...\n")
+            sleep(.5)
             return False
         else:
             msg = "Press Y if correct, or press N to re-enter the data."
@@ -261,6 +267,7 @@ def update_test_records(*args):
     print("\nUpdating test records...\n")
     test_records = SHEET.worksheet('test_records')
     test_records.append_row(args)
+    sleep(.5)
     print("Record successfully updated.")
 
 
@@ -282,9 +289,8 @@ def error_wrapper(msg):
 
 def testing_main():
     """
-    Main function to run all other functions in appropriate order
+    Main test-mode function to run all other test-related functions in appropriate order
     """
-    print("  🆃-🆃🅴🆂🆃🅴🆁")
     tester_id = get_tester_id()
     sample_a = collect_data()
     sample_b = collect_data()
