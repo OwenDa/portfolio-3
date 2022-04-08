@@ -58,9 +58,8 @@ def quit_func():
 def main_menu():
     """ Main Menu and welcome screen. """
     while True:
-        print("                          🆃-🆃🅴🆂🆃🅴🆁")
-        console.print("- - - - - - - - - - - - - Main Menu "
-                      "- - - - - - - - - - - - -", style="menu")
+        console.print("Ｔ－Ｔｅｓｔｅｒ", style="menu", justify="center")
+        console.print("Main Menu", style="menu", justify="center")
         try:
             choice = int(input("""
                         1. Help
@@ -117,7 +116,8 @@ def return_to_main_menu():
 ALPHA = 0.05  # Standard significance level
 test_records = SHEET.worksheet('test_records')  # Records sheet
 records = test_records.get_all_values()  # Records values as nested lists
-custom_theme = Theme({"menu": "green", "highlight": "yellow", "error": "red"})
+custom_theme = Theme(
+    {"menu": "green", "highlight": "yellow", "error": "bright_red"})
 console = Console(theme=custom_theme)
 # Console object for use with rich.console
 
@@ -127,18 +127,17 @@ def build_table():
     """ Build table from previous records """
     table = Table(title="Test Records")
     for heading in records[0]:
-        table.add_column(f"{heading}", style="yellow")
+        table.add_column(f"{heading}", style="sky_blue3")
     for row in records[1::1]:
         table.add_row(*row)
-    console.print(table, style="magenta")
+    console.print(table, style="light_cyan1", justify="center")
     records_menu()
 
 
 def records_menu():
     """ Records Area Menu """
     while True:
-        console.print("- - - - - - - - - - - - - Options "
-                      "- - - - - - - - - - - - -", style="menu")
+        console.print("\nＯｐｔｉｏｎｓ", style="menu", justify="center")
         try:
             choice = int(input("""
                         1. Return to Main Menu
