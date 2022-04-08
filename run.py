@@ -61,12 +61,15 @@ def main_menu():
         console.print("Ｔ－Ｔｅｓｔｅｒ", style="menu", justify="center")
         console.print("Main Menu", style="menu", justify="center")
         try:
-            choice = int(input("""
+            console.print("""
                         1. Help
                         2. Run Tests
                         3. View Records
                         4. Quit
 
+                        At any time, press Ctrl+C/Cmd+C to quit.
+                        """, style="menu")
+            choice = int(input("""
                         Enter a number to make a selection,
                         and then press the "Enter" key:
         \n"""))
@@ -117,7 +120,9 @@ ALPHA = 0.05  # Standard significance level
 test_records = SHEET.worksheet('test_records')  # Records sheet
 records = test_records.get_all_values()  # Records values as nested lists
 custom_theme = Theme(
-    {"menu": "bright_green", "highlight": "bright_yellow", "error": "bright_red"})
+    {"menu": "bright_green",
+     "highlight": "bright_cyan",
+     "error": "bright_red"})
 console = Console(theme=custom_theme)
 # Console object for use with rich.console
 
@@ -139,10 +144,11 @@ def records_menu():
     while True:
         console.print("\nＯｐｔｉｏｎｓ", style="menu", justify="center")
         try:
-            choice = int(input("""
+            console.print("""
                         1. Return to Main Menu
                         2. Delete Last Record Shown
-
+                        """, style="menu")
+            choice = int(input("""
                         Enter a number to make a selection,
                         and then press the "Enter" key:
         \n"""))
