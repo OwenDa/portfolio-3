@@ -15,6 +15,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 from rich.console import Console
 from rich.table import Table
+from rich.theme import Theme
 from scipy import stats
 from numpy import mean
 
@@ -58,7 +59,8 @@ def main_menu():
     """ Main Menu and welcome screen. """
     while True:
         print("                          🆃-🆃🅴🆂🆃🅴🆁")
-        print("- - - - - - - - - - - - - Main Menu - - - - - - - - - - - - -")
+        console.print("- - - - - - - - - - - - - Main Menu "
+                      "- - - - - - - - - - - - -", style="menu")
         try:
             choice = int(input("""
                         1. Help
@@ -115,7 +117,9 @@ def return_to_main_menu():
 ALPHA = 0.05  # Standard significance level
 test_records = SHEET.worksheet('test_records')  # Records sheet
 records = test_records.get_all_values()  # Records values as nested lists
-console = Console()  # Console object for use with rich.console
+custom_theme = Theme({"menu": "green", "highlight": "yellow", "error": "red"})
+console = Console(theme=custom_theme)
+# Console object for use with rich.console
 
 
 # RECORDS TABLE AREA:
@@ -123,17 +127,18 @@ def build_table():
     """ Build table from previous records """
     table = Table(title="Test Records")
     for heading in records[0]:
-        table.add_column(f"{heading}")
+        table.add_column(f"{heading}", style="yellow")
     for row in records[1::1]:
         table.add_row(*row)
-    console.print(table)
+    console.print(table, style="magenta")
     records_menu()
 
 
 def records_menu():
     """ Records Area Menu """
     while True:
-        print("- - - - - - - - - - - - - Options - - - - - - - - - - - - -")
+        console.print("- - - - - - - - - - - - - Options "
+                      "- - - - - - - - - - - - -", style="menu")
         try:
             choice = int(input("""
                         1. Return to Main Menu
@@ -169,7 +174,7 @@ def delete_last_record():
         sleep(2.5)
         records_menu()
 
-    print("\nCaution: Deletion cannot be undone.")
+    console.print("\nCaution: Deletion cannot be undone.", style="highlight")
     print("You are about to delete the most current test record on the table.")
     while True:
         confirm_delete = input("To confirm this action, type 'DELETE'. "
@@ -203,7 +208,7 @@ def get_tester_id():
     while True:
         tester_id = input("Enter a username or ID of your choice: \n")
         if tester_id == "":
-            msg = "Username or ID required (e.g. 'SamBeckett', 'User1' etc.)"
+            msg = "Username or ID required (e.g. SamBeckett, User1, etc.)"
             error_wrapper(msg)
             continue
         elif len(tester_id) < 2:
@@ -271,8 +276,8 @@ def confirm_proceed(last_input):
     pass if correct, continue to repeat input.
     """
     while True:
-        print(f"\nYou entered: {last_input}")
-        answer = input("Is this correct? Y/N \n")
+        console.print(f"\nYou entered: {last_input}")
+        answer = input("Is this correct? Y/N \n", style="highlight")
         if answer.upper() == "Y":
             print("\nProceeding to next step...\n")
             sleep(.5)
@@ -423,9 +428,11 @@ def date_and_time():
 # ERROR HANDLING & FORMATTING:
 def error_wrapper(msg):
     """ Wraps around error messages for greater legibility """
-    print("\n- - - - - - - - - - - Error - - - - - - - - - - - - ")
-    print(msg)
-    print("- - - - - - - - - - - - - - - - - - - - - - - - - - \n")
+    console.print("\n- - - - - - - - - - - Error - - - - - - - - - - - - ",
+                  style="error")
+    console.print(msg, style="highlight")
+    console.print("- - - - - - - - - - - - - - - - - - - - - - - - - - \n",
+                  style="error")
 
 
 def except_str(e):
