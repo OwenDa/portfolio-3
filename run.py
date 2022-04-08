@@ -8,11 +8,13 @@ operations are carried out, until or unless:
   C) the user exits the program.
 """
 
+# IMPORTS:
 import datetime
 import gspread
 from google.oauth2.service_account import Credentials
 from scipy import stats
 from numpy import mean
+
 
 # APIs and Google Sheets:
 SCOPE = [
@@ -27,18 +29,11 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('pp3')
 
 
-# Data for testing significant/non-significant sets:
-non_sig_a = [66.1, 69.9, 67.7, 69.6, 71.1]  # Test data // m = 68.88
-non_sig_b = [66.1, 69.9, 67.7, 69.6, 71.1]  # Test data // m = 68.88
-sig_a = [83.70, 81.50, 80.60, 83.90, 84.40]  # Test data // m = 82.82
-sig_b = [66.1, 69.9, 67.7, 69.6, 71.1]  # Test data // m = 68.88
+# GLOBAL VARIABLE(S):
+ALPHA = 0.05  # standard significance level
 
 
-# Standard Variables:
-ALPHA = 0.05  # significance level
-
-
-# INPUT AREA:
+# DATA COLLECTION:
 def get_tester_id():
     """
     Request user's name or organisational ID for records.
@@ -157,12 +152,13 @@ def validate_data(sample, qty):
     if len(sample) == qty:
         return True
     else:
-        msg = (f"{len(sample)} values entered. Expected {qty}.\nPlease begin this sample again.")
+        msg = (f"{len(sample)} values entered."
+               f"Expected {qty}.\nPlease begin this sample again.")
         error_wrapper(msg)
         return False
 
 
-# OPERATIONS AREA:
+# STATISTICAL OPERATIONS:
 def describe(sample):
     """ Output descriptive stats (mean and values) """
     mean_avg = round(mean(sample), 2)
@@ -199,9 +195,11 @@ def t_test(first_sample, second_sample):
 def output_means(a, b):
     """ Outputs mean averages in order of precedence """
     if a > b:
-        print(f"The mean average of Sample A ({a}) \nwas greater than Sample B ({b}).")
+        print(f"The mean average of Sample A ({a}) \n"
+              f"was greater than Sample B ({b}).")
     else:
-        print(f"The mean average of Sample B ({b}) \nwas greater than Sample A ({a}).")
+        print(f"The mean average of Sample B ({b}) \n"
+              f"was greater than Sample A ({a}).")
 
 
 # DATA HANDLING:
