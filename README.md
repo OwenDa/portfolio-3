@@ -82,7 +82,7 @@ Once carried out, the independent t-test will return no statistically significan
 ### Invalid Input  
 Attempting to enter following values in response to their respective input requests will show an error message and prompt the user to correct the error by trying again.  
   
-  **Menus**
+**Menus**
 | Request                | Invalid Value Type               | Error Message                                                   |  
 |------------------------|----------------------------------|-----------------------------------------------------------------| 
 | Main Menu Selection    | Blank                            | Invalid Selection. Please choose 1, 2, 3 or 4.                  |
@@ -121,6 +121,16 @@ Attempting to enter following values in response to their respective input reque
 *Note that a lowercase y/n is handled automatically and does not require user-intervention.  
 ** Note that multiple commas or spaces within an otherwise valid sample (1  ,2, , 3 , 4,,,5) are automatically corrected.  
   
+  
+**Deleting Records**
+| Request                               | Invalid Value Type| Error Message                                |  
+|---------------------------------------|-------------------|----------------------------------------------| 
+| "DELETE" or                           | "delete"          | "This option is case-sensitive.              |  
+|  Enter to cancel or                   |                   | To delete, type 'DELETE'                     |
+|  any key followed by Enter to cancel  |                   | To exit, press any other key and hit Enter." |
+  
+
+
   
 Data for testing significant/non-significant sets:  
 non_sig_a = [66.1, 69.9, 67.7, 69.6, 71.1]  # Test data // m = 68.88  
