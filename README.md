@@ -47,23 +47,80 @@ To explore these features with sample data, see [Sample Datasets](#sample-datase
 ## User Stories  
   
 ### Sample Datasets:  
-To test different outcomes, the reader may wish to make use of the following datasets.  
+To test different outcomes, the reader may wish to make use of the sample datasets below. 
+
+**How to Use Sample Datasets:**  
+Keeping this README document open for reference, [launch the program](https://t-tester.herokuapp.com/). Select "Run Tests" from the menu by pressing the associated number in the menu (e.g. 2) on your keyboard. When entering input, you must then use the Enter key on your keyboard to submit your input.  
   
-Dataset:  
-5 Subjects: [100,2000,30000,400000,5000000]  
-5 Subjects: [1,2,3,4,5]  
+You will be asked to enter a username or ID of your choosing. This must be two or more characters in length. Type your chosen username and again press Enter.  
+  
+When prompted, enter the number of subjects in the first sample of your chosen dataset. This must be entered as an integer (ie. "5", not "five" or "5.0"). After pressing enter, you will be asked to confirm by submitting either Y or N.  
 
-Outcome:  
-In this case, the two samples collected from the user are unsuitable for an independent t-test and will fail when the program checks for homogeneity of variances (Levene's Test), causing the program to bypass the t-test. This can be verified by inputting the same numbers to an online Levene's Test tool, such as [SocSciStatistics.com](https://www.socscistatistics.com/tests/levene/default.aspx).
+You will now be asked to input the values within the sample. You may type these individually or simply copy-and-paste the values from the dataset below. Submit the information by pressing Enter and confirm. You will be prompted to repeat the relevant steps for the second sample.  The program will proceed according to the outcome described for each sample dataset.
+  
+  
+| Dataset 1| Subjects |  Values                        |
+|----------|----------|--------------------------------|
+| Sample A |     5    |  100,2000,30000,400000,5000000 |
+| Sample B |     5    |  1,2,3,4,5                     |  
+  
+**Outcome: Data Unsuitable**  
+In *Dataset 1*, the two samples collected from the user are unsuitable for an independent t-test and will fail when the program checks for homogeneity of variances (Levene's Test), causing the program to bypass the t-test. This can be verified by inputting the same numbers to an online Levene's Test tool, such as [SocSciStatistics.com](https://www.socscistatistics.com/tests/levene/default.aspx).
+  
+  
+| Dataset 2| Subjects |  Values    |
+|----------|----------|------------|
+| Sample A |     5    |  8,7,3,9,5 |
+| Sample B |     5    |  3,5,7,3,5 |  
+  
+**Outcome: No Statistically Significant Difference**  
+In *Dataset 2*, the samples are suitable for an independent t-test and the program will proceed to carry it out. Again, this can be verified by inputting the same numbers to an online Levene's Test tool, such as [SocSciStatistics.com](https://www.socscistatistics.com/tests/levene/default.aspx).
 
-Dataset:  
-5 Subjects: [8,7,3,9,5]  
-5 Subjects: [3,5,7,3,5]  
+Once carried out, the independent t-test will return no statistically significant difference between the samples in this dataset. This can be verified using an online t-test calculator, such as that available from [GraphPad](https://www.graphpad.com/quickcalcs/ttest1.cfm). 
 
-Outcome:  
-Here, the samples are suitable for an independent t-test and the program will proceed to carry it out. Again, this can be verified by inputting the same numbers to an online Levene's Test tool, such as [SocSciStatistics.com](https://www.socscistatistics.com/tests/levene/default.aspx).
 
-Once carried out, the independent t-test will return no statistically significant difference between the samples in this dataset. This can be verified using an online t-test calculator, such as that available from [GraphPad](https://www.graphpad.com/quickcalcs/ttest1.cfm).  
+### Invalid Input  
+Attempting to enter following values in response to their respective input requests will show an error message and prompt the user to correct the error by trying again.  
+  
+  **Menus**
+| Request                | Invalid Value Type               | Error Message                                                   |  
+|------------------------|----------------------------------|-----------------------------------------------------------------| 
+| Main Menu Selection    | Blank                            | Invalid Selection. Please choose 1, 2, 3 or 4.                  |
+| Main Menu Selection    | Letter/symbol(s)                 | Invalid Selection. Please choose 1, 2, 3 or 4.                  |  
+| Main Menu Selection    | Number out of option range       | Invalid Selection. Please choose 1, 2, 3 or 4.                  |
+| Help Menu Selection    | Blank                            | Invalid Selection. Please choose from the numbers shown.        |  
+| Main Menu Selection    | Letter/symbol(s)                 | Invalid Selection. Please choose from the numbers shown.        |  
+| Main Menu Selection    | Number out of option range       | Invalid Selection. Please choose from the numbers shown.        |  
+| Records Menu Selection | Blank                            | Invalid Selection. Please choose 1 or 2.                        |  
+| Records Menu Selection | Letter(s)/Symbol(s)              | Invalid Selection. Please choose 1 or 2.                        |  
+| Records Menu Selection | Number out of option range       | Invalid Selection. Please choose 1 or 2.                        |  
+
+
+**Running Tests**
+| Request             | Invalid Value Type    | Error Message                                                              |  
+|---------------------|-----------------------|----------------------------------------------------------------------------| 
+| Request  | Invalid Value Type               | Error Message                                                              |
+| Username | Blank                            | Username or ID required (e.g. SamBeckett, User1, etc.)                     |  
+| Username | Single character                 | Username must be at least 2 characters in length                           |  
+| Subjects | Blank                            | Must be numeric value. Try Again.                                          |  
+| Subjects | Letter(s)                        | Must be numeric value. Try Again.                                          |  
+| Subjects | Number below 5                   | Five or more subjects required. Try Again.                                 |  
+| Subjects | Negative number                  | Five or more subjects required. Try Again.                                 |  
+| Subjects | Float, e.g. 5.2                  |                                                                            |  
+| Y/N      | Blank                            | Press Y if correct, or press N to re-enter the data.                       |  
+| Y/N      | Letter other than Y/N*           | Press Y if correct, or press N to re-enter the data.                       |  
+| Y/N      | Number                           | Press Y if correct, or press N to re-enter the data.                       |   
+| Sample   | Blank**                          | 0 values entered. Expected [subjects]. Please begin this sample again.     |    
+| Sample   | Comma(s) only**                  | 0 values entered. Expected [subjects]. Please begin this sample again.     |  
+| Sample   | Number of values != [subjects]   | [x] values entered. Expected [subjects]. Please begin this sample again.   |    
+| Sample   | Letter(s), e.g. "G", "1,2,3,r,5" | Non-numeric value(s) detected. Try again.                                  |  
+| Sample   | Punctuation, other than as float | Non-numeric value(s) detected. Try again.                                  |  
+| Sample   | Multiple decimals e.g. "5..2"    | Non-numeric value(s) detected. Try again.                                  |  
+| Y        | Any other letter                 | No other operations available at this time. Press Y to return to Main Menu.|  
+
+*Note that a lowercase y/n is handled automatically and does not require user-intervention.  
+** Note that multiple commas or spaces within an otherwise valid sample (1  ,2, , 3 , 4,,,5) are automatically corrected.  
+  
   
 Data for testing significant/non-significant sets:  
 non_sig_a = [66.1, 69.9, 67.7, 69.6, 71.1]  # Test data // m = 68.88  
