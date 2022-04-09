@@ -120,24 +120,27 @@ def return_to_main_menu():
 
 
 # HELP SECTION:
-help_topic = (
-    """Running Tests in T-Tester""",
+help_dict = {
+    "running_tests": """ """,
+    "view_records":
     """Viewing Records""",
+    "delete_records":
     """Deleting Records""",
-    """More information""",)
+    "more_info":
+    """More information""", }
 
 
 def help_text(topic):
     """ In development """
     try:
         if topic == 2:
-            console.print(help_topic[0])
+            console.print(help_dict["running_tests"])
         elif topic == 3:
-            console.print(help_topic[1])
+            console.print(help_dict["view_records"])
         elif topic == 4:
-            console.print(help_topic[2])
+            console.print(help_dict["delete_records"])
         elif topic == 5:
-            console.print(help_topic[3])
+            console.print(help_dict["more_info"])
         else:
             raise ValueError
     except ValueError as e:
