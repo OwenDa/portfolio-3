@@ -1,39 +1,23 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+Ｔ－Ｔｅｓｔｅｒ
 
-Welcome,
+T-Tester is a simple and adaptable tool that runs in the terminal and can be adapted to any number of business needs and other scenarios.  
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
+## Contents
+1. [Problem Statement](#problem-statement)  
+2. [User Stories](#user-stories)
+    + [Sample Datasets](#sample-datasets)
+3. [Tech Stack](#tech-stack)  
+4. [Features](#features)
+    + [Future Features](#future-features)
+5. [Testing](#testing)
+6. [Deployment](#deployment)  
+7. [Acknowledgements](#acknowledgements) 
 
-## Reminders
+## Problem Statement  
 
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
-
-## Creating the Heroku app
-
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
-
-1. `heroku/python`
-2. `heroku/nodejs`
-
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
-
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
-
-Connect your GitHub repository and deploy as normal.
-
-## Constraints
-
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
-
------
-## Development Notes (live area):
-Levene's Test as carried out in Python is covered on this [Statology Article](https://www.statology.org/levenes-test-python/).  
-Independent t-tests (also known as Student's t-test) is covered in this [Data Camp video](https://www.youtube.com/watch?v=YpZlT64kFGA).  
-The Main Menu function is partly based on that designed within this [How To Create a Menu in Python video](https://www.youtube.com/watch?v=P6azEyNIQDQ), with particular reference to the use of [sleep function](https://www.programiz.com/python-programming/time/sleep).  
+## User Stories  
   
-## Sample Datasets:  
+### Sample Datasets:  
 To test different outcomes, the reader may wish to make use of the following datasets.  
   
 Dataset:  
@@ -52,8 +36,34 @@ Here, the samples are suitable for an independent t-test and the program will pr
 
 Once carried out, the independent t-test will return no statistically significant difference between the samples in this dataset. This can be verified using an online t-test calculator, such as that available from [GraphPad](https://www.graphpad.com/quickcalcs/ttest1.cfm).  
   
-`# Data for testing significant/non-significant sets:
-non_sig_a = [66.1, 69.9, 67.7, 69.6, 71.1]  # Test data // m = 68.88
-non_sig_b = [66.1, 69.9, 67.7, 69.6, 71.1]  # Test data // m = 68.88
-sig_a = [83.70, 81.50, 80.60, 83.90, 84.40]  # Test data // m = 82.82
-sig_b = [66.1, 69.9, 67.7, 69.6, 71.1]  # Test data // m = 68.88`
+Data for testing significant/non-significant sets:  
+non_sig_a = [66.1, 69.9, 67.7, 69.6, 71.1]  # Test data // m = 68.88  
+non_sig_b = [66.1, 69.9, 67.7, 69.6, 71.1]  # Test data // m = 68.88  
+sig_a = [83.70, 81.50, 80.60, 83.90, 84.40]  # Test data // m = 82.82  
+sig_b = [66.1, 69.9, 67.7, 69.6, 71.1]  # Test data // m = 68.88  
+  
+## Tech Stack  
+1. Languages:
+  + Python  
+2. Main Libraries & Modules:
+  + google auth
+  + gspread
+  + numpy
+  + scipy
+  + rich
+
+## Features
+  
+### Future Features  
+  
+## Testing  
+  
+## Deployment  
+  
+
+## Acknowledgements 
+1. Levene's Test as carried out in Python is covered on this [Statology Article](https://www.statology.org/levenes-test-python/).  
+2. Independent t-tests (also known as Student's t-test) is covered in this [Data Camp video](https://www.youtube.com/watch?v=YpZlT64kFGA).  
+3. The Main Menu function is partly based on that designed within this [How To Create a Menu in Python video](https://www.youtube.com/watch?v=P6azEyNIQDQ), with particular reference to the use of [sleep function](https://www.programiz.com/python-programming/time/sleep).  
+4. ASCII-Art was generated via [fsymbols.com](https://fsymbols.com/text-art/).  
+  
