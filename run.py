@@ -93,7 +93,7 @@ def main_menu():
             else:
                 raise ValueError
         except ValueError:
-            msg = "Invalid Selection. Please choose 1, 2, 3 or 4."
+            msg = error_dict["menu_range"]
             error_wrapper(msg)
             continue
         except Exception as e:
@@ -111,8 +111,7 @@ def return_to_main_menu():
             else:
                 raise ValueError
         except ValueError:
-            msg = ("No other operations available at this time. "
-                   "Press Y to return to Main Menu.")
+            msg = error_dict["no_other_operations"]
             error_wrapper(msg)
             continue
         except Exception as e:
@@ -172,7 +171,7 @@ def help_menu():
             else:
                 raise ValueError
         except ValueError:
-            msg = "Invalid Selection. Enter a number from the options shown."
+            msg = error_dict["menu_range"]
             error_wrapper(msg)
             continue
         except Exception as e:
@@ -231,7 +230,7 @@ def records_menu():
             else:
                 raise ValueError
         except ValueError:
-            msg = "Invalid Selection. Please choose 1 or 2."
+            msg = error_dict["menu_range"]
             error_wrapper(msg)
             continue
         except Exception as e:
@@ -254,11 +253,11 @@ def delete_last_record():
     console.print("\nCaution: Deletion cannot be undone.\n", style="highlight")
     print("You are about to delete the most current test record on the table.")
     while True:
-        confirm_delete = input("To confirm this action, type 'DELETE'. "
-                               "Otherwise, press any key to cancel.\n")
+        confirm_delete = input("To confirm this action, type 'DELETE'."
+                               "To exit, press any other key and hit Enter.\n")
         if confirm_delete == "delete":
-            print("\nThis option is case-sensitive. To delete, type 'DELETE'")
-            print("To exit, press any other key and hit Enter.\n")
+            msg = error_dict["case_sensitive"]
+            error_wrapper(msg)
             continue
         elif confirm_delete == "DELETE":
             try:
@@ -329,12 +328,12 @@ def get_qty_subjects():
                 qty = int(input(
                     "Enter the number of subjects in this sample: \n"))
                 if qty < 5:
-                    msg = "Five or more subjects required."
+                    msg = error_dict["subject_qty"]
                     error_wrapper(msg)
                     continue
                 break
         except ValueError:
-            msg = "Must be numeric value. Try again."
+            msg = error_dict["subject_int"]
             error_wrapper(msg)
             continue
         except Exception as e:
@@ -379,7 +378,7 @@ def get_sample():
         try:
             sample = format_data(raw_data)
         except ValueError:
-            msg = "Non-numeric value(s) detected. Try again."
+            msg = error_dict["non_numeric_detected"]
             error_wrapper(msg)
             continue
         except Exception as e:
@@ -504,6 +503,23 @@ def date_and_time():
 
 
 # ERROR HANDLING & FORMATTING:
+error_dict = {
+    "menu_range":
+        "Invalid Selection. Please enter a number from the options shown.",
+    "no_other_operations":
+        """No other operations available at this time.
+    Press Y to return to Main Menu.""",
+    "subject_int":
+        """Must be numeric value. Whole numbers only (e.g. '7', not '7.2').
+    Please try again.""",
+    "subject_qty":
+        "Five or more subjects required. Try again.",
+    "non_numeric_detected":
+        "Non-numeric characters detected. Try again.",
+    "case_sensitive":
+        "This option is case-sensitive. To delete, type 'DELETE'", }
+
+
 def error_wrapper(msg):
     """ Wraps around error messages for greater legibility """
     console.print("\n- - - - - - - - - - - Error - - - - - - - - - - - - ",
