@@ -120,20 +120,19 @@ def return_to_main_menu():
 
 
 # HELP SECTION:
-help_dict = {
-    "view_records":
-    """Viewing Records""",
-    "delete_records":
-    """Deleting Records""",
-    "more_info":
-    """More information""", }
-
-help_files = {"run_tests": "run_tests.txt", }
+help_files = {"run_tests": "help/run_tests.txt",
+              "view_records": "help/view_records.txt",
+              "delete_records": "help/delete_records.txt",
+              "more_info": "help/more_info.txt", }
 
 
-def print_file(file_name):
-    """ opens a given file """
-    with open(file_name, mode="r", encoding="utf-8") as f:
+def print_file(file_path):
+    """
+    Opens a given txt file in read mode and outputs content.
+    Offers user the option to show the help menu when ready.
+    File will be closed upon exiting the with block.
+    """
+    with open(file_path, mode="r", encoding="utf-8") as f:
         contents = f.read(None)
         print(contents)
         show_menu(help_menu)
@@ -152,21 +151,25 @@ def show_menu(menu_name):
 
 
 def help_text(topic):
-    """ Used within help_menu() to determines the help text shown """
+    """
+    Used within help_menu() to determine the help text shown.
+    Uses print_file() to output the contents of the correct file.
+    """
     try:
         if topic == 2:
-            print_file("run_tests.txt")
+            file_path = help_files["run_tests"]
         elif topic == 3:
-            console.print(help_dict["view_records"])
+            file_path = help_files["view_records"]
         elif topic == 4:
-            console.print(help_dict["delete_records"])
+            file_path = help_files["delete_records"]
         elif topic == 5:
-            console.print(help_dict["more_info"])
+            file_path = help_files["more_info"]
         else:
             raise ValueError
     except ValueError as e:
         msg = e
         error_wrapper(msg)
+    print_file(file_path)
 
 
 def help_menu():
@@ -208,10 +211,8 @@ the T-Tester program.
 
 [bold][bright_cyan]To Exit the Program:[/][/]
 Press Ctrl+C (Windows) or Cmd+C (Mac) at any time to quit the program.
-Note that your work may not be saved.
-
-Alternatively, you may select the Quit option from the Main Menu.
-To reach the Main Menu now, you may choose from the options below.
+Note that your work may not be saved. Alternatively, you may select the Quit
+option from the Main Menu.
 
 [bold][bright_cyan]To Use this Guide:[/][/]
 Select a topic from the options below, and a brief guide will be displayed.
