@@ -121,7 +121,6 @@ def return_to_main_menu():
 
 # HELP SECTION:
 help_dict = {
-    "running_tests": """ """,
     "view_records":
     """Viewing Records""",
     "delete_records":
@@ -129,12 +128,34 @@ help_dict = {
     "more_info":
     """More information""", }
 
+help_files = {"run_tests": "run_tests.txt", }
+
+
+def print_file(file_name):
+    """ opens a given file """
+    with open(file_name, mode="r", encoding="utf-8") as f:
+        contents = f.read(None)
+        print(contents)
+        show_menu(help_menu)
+
+
+def show_menu(menu_name):
+    """
+    Maximise available terminal display while reading Help docs
+    by showing menu only when asked.
+    """
+    console.print(("Finished reading? "
+                   "Press Enter to show the menu."), style="highlight")
+    show = input()
+    if show:
+        menu_name()
+
 
 def help_text(topic):
-    """ In development """
+    """ Used within help_menu() to determines the help text shown """
     try:
         if topic == 2:
-            console.print(help_dict["running_tests"])
+            print_file("run_tests.txt")
         elif topic == 3:
             console.print(help_dict["view_records"])
         elif topic == 4:
@@ -146,8 +167,6 @@ def help_text(topic):
     except ValueError as e:
         msg = e
         error_wrapper(msg)
-    finally:
-        help_menu()
 
 
 def help_menu():
@@ -160,8 +179,7 @@ def help_menu():
                         2. Running Tests in T-Tester
                         3. Viewing Records
                         4. Deleting Records
-                        5. More information
-                        """, style="menu")
+                        5. More information""", style="menu")
             choice = int(input("""
                         Enter a number to make a selection,
                         and then press the "Enter" key:
