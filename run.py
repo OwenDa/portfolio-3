@@ -153,7 +153,8 @@ def show_menu(menu_name):
 def help_text(topic):
     """
     Used within help_menu() to determine the help text shown.
-    Uses print_file() to output the contents of the correct file.
+    Uses print_file() to output the contents of the correct file
+    based on key:filepath value stored in help_files dict.
     """
     try:
         if topic == 2:

@@ -45,6 +45,20 @@ T-Tester then is an adaptable tool that can be deployed to almost any scenario i
 To explore these features with sample data, see [Sample Datasets](#sample-datasets) below.  
   
 ## User Stories  
+- Understand how to use the program  
+- Ascertain the suitability of my data for use in the program  
+- Compute the mean averages of two samples  
+- Compare the means of two samples, if suitable  
+- See the results of the analysis  
+- Read records of past test results  
+- Create a new record for each new test conducted
+- Store records in a manner that makes them easy to share  
+- Update the externally-stored records automatically with my new data
+- Store records in a manner that allows me or others to copy, extract, manipulate or delete data  
+- Delete a record if created in error  
+- Navigate through the program  
+- Exit the program easily  
+- 
   
 ### Sample Datasets:  
 To test different outcomes, the reader may wish to make use of the sample datasets below. 
