@@ -169,7 +169,11 @@ def help_text(topic):
     except ValueError as e:
         msg = e
         error_wrapper(msg)
-    print_file(file_path)
+    try:
+        print_file(file_path)
+    except Exception as e:
+        except_str(e)
+        return_to_main_menu()
 
 
 def help_menu():
