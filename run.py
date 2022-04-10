@@ -123,10 +123,10 @@ def return_to_main_menu():
 
 
 # HELP SECTION:
-help_files = {"run_tests": "help/run_tests.txt",
-              "view_records": "help/view_records.txt",
-              "delete_records": "help/delete_records.txt",
-              "more_info": "help/more_info.txt", }
+help_files = {"run_tests": "assets/help-docs/run-tests.txt",
+              "view_records": "assets/help-docs/view-records.txt",
+              "delete_records": "assets/help-docs/delete-records.txt",
+              "more_info": "assets/help-docs/more-info.txt", }
 
 
 def print_file(file_path):
@@ -213,7 +213,8 @@ def help_menu():
 
 def main_help_func():
     """ Offers user help in using the program """
-    with open("help/help_intro.txt", mode="r", encoding="utf-8") as f:
+    with open("assets/help-docs/help-intro.txt",
+              mode="r", encoding="utf-8") as f:
         contents = f.read(None)
         console.print(contents)
     help_menu()
