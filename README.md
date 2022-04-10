@@ -1,18 +1,19 @@
 Ｔ－Ｔｅｓｔｅｒ
 
 T-Tester is a simple and adaptable tool that runs in the terminal and can be adapted to any number of business needs and other scenarios.  
-
+  
 ## Contents
 1. [Overview](#overview)  
-2. [User Stories](#user-stories)
-    + [Sample Datasets](#sample-datasets)
-3. [Tech Stack](#tech-stack)  
+2. [Tech Stack](#tech-stack)  
+3. [User Stories](#user-stories)
 4. [Features](#features)
     + [Future Features](#future-features)
-5. [Testing](#testing)
-6. [Deployment](#deployment)  
-7. [Acknowledgements](#acknowledgements) 
+5. [Sample Datasets](#sample-datasets)
+6. [Testing](#testing)
+7. [Deployment](#deployment)  
+8. [Acknowledgements](#acknowledgements) 
   
+
 ## Overview  
 As the name may suggest, the primary function of T-Tester is to carry out the statistical test known as a t-test. While there are several forms of t-test, also known as Student's t-test, perhaps the most commonly used is the independent t-test.  
   
@@ -44,6 +45,17 @@ T-Tester then is an adaptable tool that can be deployed to almost any scenario i
   
 To explore these features with sample data, see [Sample Datasets](#sample-datasets) below.  
   
+  
+## Tech Stack  
+1. Languages:
+  + Python  
+2. Main Libraries & Modules:
+  + google auth
+  + gspread
+  + numpy
+  + scipy
+  + rich  
+    
 ## User Stories  
 As a user, I want to...  
   
@@ -117,7 +129,14 @@ As a user, I want to...
     + The user can exit the program from the Main Menu. In this event, the program will inform the user with a simple "Quitting program..." message. A slight delay is added between this message and exiting the program, ensuring the user has time to read the message.  
     + Ctrl+C/Cmd+C will terminate the program and therefore does not allow further activity or communication from the program itself.
   
-### Sample Datasets:  
+  
+## Features  
+  
+  
+### Future Features  
+  
+  
+## Sample Datasets:  
 To test different outcomes, the reader may wish to make use of the sample datasets below. 
 
 **How to Use Sample Datasets:**  
@@ -147,11 +166,11 @@ In *Dataset 1*, the two samples collected from the user are unsuitable for an in
 **Outcome: No Statistically Significant Difference**  
 In *Dataset 2*, the samples are suitable for an independent t-test and the program will proceed to carry it out. Again, this can be verified by inputting the same numbers to an online Levene's Test tool, such as [SocSciStatistics.com](https://www.socscistatistics.com/tests/levene/default.aspx).
 
-Once carried out, the independent t-test will return no statistically significant difference between the samples in this dataset. This can be verified using an online t-test calculator, such as that available from [GraphPad](https://www.graphpad.com/quickcalcs/ttest1.cfm). 
-
-
+Once carried out, the independent t-test will return no statistically significant difference between the samples in this dataset. This can be verified using an online t-test calculator, such as that available from [GraphPad](https://www.graphpad.com/quickcalcs/ttest1.cfm).  
+  
 ### Invalid Input  
 Attempting to enter following values in response to their respective input requests will show an error message and prompt the user to correct the error by trying again.  
+  
   
 **Menus**
 | Request                | Invalid Value Type               | Error Message                                                   |  
@@ -208,25 +227,12 @@ non_sig_b = [66.1, 69.9, 67.7, 69.6, 71.1]  # Test data // m = 68.88
 sig_a = [83.70, 81.50, 80.60, 83.90, 84.40]  # Test data // m = 82.82  
 sig_b = [66.1, 69.9, 67.7, 69.6, 71.1]  # Test data // m = 68.88  
   
-## Tech Stack  
-1. Languages:
-  + Python  
-2. Main Libraries & Modules:
-  + google auth
-  + gspread
-  + numpy
-  + scipy
-  + rich
-
-## Features
-  
-### Future Features  
-  
 ## Testing  
+  
   
 ## Deployment  
   
-
+  
 ## Acknowledgements 
 1. Levene's Test as carried out in Python is covered in this [Statology Article](https://www.statology.org/levenes-test-python/).  
 2. Independent t-tests are covered in this [Data Camp video](https://www.youtube.com/watch?v=YpZlT64kFGA).  
