@@ -2,6 +2,9 @@
 
 T-Tester is a simple and adaptable tool that runs in the terminal and can be adapted to any number of business needs and other scenarios.  
   
+<img src="assets/images/screenshots/main-menu.png" alt="Main Menu of T-Tester" height="auto" width="70%">  
+  <br/><br/>
+  
 ## Contents
 1. [Overview](#overview)  
 2. [Tech Stack](#tech-stack)  
@@ -138,10 +141,10 @@ Individual error messages are discussed in [Test Cases](#test-cases). The [Test 
   
 ## Features  
 Upon launching, T-Tester greets the user with a Main Menu, presenting the options available to the user and offering instructions on how to select an option.  
-<img src="assets/images/screenshots/main-menu-flow.png" alt="An overview of the screens available from the Main Menu, including the error message shown in the event of an invalid selection." height="auto" width="100%">  
+<img src="assets/images/screenshots/main-menu-flow.png" alt="An overview of the screens available from the Main Menu, including the error message shown in the event of an invalid selection." height="auto" width="95%">  
   <br/><br/>
 T-Tester has a built-in help section allowing the user to access instructions for use.  
-<img src="assets/images/screenshots/help-section-flow.png" alt="An overview of the screens available from within the Help section, including the error message shown in the event of an invalid selection." height="auto" width="90%">  
+<img src="assets/images/screenshots/help-section-flow.png" alt="An overview of the screens available from within the Help section, including the error message shown in the event of an invalid selection." height="auto" width="95%">  
   <br/><br/>
 T-Tester's primary function is to carry out an independent t-test, comparing the means of two samples and determining the statistical significance of any difference identified. This function is accessible from the "Run Tests" option of the Main Menu. The user is then asked to enter a username/ID. This ID will be saved along with the results of the test process when completed. The ID may be anything the user wishes, provided it is two character or more in length. This allows for initials to be used as an ID if desired. If the username is less than two characters in length or the user submits empty input, an error message is shown and the user is prompted to enter the information again. All error messages requiring re-entry are detailed in [Testing](#test-cases) as test cases.  
   
@@ -173,11 +176,13 @@ It is debatable whether deletion of records beyond the last shown record is a de
   
 Currently, the program does not assess skewness and kurtosis. These features could be added for a more rounded and thorough set of pre-test checks.  
 
-Additional inputs could be added to the program's testing feature, such as a "Tester Notes" input. This input could then be added as an additional field to the records kept. The usefulness of such a feature may depend on how the program is being used. The optimal design would be one in which the user can configure which fields are needed within their records and which fields are unnecessary. To be truly useful, these settings would need to be stored in a lasting manner. Only the necessary inputs would then be requested during the testing process.  
+Additional inputs could be added to the program's testing feature, such as a "Tester Notes" input. This input could then be added to an additional field in the records kept. The usefulness of such a feature may depend on how the program is being used. The optimal design would be one in which the user can configure which fields are needed within their records and which fields are unnecessary. To be truly useful, these settings would need to be stored in a lasting manner. Only the necessary inputs would then be requested during the testing process.  
     
     
 ## Testing  
 Manual testing, including exploratory testing, was carried out throughout development. New features were tested as they were added and before committing changes. Certain features were pushed and tested within the deployed environment to ensure that rendering was as intended. [PEP8online.com](http://pep8online.com/checkresult) was frequently used during development to validate code.  
+<img src="assets/images/screenshots/pep8online-screenshot.png" alt="All Python code in the project passes through PEP8online.com without errors or warnings." height="auto" width="60%">  
+<br/><br/>
   
 In the initial stages of developing the statistical portion of the program, and again during a dedicated testing phase toward the end of development, the results of the sample datasets below were verified in IBM's statistical package, [SPSS](https://en.wikipedia.org/wiki/SPSS).  
   
@@ -185,10 +190,12 @@ Additionally, to further verify results and aid the reader of this document to c
   
 In a similar manner, [GraphPad](https://www.graphpad.com/quickcalcs/ttest1.cfm) was used to confirm t-test results.  
   
+
+  
 ### Test Cases
-<details><summary>
-Invalid Input
-</summary></br>  
+  
+***Invalid Input***
+    
 Attempting to enter the following values in response to their respective input requests shows an error message and prompts the user to correct the error by trying again.  
   
 **Menus**
@@ -240,9 +247,9 @@ Attempting to enter the following values in response to their respective input r
 |  any key followed by Enter to cancel  |                   | To exit, press any other key and hit Enter." |
 </details>  
   
-<details><summary>  
-Sample Datasets  
-</summary></br>  
+  
+***Sample Datasets***  
+   
 The following sample datasets can be used to test different outcomes of T-Tester's testing mode. In addition to a great deal of fictional data improvised during testing, these datasets have been used as test cases for the various statistical outcomes possible within T-Tester.    
 <br/><br/>  
   
@@ -340,7 +347,7 @@ To verify results, using the resources given in each outcome description, the fo
 Click to Expand: Deployment Procedure
 </summary></br>  
   
-## Heroku  
+### Heroku  
 The site was deployed to Heroku using the following procedure. Before beginning, ensure that requirements.txt is up to date.    
 1. An account must first be created on [Heroku.com](https://www.heroku.com/)  
 2. Once logged in, select "Create new app".  

@@ -80,7 +80,7 @@ def main_menu():
             choice = int(input("""
                         Enter a number to make a selection,
                         and then press the "Enter" key:
-        \n"""))
+\n"""))
             if choice == 1:
                 main_help_func()
                 break
@@ -241,9 +241,9 @@ def records_menu():
                         1. Return to Main Menu
                         2. Delete Last Record Shown
                         """, style="menu")
-            choice = int(input(
-                """Enter a number to make a selection,
-                and then press the "Enter" key:
+            choice = int(input("""
+                        Enter a number to make a selection,
+                        and then press the "Enter" key:
         \n"""))
             if choice == 1:
                 main_menu()
