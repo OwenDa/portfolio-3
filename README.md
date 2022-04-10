@@ -170,6 +170,19 @@ The results of the independent t-test are then reported in terms of their signif
   
 <img src="assets/images/screenshots/nonsig-and-sig-outputs.png" alt="Results are output in terms of their significance." height="auto" width="100%"> 
 <br/><br/>
+A table of past results (records) can be viewed within T-Tester, although the results are, in fact, stored in a Google Sheets spreadsheet, meaning they can be easily shared, copied, extracted for use elsewhere and so on.  
+<img src="assets/images/screenshots/spreadsheet.png" alt="Records are stored in a Google Sheets spreadsheet." height="auto" width="60%">  
+<br/><br/>
+To view past records within the program, the user can select View Records from the Main Menu. This will open the records section which contains a table showing results of previous tests. Each row within this table is an individual record of a completed test process. All completed test processes are stored, regardless of outcome.  
+<img src="assets/images/screenshots/view-records-tables.png" alt="Records are stored in a Google Sheets spreadsheet." height="auto" width="100%">  
+<br/><br/>
+
+These records are retrieved from a Google Sheets spreadsheet in which
+records are created after each test process is completed.
+
+You may also view records from the Google Sheets spreadsheet; however,
+you must have access to the spreadsheet to do so. Contact your
+organisation's admin to request access.
 
 ### Future Features  
 It is debatable whether deletion of records beyond the last shown record is a desirable feature. Deletion of the last shown record may be useful when a user realises, shortly after conducting a test, that the test was already carried out, used an incomplete or incorrect dataset and so on. For more selective deletion of records, access to the related Google Sheets spreadsheet is required. This limitation of the program may actually represent a useful feature in and of itself, as Google Sheets' permissions and access options allow for precise control of who may carry out such selective deletion. Nevertheless, it is possible that the program may expand its deletion options in the future.  
@@ -182,9 +195,11 @@ Additional inputs could be added to the program's testing feature, such as a "Te
 ## Testing  
 Manual testing, including exploratory testing, was carried out throughout development. New features were tested as they were added and before committing changes. Certain features were pushed and tested within the deployed environment to ensure that rendering was as intended. [PEP8online.com](http://pep8online.com/checkresult) was frequently used during development to validate code.  
 <img src="assets/images/screenshots/pep8online-screenshot.png" alt="All Python code in the project passes through PEP8online.com without errors or warnings." height="auto" width="60%">  
-<br/><br/>
+<br/>
   
 In the initial stages of developing the statistical portion of the program, and again during a dedicated testing phase toward the end of development, the results of the sample datasets below were verified in IBM's statistical package, [SPSS](https://en.wikipedia.org/wiki/SPSS).  
+<img src="assets/images/screenshots/dataset-1-data-view-spss.png" alt="Example of Dataset 1 in Data View within SPSS." height="auto" width="60%">  
+<br/>
   
 Additionally, to further verify results and aid the reader of this document to carry out similar tests, [SocSciStatistics.com](https://www.socscistatistics.com/tests/levene/default.aspx) was also used to confirm results given by T-Tester when checking for homogeneity of variance (Levene's Test). This is freely available online and does not require specialised software.  
   
@@ -285,8 +300,12 @@ To verify results, using the resources given in each outcome description, the fo
 >**Outcome 1: Data Unsuitable**  
 >In Dataset 1, the two samples collected from the user are unsuitable for an independent t-test and will fail when the program checks for homogeneity of variances (Levene's Test), causing the program to bypass the t-test. This can be verified by inputting the same numbers to an online Levene's Test tool, such as [SocSciStatistics.com](https://www.socscistatistics.com/tests/levene/default.aspx) which will output "The requirement of homogeneity is not met".  
 >  
+> As with all test cases here, and a good deal of improvised data during development, these results were verified with IBM's SPSS. In this case, SPSS found a significant result for Levene's test, meaning the null hypotheis (equal variance) was rejected. This is in agreement with T-Tester's output.  
+><img src="assets/images/screenshots/dataset-1-levenes-spss.png" alt="Dataset 1's outcome is confirmed by SPSS." height="auto" width="45%">  
+><br/>
 ><img src="assets/images/screenshots/dataset-1-outcome.png" alt="Dataset 1 returned the expected result." height="auto" width="60%">  
-<br/><br/>
+>  
+<br/>
 
 **Test 2: Non-significance**  
   
@@ -301,7 +320,10 @@ To verify results, using the resources given in each outcome description, the fo
   >Once carried out, the independent t-test will return no statistically significant difference between the samples in this dataset. This can be verified using an online t-test calculator, such as that available from [GraphPad](https://www.graphpad.com/quickcalcs/ttest1.cfm) which will output "By conventional criteria, this difference is considered to be not statistically significant."  
   >  
   >As an additional test, compare the values given by GraphPad for each group's Mean at the bottom of the screen to those stored in the Google Sheets spreadsheet. In this case, both record 22.00 for Sample A and 14.86 for Sample B.  
-  >  
+  >This result is confirmed by SPSS as shown in the image below. To begin with, the means are in agreement, although SPSS does not round to the same number of decimal places. A non-signficant result (p = > .05) for Levene's test confirms homoegeneity of variances. And finally, a non-significant result is shown for the independent t-test.  
+  ><img src="assets/images/screenshots/dataset-2-nonsig-spss.png" alt="Dataset 2's outcome is confirmed by SPSS." height="auto" width="60%">  
+  ><br/>
+  >To avoid misleading the user, T-Tester does not output means for non-significant results to the terminal; however, they are preserved in the spreadsheet which is shown at the end of this section.  
   ><img src="assets/images/screenshots/dataset-2-outcome.png" alt="Dataset 2 returned the expected result." height="auto" width="60%">  
 <br/><br/>
 
@@ -317,8 +339,12 @@ To verify results, using the resources given in each outcome description, the fo
   >  
   >[SocSciStatistics.com](https://www.socscistatistics.com/tests/levene/default.aspx) output: "The requirement of homogeneity is met."
   >
-  >[GraphPad](https://www.graphpad.com/quickcalcs/ttest1.cfm) output: "By conventional criteria, this difference is considered to be not statistically significant."    
-  >  
+  >[GraphPad](https://www.graphpad.com/quickcalcs/ttest1.cfm) output: "By conventional criteria, this difference is considered to be not statistically significant."  
+
+  >As before, this result is confirmed by SPSS as shown in the image below. Identical means are given, homogeneity of variances is confirmed (naturally, since the samples are identical), and no significant difference is found.  
+  ><img src="assets/images/screenshots/dataset-3-nonsig-spss.png" alt="Dataset 3's outcome is confirmed by SPSS." height="auto" width="60%">  
+  ><br/>
+  >To avoid misleading the user, T-Tester does not output means for non-significant results to the terminal; however, they are preserved in the spreadsheet which is shown at the end of this section.  
   ><img src="assets/images/screenshots/dataset-3-outcome.png" alt="Dataset 3 returned the expected result." height="auto" width="60%">  
 <br/><br/>
 
@@ -337,9 +363,15 @@ To verify results, using the resources given in each outcome description, the fo
 >
 >[GraphPad](https://www.graphpad.com/quickcalcs/ttest1.cfm) output: "By conventional criteria, this difference is considered to be extremely statistically significant."  Mean averages for Sample A and Sample B are 82.82 and 68.88 respectively.  
 >  
+>This result is confirmed by SPSS. To begin with, the means are in agreement with T-Tester's result, and a non-significant result is reported for Levene's test, meaning the null hypothesis cannot be rejected and equal variances can be assumed. A significant result is reported for the independent t-test, meaning a statistically significant difference can be said to exist between these samples.  
+><img src="assets/images/screenshots/dataset-4-sig-spss.png" alt="Dataset 4's outcome is confirmed by SPSS." height="auto" width="60%">  
+><br/>
 ><img src="assets/images/screenshots/dataset-4-outcome.png" alt="Dataset 4 returned the expected result." height="auto" width="60%">  
-<br/><br/>
+<br/>
   
+**Summary of T-Tester Results**
+<img src="assets/images/screenshots/spreadsheet.png" alt="Results of all four test cases as presented in the spreadsheet." height="auto" width="90%">  
+<br/><br/>
 </details>  
     
 ## Deployment  
