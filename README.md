@@ -8,10 +8,12 @@ T-Tester is a simple and adaptable tool that runs in the terminal and can be ada
 3. [User Stories](#user-stories)
 4. [Features](#features)
     + [Future Features](#future-features)
-5. [Sample Datasets](#sample-datasets)
-6. [Testing](#testing)
-7. [Deployment](#deployment)  
-8. [Acknowledgements](#acknowledgements) 
+5. [Testing](#testing)
+    + [Test Cases](#test-cases)
+        - Invalid Input
+        - Sample Datasets
+6. [Deployment](#deployment)  
+7. [Acknowledgements](#acknowledgements) 
   
 
 ## Overview  
@@ -132,6 +134,9 @@ As a user, I want to...
     + The user can exit the program from the Main Menu. In this event, the program will inform the user with a simple "Quitting program..." message. A slight delay is added between this message and exiting the program, ensuring the user has time to read the message.  
     + Ctrl+C/Cmd+C will terminate the program and therefore does not allow further activity or communication from the program itself.  
   
+Further test cases, with particular reference to individual error messages, are discussed in [Test Cases: Invalid Input](#test-cases-invalid-input).  
+  
+Additionally, the [Sample Datasets](##sample-datasets) provided function as test cases for sample entry in T-Tester's testing mode.
   
 ## Features  
   
@@ -143,40 +148,15 @@ Currently, the program does not assess skewness and kurtosis. These features cou
 
 Additional inputs could be added to the program's testing feature, such as a "Tester Notes" input. This input could then be added as an additional field to the records kept. The usefulness of such a feature may depend on how the program is being used. The optimal design would be one in which the user can configure which fields are needed within their records and which fields are unecessary. To be truly useful, these settings would need to be stored in a lasting manner. Only the necessary inputs would then be requested during the testing process.  
     
-## Sample Datasets:  
-To test different outcomes, the reader may wish to make use of the sample datasets below. 
-
-**How to Use Sample Datasets:**  
-Keeping this README document open for reference, [launch the program](https://t-tester.herokuapp.com/). Select "Run Tests" from the menu by pressing the associated number in the menu (e.g. 2) on your keyboard. When entering input, you must then use the Enter key on your keyboard to submit your input.  
+    
+## Testing  
+Manual testing, including exploratory testing, was carried out throughout development. New features were tested as they were added and before committing changes. Certain features were pushed and tested within the deployed environment to ensure that rendering was as intended.  
   
-You will be asked to enter a username or ID of your choosing. This must be two or more characters in length. Type your chosen username and again press Enter.  
-  
-When prompted, enter the number of subjects in the first sample of your chosen dataset. This must be entered as an integer (ie. "5", not "five" or "5.0"). After pressing enter, you will be asked to confirm by submitting either Y or N.  
-
-You will now be asked to input the values within the sample. You may type these individually or simply copy-and-paste the values from the dataset below. Submit the information by pressing Enter and confirm. You will be prompted to repeat the relevant steps for the second sample.  The program will proceed according to the outcome described for each sample dataset.
-  
-  
-| Dataset 1| Subjects |  Values                        |
-|----------|----------|--------------------------------|
-| Sample A |     5    |  100,2000,30000,400000,5000000 |
-| Sample B |     5    |  1,2,3,4,5                     |  
-  
-**Outcome: Data Unsuitable**  
-In *Dataset 1*, the two samples collected from the user are unsuitable for an independent t-test and will fail when the program checks for homogeneity of variances (Levene's Test), causing the program to bypass the t-test. This can be verified by inputting the same numbers to an online Levene's Test tool, such as [SocSciStatistics.com](https://www.socscistatistics.com/tests/levene/default.aspx).
-  
-  
-| Dataset 2| Subjects |  Values    |
-|----------|----------|------------|
-| Sample A |     5    |  8,7,3,9,5 |
-| Sample B |     5    |  3,5,7,3,5 |  
-  
-**Outcome: No Statistically Significant Difference**  
-In *Dataset 2*, the samples are suitable for an independent t-test and the program will proceed to carry it out. Again, this can be verified by inputting the same numbers to an online Levene's Test tool, such as [SocSciStatistics.com](https://www.socscistatistics.com/tests/levene/default.aspx).
-
-Once carried out, the independent t-test will return no statistically significant difference between the samples in this dataset. This can be verified using an online t-test calculator, such as that available from [GraphPad](https://www.graphpad.com/quickcalcs/ttest1.cfm).  
-  
-### Invalid Input  
-Attempting to enter following values in response to their respective input requests will show an error message and prompt the user to correct the error by trying again.  
+### Test Cases
+<details><summary>
+Invalid Input
+</summary></br>  
+Attempting to enter following values in response to their respective input requests shows an error message and prompts the user to correct the error by trying again.  
   
   
 **Menus**
@@ -224,19 +204,59 @@ Attempting to enter following values in response to their respective input reque
 | "DELETE" or                           | "delete"          | "This option is case-sensitive.              |  
 |  Enter to cancel or                   |                   | To delete, type 'DELETE'                     |
 |  any key followed by Enter to cancel  |                   | To exit, press any other key and hit Enter." |
+</details>  
   
+<details><summary>  
+Sample Datasets  
+</summary></br>  
+The following sample datasets can be used to test different outcomes of T-Tester's testing mode.  
+  
+**How to Use Sample Datasets:**  
+Keeping this README document open for reference, [launch the program](https://t-tester.herokuapp.com/). Select "Run Tests" from the menu by pressing the associated number in the menu (e.g. 2) on your keyboard. When entering input, you must then use the Enter key on your keyboard to submit your input.  
+  
+You will be asked to enter a username or ID of your choosing. This must be two or more characters in length. Type your chosen username and again press Enter.  
+  
+When prompted, enter the number of subjects in the first sample of your chosen dataset. This must be entered as an integer (ie. "5", not "five" or "5.0"). After pressing enter, you will be asked to confirm by submitting either Y or N.  
 
+You will now be asked to input the values within the sample. You may type these individually or simply copy-and-paste the values from the dataset below. Submit the information by pressing Enter and confirm. You will be prompted to repeat the relevant steps for the second sample.  The program will proceed according to the outcome described for each sample dataset.
+  
+  
+| Dataset 1| Subjects |  Values                        |
+|----------|----------|--------------------------------|
+| Sample A |     5    |  100,2000,30000,400000,5000000 |
+| Sample B |     5    |  1,2,3,4,5                     |  
+  
+**Outcome: Data Unsuitable**  
+In *Dataset 1*, the two samples collected from the user are unsuitable for an independent t-test and will fail when the program checks for homogeneity of variances (Levene's Test), causing the program to bypass the t-test. This can be verified by inputting the same numbers to an online Levene's Test tool, such as [SocSciStatistics.com](https://www.socscistatistics.com/tests/levene/default.aspx).
+  
+  
+| Dataset 2| Subjects |  Values    |
+|----------|----------|------------|
+| Sample A |     5    |  8,7,3,9,5 |
+| Sample B |     5    |  3,5,7,3,5 |  
+  
+**Outcome: No Statistically Significant Difference**  
+In *Dataset 2*, the samples are suitable for an independent t-test and the program will proceed to carry it out. Again, this can be verified by inputting the same numbers to an online Levene's Test tool, such as [SocSciStatistics.com](https://www.socscistatistics.com/tests/levene/default.aspx).
 
+Once carried out, the independent t-test will return no statistically significant difference between the samples in this dataset. This can be verified using an online t-test calculator, such as that available from [GraphPad](https://www.graphpad.com/quickcalcs/ttest1.cfm).  
+   
+**Additional Datasets**  
   
-Data for testing significant/non-significant sets:  
-non_sig_a = [66.1, 69.9, 67.7, 69.6, 71.1]  # Test data // m = 68.88  
-non_sig_b = [66.1, 69.9, 67.7, 69.6, 71.1]  # Test data // m = 68.88  
-sig_a = [83.70, 81.50, 80.60, 83.90, 84.40]  # Test data // m = 82.82  
-sig_b = [66.1, 69.9, 67.7, 69.6, 71.1]  # Test data // m = 68.88  
+| Dataset 3 | Subjects |  Values                       | Mean  | Outcome          |
+|-----------|----------|-------------------------------|-------|------------------|
+| Sample A  |     5    |  66.1, 69.9, 67.7, 69.6, 71.1 | 68.88 | Non-significant  |
+| Sample B  |     5    |  66.1, 69.9, 67.7, 69.6, 71.1 | 68.88 | Non-significant  |
   
-## Testing  
-  
-  
+In *Dataset 3*, the values entered are identical. The mean average returned for each sample is therefore identical and no statistically significant difference is found.
+
+| Dataset 4 | Subjects |  Values                            | Mean  | Outcome     |
+|-----------|----------|------------------------------------|-------|-------------|
+| Sample A  |     5    |  83.70, 81.50, 80.60, 83.90, 84.40 | 82.82 | Significant |
+| Sample B  |     5    |  66.1, 69.9, 67.7, 69.6, 71.1      | 68.88 | Significant | 
+
+In *Dataset 4*, differing mean averages are calculated for each sample. Homogeneity of variances is confirmed and an indepenent t-test is carried out accordingly. A statistically significant difference is found, with the mean of Sample A being greater than that of Sample B.  
+</details>  
+    
 ## Deployment  
   
   
