@@ -511,7 +511,7 @@ def update_test_records(*args):
     test_records.append_row(args)
     sleep(.5)
     print("Record successfully updated.")
-    print("You may need to re-start the program to view this "
+    print("You may need to re-start the program to view this \n"
           "record in the 'View Records' section.")
 
 
@@ -543,11 +543,11 @@ error_dict = {
 
 def error_wrapper(msg):
     """ Wraps around error messages for greater legibility """
-    console.print("\n- - - - - - - - - - - Error - - - - - - - - - - - - ",
-                  style="error")
+    console.print(("\n- - - - - - - - - - - - - - - - - Error - "
+                  "- - - - - - - - - - - - - - - - - "), style="error")
     console.print(msg, style="highlight")
-    console.print("- - - - - - - - - - - - - - - - - - - - - - - - - - \n",
-                  style="error")
+    console.print(("- - - - - - - - - - - - - - - - - - - - - - - -"
+                   " - - - - - - - - - - - - - -\n"), style="error")
 
 
 def except_str(e):

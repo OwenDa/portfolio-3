@@ -8,7 +8,11 @@ This must be an integer (ie. "5", not "five" or "5.0").
 After pressing enter, you will be asked to confirm.
 
 You will now be asked to input the values within that sample. You may type them
-individually or use copy/paste. They must be comma separated (e.g. 1,2,3,4,5).
-Submit the information by pressing Enter and then confirm. You will be asked to
-repeat the relevant steps for the second sample.  The program will carry out
-tests and relay the results.
+individually or use copy/paste. When copying/pasting, it is advisable to use
+the right-click context menu, or equivalent method, rather than keyboard
+shortcuts (such as Ctrl+C/Cmd+Cmd) as these shortcuts can also be used to exit
+the program and may cause it to close.
+
+Sample values must be comma separated (e.g. 1,2,3,4,5). Submit the data by
+bpressing Enter and then confirm. You will be asked to repeat the relevant steps
+for the second sample. The program will carry out tests and relay the results.
