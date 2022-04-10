@@ -138,11 +138,36 @@ Individual error messages are discussed in [Test Cases](#test-cases). The [Test 
   
 ## Features  
 Upon launching, T-Tester greets the user with a Main Menu, presenting the options available to the user and offering instructions on how to select an option.  
-<img src="assets/images/screenshots/main-menu-flow.png" alt="An overview of the screens available from the Main Menu, including the error message shown in the event of an invalid selection." height="auto" width="90%">  
-  
+<img src="assets/images/screenshots/main-menu-flow.png" alt="An overview of the screens available from the Main Menu, including the error message shown in the event of an invalid selection." height="auto" width="100%">  
+  <br/><br/>
 T-Tester has a built-in help section allowing the user to access instructions for use.  
-<img src="assets/images/screenshots/help-section-flow.png" alt="An overview of the screens available from within the Help section, including the error message shown in the event of an invalid selection." height="auto" width="75%">  
+<img src="assets/images/screenshots/help-section-flow.png" alt="An overview of the screens available from within the Help section, including the error message shown in the event of an invalid selection." height="auto" width="90%">  
+  <br/><br/>
+T-Tester's primary function is to carry out an independent t-test, comparing the means of two samples and determining the statistical significance of any difference identified. This function is accessible from the "Run Tests" option of the Main Menu. The user is then asked to enter a username/ID. This ID will be saved along with the results of the test process when completed. The ID may be anything the user wishes, provided it is two character or more in length. This allows for initials to be used as an ID if desired. If the username is less than two characters in length or the user submits empty input, an error message is shown and the user is prompted to enter the information again. All error messages requiring re-entry are detailed in [Testing](#test-cases) as test cases.  
   
+<img src="assets/images/screenshots/run-tests-username-flow.png" alt="The user is asked to enter an ID." height="auto" width="60%">  
+  <br/><br/>
+Next, the user is prompted to enter the number of subjects in the first sample. This must be five or more and entered as an integer value.  
+  
+<img src="assets/images/screenshots/run-tests-subject-qty-flow.png" alt="The user is prompted to enter the number of subjects within a sample." height="auto" width="100%">  
+  <br/><br/>
+This number will subsequently be used to verify the sample once submitted. Thererfore, to ensure the number is correct, the user is prompted to confirm by typing Y or N. "N" will cause the step to be repeated, while "Y" will proceed to the next step. Lowercase input is automatically handled and will not cause an error; however, blank or otherwise empty input will require re-entry.
+  
+<img src="assets/images/screenshots/run-tests-confirm-subject-qty-flow.png" alt="The user is prompted to confirm the number of subjects within a sample." height="auto" width="100%"> 
+<br/><br/>
+The user is asked to input the values within that sample. These can be typed or pasted in from elsewhere. To be interpreted correctly by T-Tester, the values must be separated by commas. However, duplicate commas and erroneous spaces are handled automatically by T-Tester. This means that duplicate commas will not create empty values that could trigger a disparity between the number of values entered and the number of subjects previously declared, or affect the statistical processes that follow. T-Tester will also check the number of values is greater than four. Independent t-tests are famously robust and work well with samll sample sizes, and five or more may be considered a reasonable threshold.  
+  
+<img src="assets/images/screenshots/formatted-sample-values.jpg" alt="Otherwise valid sample value entered with duplicate commas or spaces will not cause an error." height="auto" width="60%"> 
+<br/><br/>
+T-Tester also performs Levene's test for homogeneity of variances. This aids in ensuring that an independent t-test will be suitable for use with the data provided. If homogeneity of variance is found, T-Tester will proceed to conducts an indepenent t-test.  
+
+<img src="assets/images/screenshots/dataset-1-outcome.png" alt="A lack of homogeneity of variance will stop the program from conducting further tests but will be reported to the user and recorded." height="auto" width="60%">  
+  <br/><br/>
+The results of the independent t-test are then reported in terms of their significance, with means being reported alongside any significant results. The user is also informated that the connected spreadsheet has been updated with a newly created records of test results.
+  
+<img src="assets/images/screenshots/nonsig-and-sig-outputs.png" alt="Results are output in terms of their significance." height="auto" width="100%"> 
+<br/><br/>
+
 ### Future Features  
 It is debatable whether deletion of records beyond the last shown record is a desirable feature. Deletion of the last shown record may be useful when a user realises, shortly after conducting a test, that the test was already carried out, used an incomplete or incorrect dataset and so on. For more selective deletion of records, access to the related Google Sheets spreadsheet is required. This limitation of the program may actually represent a useful feature in and of itself, as Google Sheets' permissions and access options allow for precise control of who may carry out such selective deletion. Nevertheless, it is possible that the program may expand its deletion options in the future.  
   
@@ -178,7 +203,9 @@ Attempting to enter the following values in response to their respective input r
 | Records Menu Selection | Blank                            | Invalid Selection. Please enter a number from the options shown.|  
 | Records Menu Selection | Letter(s)/Symbol(s)              | Invalid Selection. Please enter a number from the options shown.|  
 | Records Menu Selection | Number out of option range       | Invalid Selection. Please enter a number from the options shown.|  
-
+  
+<img src="assets/images/screenshots/invalid-sample-values.png" alt="Error messages resulting from invalid sample value submission." height="auto" width="100%"> 
+<br/><br/>
 
 **Running Tests**
 | Request  | Invalid Value Type               | Error Message                                                              |  
@@ -249,8 +276,11 @@ To verify results, using the resources given in each outcome description, the fo
 | Sample B |     8    |  1,2,3,4,5,6,7,8                      |  
   
 >**Outcome 1: Data Unsuitable**  
->In Dataset 1, the two samples collected from the user are unsuitable for an independent t-test and will fail when the program checks for homogeneity of variances (Levene's Test), causing the program to bypass the t-test. This can be verified by inputting the same numbers to an online Levene's Test tool, such as [SocSciStatistics.com](https://www.socscistatistics.com/tests/levene/default.aspx) which will output "The requirement of homogeneity is not met".
-  
+>In Dataset 1, the two samples collected from the user are unsuitable for an independent t-test and will fail when the program checks for homogeneity of variances (Levene's Test), causing the program to bypass the t-test. This can be verified by inputting the same numbers to an online Levene's Test tool, such as [SocSciStatistics.com](https://www.socscistatistics.com/tests/levene/default.aspx) which will output "The requirement of homogeneity is not met".  
+>  
+><img src="assets/images/screenshots/dataset-1-outcome.png" alt="Dataset 1 returned the expected result." height="auto" width="60%">  
+<br/><br/>
+
 **Test 2: Non-significance**  
   
 | Dataset 2| Subjects |  Values             | Mean  |
@@ -264,7 +294,10 @@ To verify results, using the resources given in each outcome description, the fo
   >Once carried out, the independent t-test will return no statistically significant difference between the samples in this dataset. This can be verified using an online t-test calculator, such as that available from [GraphPad](https://www.graphpad.com/quickcalcs/ttest1.cfm) which will output "By conventional criteria, this difference is considered to be not statistically significant."  
   >  
   >As an additional test, compare the values given by GraphPad for each group's Mean at the bottom of the screen to those stored in the Google Sheets spreadsheet. In this case, both record 22.00 for Sample A and 14.86 for Sample B.  
-   
+  >  
+  ><img src="assets/images/screenshots/dataset-2-outcome.png" alt="Dataset 2 returned the expected result." height="auto" width="60%">  
+<br/><br/>
+
 **Test 3: Identical Data (Non-Significance)**  
   
 | Dataset 3 | Subjects |  Values                       | Mean  | Outcome          |
@@ -278,7 +311,10 @@ To verify results, using the resources given in each outcome description, the fo
   >[SocSciStatistics.com](https://www.socscistatistics.com/tests/levene/default.aspx) output: "The requirement of homogeneity is met."
   >
   >[GraphPad](https://www.graphpad.com/quickcalcs/ttest1.cfm) output: "By conventional criteria, this difference is considered to be not statistically significant."    
-    
+  >  
+  ><img src="assets/images/screenshots/dataset-3-outcome.png" alt="Dataset 3 returned the expected result." height="auto" width="60%">  
+<br/><br/>
+
 **Test 4: Significance**  
   
 | Dataset 4 | Subjects |  Values                            | Mean  | Outcome     |
@@ -292,8 +328,11 @@ To verify results, using the resources given in each outcome description, the fo
 >T-Tester output: Statistically significant difference. The mean average of Sample A (82.82) was greater than Sample B (68.88).  
 >[SocSciStatistics.com](https://www.socscistatistics.com/tests/levene/default.aspx) output: "The requirement of homogeneity is met."
 >
->[GraphPad](https://www.graphpad.com/quickcalcs/ttest1.cfm) output: "By conventional criteria, this difference is considered to be extremely statistically significant."  Mean averages for Sample A and Sample B are 82.82 and 68.88 respectively.
-
+>[GraphPad](https://www.graphpad.com/quickcalcs/ttest1.cfm) output: "By conventional criteria, this difference is considered to be extremely statistically significant."  Mean averages for Sample A and Sample B are 82.82 and 68.88 respectively.  
+>  
+><img src="assets/images/screenshots/dataset-4-outcome.png" alt="Dataset 4 returned the expected result." height="auto" width="60%">  
+<br/><br/>
+  
 </details>  
     
 ## Deployment  
@@ -320,9 +359,10 @@ The site was deployed to Heroku using the following procedure. Before beginning,
 ### Forking & Cloning Repositories  
 Forking a repository allows one to make a copy with which to experiment without affecting or jeopardising the original. This does not require any special permissions from or direct contact with the original developer provided the repository in question is public rather than private. You may wish to do this either to experiment with and learn from another party's code or aid in improving an open-source project by offering changes (note that forking is distinct from [branching](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches)). To do this, one must have a GitHub account and be logged in. Then, simply visit the main page of the repository in question, and select the "Fork" option located in the upper-right corner (desktop) as shown in the image below. [Learn more about forks from GitHub Docs](https://docs.github.com/en/get-started/quickstart/fork-a-repo#forking-a-repository).  
 <img src="assets/images/fork-repository-example.png" alt="Example of GitHub interface showing the option to fork a repository." width="50%" height="auto"> 
-  
+<br/><br/>
 Forking a repository does not create locally-stored copies of its files on your computer. To achieve this, you will also need to Clone the repository. For example, you may wish to do this if you wish to have a functioning copy of another party's code in under to compile and execute it locally. Cloning options are found under the "Code" drop-down button of a repository's main page, as shown in the image below. [Learn more about cloning from GitHub Docs](https://docs.github.com/en/get-started/quickstart/fork-a-repo#cloning-your-forked-repository).  
 <img src="assets/images/clone-repository-example.png" alt="Example of GitHub interface showing the available cloning options." width="50%" height="auto">  
+<br/><br/>
 </details>  
   
   

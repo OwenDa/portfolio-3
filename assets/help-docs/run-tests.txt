@@ -14,5 +14,5 @@ shortcuts (such as Ctrl+C/Cmd+Cmd) as these shortcuts can also be used to exit
 the program and may cause it to close.
 
 Sample values must be comma separated (e.g. 1,2,3,4,5). Submit the data by
-bpressing Enter and then confirm. You will be asked to repeat the relevant steps
+pressing Enter and then confirm. You will be asked to repeat the relevant steps
 for the second sample. The program will carry out tests and relay the results.
