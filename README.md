@@ -151,13 +151,18 @@ Additional inputs could be added to the program's testing feature, such as a "Te
     
 ## Testing  
 Manual testing, including exploratory testing, was carried out throughout development. New features were tested as they were added and before committing changes. Certain features were pushed and tested within the deployed environment to ensure that rendering was as intended.  
+
+In the initial stages of developing the statistical portion the program, and again during a dedicated testing phase toward the end of development, the results of the sample datasets below were verified in IBM's statistical package, [SPSS](https://en.wikipedia.org/wiki/SPSS).  
+  
+Additionally, to aid the reader of this document to carry out similar tests, [SocSciStatistics.com](https://www.socscistatistics.com/tests/levene/default.aspx) was used to confirm results given by T-Tester when checking for homogeneity of variance (Levene's Test). This is a freely available service and does not require specialised software.  
+
+In a similar manner, [GraphPad](https://www.graphpad.com/quickcalcs/ttest1.cfm) was used to confirm t-test results.
   
 ### Test Cases
 <details><summary>
 Invalid Input
 </summary></br>  
 Attempting to enter following values in response to their respective input requests shows an error message and prompts the user to correct the error by trying again.  
-  
   
 **Menus**
 | Request                | Invalid Value Type               | Error Message                                                   |  
@@ -210,6 +215,7 @@ Attempting to enter following values in response to their respective input reque
 Sample Datasets  
 </summary></br>  
 The following sample datasets can be used to test different outcomes of T-Tester's testing mode.  
+<br/><br/>  
   
 **How to Use Sample Datasets:**  
 Keeping this README document open for reference, [launch the program](https://t-tester.herokuapp.com/). Select "Run Tests" from the menu by pressing the associated number in the menu (e.g. 2) on your keyboard. When entering input, you must then use the Enter key on your keyboard to submit your input.  
@@ -218,7 +224,21 @@ You will be asked to enter a username or ID of your choosing. This must be two o
   
 When prompted, enter the number of subjects in the first sample of your chosen dataset. This must be entered as an integer (ie. "5", not "five" or "5.0"). After pressing enter, you will be asked to confirm by submitting either Y or N.  
 
-You will now be asked to input the values within the sample. You may type these individually or simply copy-and-paste the values from the dataset below. Submit the information by pressing Enter and confirm. You will be prompted to repeat the relevant steps for the second sample.  The program will proceed according to the outcome described for each sample dataset.
+You will now be asked to input the values within the sample. You may type these individually or simply copy-and-paste the values from the dataset below. Submit the information by pressing Enter and confirm. You will be prompted to repeat the relevant steps for the second sample.  The program will proceed according to the outcome described for each sample dataset.  
+  
+To verify results, using the resources given in each outcome description, the following resources are available at the time of writing:  
+- [SocSciStatistics.com](https://www.socscistatistics.com/tests/levene/default.aspx)
+        <details><summary>
+        How to Use this Resource
+        </summary>
+        Navigate to the site and, as per the instructions given on screen, enter the values for Sample A of your chosen dataset into the area labelled "Sample 1 (a)". These can be typed manually or copied and pasted but must be formatted either as a comma separated list or with one-value-per-line. Repeat for Sample B in the appropriate area and click the "Calculate" button at the bottom of the screen.  
+        </details>  
+- [GraphPad](https://www.graphpad.com/quickcalcs/ttest1.cfm)
+        <details><summary>
+        How to Use this Resource
+        </summary> 
+        Having navigated to the site, the user will see four numbered boxes. In box 1, leave the default option selected ("Enter up to 50 rows"). In box 2, the correct selection for this test is "Unpaired t test", another name for independent t-test. In box 3, enter the values for Sample A in the first column. Repeat for Sample B in the second column. In box 4, click "Calculate Now."  
+        </details>  
   
   
 | Dataset 1| Subjects |  Values                        |
@@ -265,4 +285,7 @@ In *Dataset 4*, differing mean averages are calculated for each sample. Homogene
 2. Independent t-tests are covered in this [Data Camp video](https://www.youtube.com/watch?v=YpZlT64kFGA).  
 3. The Main Menu function is partly based on that designed within this [How To Create a Menu in Python video](https://www.youtube.com/watch?v=P6azEyNIQDQ), with particular reference to the use of [sleep function](https://www.programiz.com/python-programming/time/sleep).  
 4. ASCII-Art was generated via [fsymbols.com](https://fsymbols.com/text-art/).  
+5. [SocSciStatistics.com](https://www.socscistatistics.com/tests/levene/default.aspx) was used during testing to verify results.
+6. [GraphPad](https://www.graphpad.com/quickcalcs/ttest1.cfm) was also used during testing to the same end.  
+7. IBM's statistical package, [SPSS](https://en.wikipedia.org/wiki/SPSS), was used to verify results of test cases and during development.
   
