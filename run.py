@@ -213,18 +213,9 @@ def help_menu():
 
 def main_help_func():
     """ Offers user help in using the program """
-    console.print("""[bold][bright_cyan]Welcome to T-Tester's Help section.[/][/]
-This guide aims to instruct the user on the basic functions and processes of
-the T-Tester program.
-
-[bold][bright_cyan]To Exit the Program:[/][/]
-Press Ctrl+C (Windows) or Cmd+C (Mac) at any time to quit the program.
-Note that your work may not be saved. Alternatively, you may select the Quit
-option from the Main Menu.
-
-[bold][bright_cyan]To Use this Guide:[/][/]
-Select a topic from the options below, and a brief guide will be displayed.
-At the end of each topic, you will be prompted to return here when ready.""")
+    with open("help/help_intro.txt", mode="r", encoding="utf-8") as f:
+        contents = f.read(None)
+        console.print(contents)
     help_menu()
 
 
@@ -249,9 +240,9 @@ def records_menu():
                         1. Return to Main Menu
                         2. Delete Last Record Shown
                         """, style="menu")
-            choice = int(input("""
-                        Enter a number to make a selection,
-                        and then press the "Enter" key:
+            choice = int(input(
+                """Enter a number to make a selection,
+                and then press the "Enter" key:
         \n"""))
             if choice == 1:
                 main_menu()

@@ -1,2 +1,10 @@
-HELP TEXT TO BE ADDED
-RE: VIEWING RECORDS
+Select [bold][bright_cyan]View Records[/][/] from the Main Menu.
+A table will appear, showing results of previous tests. Each row within
+this table is an individual record.
+
+These records are retrieved from a Google Sheets spreadsheet in which
+records are created after each test process is completed.
+
+You may also view records from the Google Sheets spreadsheet; however,
+you must have access to the spreadsheet to do so. Contact your
+organisation's admin to request access.

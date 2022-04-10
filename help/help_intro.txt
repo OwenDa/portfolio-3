@@ -1,0 +1,10 @@
+[bold][bright_cyan]Welcome to T-Tester's Help section.[/][/]
+
+[bold][bright_cyan]To Exit the Program:[/][/]
+Press Ctrl+C (Windows) or Cmd+C (Mac) at any time to quit the program.
+Note that your work may not be saved. Alternatively, you may select the Quit
+option from the Main Menu.
+
+[bold][bright_cyan]To Use this Guide:[/][/]
+Select a topic from the options below, and a brief guide will be displayed.
+At the end of each topic, you will be prompted to return here when ready.

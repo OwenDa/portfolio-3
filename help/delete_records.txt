@@ -1,2 +1,28 @@
-HELP TEXT TO BE ADDED
-RE: DELETING RECORDS
+Select [bold][bright_cyan]View Records[/][/] from the Main Menu.
+A table will appear, showing results of previous tests. Each row within
+this table is an individual record. These records are retrieved from a
+Google Sheets spreadsheet.
+
+There are two ways to delete a record. Either method will permanently
+delete the record from [bold]both[/] the table and the spreadsheet:
+1. Within T-Tester
+2. Within the spreadsheet.
+
+[bold]Deleting a record within T-Tester[/]
+Using this method, you may only delete the last record shown on the table.
+Ensure this is the record you wish to delete before proceding any further.
+To proceed, select "Delete Last Record Shown" from the Options menu below the
+table. To do this, simply type the corresponding number and press Enter.
+
+A warning message will appear, "Caution: Deletion cannot be undone." To confirm
+deletion, type "DELETE". To cancel this process without making changes, press
+Enter or type any key followed by Enter.
+
+[bold]Deleting a record from the spreadsheet.[/]
+Using this method, you can delete any record or multiple records at once.
+You must have access to the spreadsheet. Contact your organisation's admin if
+you are unsure whether this is permissable or need to be granted access.
+
+Within the Google Sheets spreadsheet, highlight the row that contains the
+record you wish to delete by clicking on the row number at the left side of the
+screen. Press the Delete key on your keyboard. This will delete the record.

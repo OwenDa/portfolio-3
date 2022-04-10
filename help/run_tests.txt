@@ -1,6 +1,7 @@
-[bold][bright_cyan]Select "Run Tests" from the Main Menu.[/][/] You will then be asked to enter a
-username/ID. Type your chosen username and press Enter. Your organisation
-may have its own protocol for usernames, such as an ID number or initials.
+Select [bold][bright_cyan]Run Tests[/][/] from the Main Menu.
+You will then be asked to enter a username/ID. Type your chosen username
+and press Enter. Your organisation may have its own protocol for usernames,
+such as an ID number or initials.
 
 When prompted, enter the number of subjects in your first sample.
 This must be an integer (ie. "5", not "five" or "5.0").
