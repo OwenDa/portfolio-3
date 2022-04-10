@@ -47,14 +47,14 @@ To explore these features with sample data, see [Sample Datasets](#sample-datase
   
   
 ## Tech Stack  
-1. Languages:
-  + Python  
-2. Main Libraries & Modules:
-  + google auth
-  + gspread
-  + numpy
-  + scipy
-  + rich  
+1. Languages:  
+    + Python  
+2. Main Libraries & Modules:  
+    + [google-auth 2.6.3](https://pypi.org/project/google-auth/)
+    + [gspread 5.3.0](https://pypi.org/project/gspread/)
+    + [numpy 1.22.3](https://pypi.org/project/numpy/)
+    + [scipy 1.8.0](https://pypi.org/project/scipy/)
+    + [rich 12.2.0](https://pypi.org/project/rich/) 
     
 ## User Stories  
 As a user, I want to...  
@@ -122,20 +122,27 @@ As a user, I want to...
     
     Where an as yet unforeseen error arises, the program will attempt to return the user to the Main Menu. If, for any reason, this fails, or where the error arises within the Main Menu, the program will close though its own quit process. T-Tester's quit process informs the user, "Sorry, something went wrong. [error message]. Quitting program..." before quitting with Python's built-in quit function. A slight delay is added between the phrases of this message to ensure the reader is not unduly alarmed and has time to take in the message. If, for any reason, the T-Teminal's quit process cannot run as intended, it will simply use the built-in Python quit function without any communication to the user. Ctrl+C/Cmd+C will terminate the program and therefore does not allow further activity or communication from the program itself.  
     
-- Receive feedback in case of erroneous input that allows me to correct it  
-    + Helpful and descriptive error messages and prompts are used wherever possible within the program whenever invalid data is entered. The user is then offered the opportunity to re-enter this data without needing to begin the entire testing process again.
-
+- Receive feedback in case of erroneous input  
+    + Helpful and descriptive error messages and prompts are used wherever possible within the program whenever invalid data is entered. The user is then offered the opportunity to re-enter this data without needing to restart the program or even restart the testing process if using the program's testing functions.  
+  
+- Correct invalid or erroneous input without restarting the program  
+    + As described elsewhere, a response in Y/N format is required to confirm inputs when running tests. If the user responds "N", T-Tester provides the opportunity to re-enter the input. Where invalid data is entered, the user is shown a descriptive error message and then offered the opportunity to re-enter this data without needing to restart the program.  
+  
 - Exit the program easily  
     + The user can exit the program from the Main Menu. In this event, the program will inform the user with a simple "Quitting program..." message. A slight delay is added between this message and exiting the program, ensuring the user has time to read the message.  
-    + Ctrl+C/Cmd+C will terminate the program and therefore does not allow further activity or communication from the program itself.
+    + Ctrl+C/Cmd+C will terminate the program and therefore does not allow further activity or communication from the program itself.  
   
   
 ## Features  
   
   
 ### Future Features  
+It debatable whether deletion of records beyond the last shown record is a desirable feature. Deletion of the last shown record may be useful when a user realises, shortly after conducting a test, that the test was already carried out, used an incomplete or incorrect dataset and so on. For more selective deletion of records, access to the related Google Sheets spreadsheet is required. This limitation of the program may actually represent a useful feature in and of itself, as Google Sheets' permissions and access options allow for precise control of who may carry out such selective deletion. Nevertheless, it is possible that the program may expand its deletion options in the future.  
   
-  
+Currently, the program does not assess skewness and kurtosis. These features could be added for a more rounded and thorough set of pre-test checks.  
+
+Additional inputs could be added to the program's testing feature, such as a "Tester Notes" input. This input could then be added as an additional field to the records kept. The usefulness of such a feature may depend on how the program is being used. The optimal design would be one in which the user can configure which fields are needed within their records and which fields are unecessary. To be truly useful, these settings would need to be stored in a lasting manner. Only the necessary inputs would then be requested during the testing process.  
+    
 ## Sample Datasets:  
 To test different outcomes, the reader may wish to make use of the sample datasets below. 
 
