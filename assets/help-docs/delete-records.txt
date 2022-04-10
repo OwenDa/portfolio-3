@@ -18,4 +18,4 @@ Using this method, you can delete any record or multiple records at once.
 Contact your organisation's admin to request access to the spreadsheet.
 
 Within the spreadsheet, highlight the row you wish to delete by clicking on the
-row number at the left side of the screen. Press the Delete key on your keyboard.
+row number at the left side of the screen. Press Delete on your keyboard.
