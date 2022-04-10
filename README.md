@@ -45,7 +45,7 @@ T-Tester then is an adaptable tool that can be deployed to almost any scenario i
 - Allowing the user to view previous records in a formatted table within the terminal.  
 - Allowing the user to delete the last record shown within the table; for example, where a test is erroneously carried out twice.  
   
-To explore these features with sample data, see [Sample Datasets](#sample-datasets) below.  
+To explore these features with sample data, see "Sample Datasets" in [Testing](#testing).  
   
   
 ## Tech Stack  
@@ -65,16 +65,16 @@ As a user, I want to...
     + Brief instructions on each of the program's functionalities can be easily accessed from the Main Menu. These are divided by topic, allowing the user to access the most relevant information to their situation. A link to more in-depth information, provided in this README document, is also provided.  
   
 - Ascertain the suitability of my data for use in the program  
-    + T-Tester checks for homogeneity of variance, an important consideration when conducting independent t-tests. T-Tester also ensures that each sample contains at least five subjects. A famously robust test in this regard, the indepenent t-test can accomodate small sample sizes. However, T-Tester cannot assess methodological issues such as sampling method and representivity. It does not, at the time of writing, provide information on distribution such as skewness and kurtosis.  
+    + T-Tester checks for homogeneity of variance, an important consideration when conducting independent t-tests. T-Tester also ensures that each sample contains at least five subjects. A famously robust test in this regard, the independent t-test can accommodate small sample sizes. However, T-Tester cannot assess methodological issues such as sampling method and representativity. It does not, at the time of writing, provide information on distribution such as skewness and kurtosis.  
   
 - Compute the mean averages of two samples  
     + T-Tester calculates the mean average for each sample provided but does not relay non-significant data within the terminal as this could be misleading. Instead, the mean averages are relayed within the terminal only for statistically significant results. However, a record of all means is kept within the associated Google Sheets spreadsheet, should an organisation have other uses for this information.  
   
 - Compare the means of two samples, if suitable  
-    + T-Tester's primary function is to carry out an indepenent t-test, comparing the means of two samples and determining the statistical significance of any difference identified.
+    + T-Tester's primary function is to carry out an independent t-test, comparing the means of two samples and determining the statistical significance of any difference identified.
   
 - See the results of the analysis  
-    + Resuls of any tests conducted (Levene's test, indepenent t-test) are relayed within the terminal in terms of significance.
+    + Results of any tests conducted (Levene's test, independent t-test) are relayed within the terminal in terms of significance.
     
         | Possible Outputs                                                                                                   |  
         |--------------------------------------------------------------------------------------------------------------------|  
@@ -89,22 +89,22 @@ As a user, I want to...
     + A new record is added for each test process, recording the time and date of the test's completion, the user's name, username or ID, the mean average for each sample used within the test(s) and one of the three possible outputs in the table above.  
   
 - Store records in a manner that makes them easy to share  
-    + While accessible as a table within the program, records are stored in a Google Sheets spreadsheet, meaning they could be easily shared within an organisation or to other parties if desired. This also means that records are accessible on multiple devices and when the program is closed or the user does not have access to the program.  
+    + While accessible as a table within the program, records are stored in a Google Sheets spreadsheet, meaning they could be easily shared within an organisation or with other parties if desired. This also means that records are accessible on multiple devices and when the program is closed or the user does not have access to the program.  
 
 - Update the externally-stored records automatically   
-    + Newly created records are added to the connected Google Sheet rather than the program itself. This is also true when deleting data; it is the Google Sheet which is being updated. The program simply retrieves this information from the Google Sheet in order to display records in a convenient manner within the terminal. Changes to the Google Sheet are, therefore, reflected within the program, although it may be necessary to restart the program in order to see the most recent version of the available records.  
+    + Newly created records are added to the connected Google Sheet rather than the program itself. This is also true when deleting data; it is the Google Sheet that is being updated. The program simply retrieves this information from the Google Sheet in order to display records in a convenient manner within the terminal. Changes to the Google Sheet are, therefore, reflected within the program, although it may be necessary to restart the program in order to see the most recent version of the available records.  
   
 - Store records in a manner that allows me or others to copy, extract, manipulate or delete data  
-    + Records are stored in a Google Sheet spreadsheet which not only makes their content more accessible in many ways but also means that either selected data or the entire worksheet can be copied. Individual records or fields can be extracted for use in other programs. Data can also be deleted from the spreadsheet or a copy of the spreadsheet. For instance, one colleague may need access only to statistically significant results, and may wish to store these in a separate spreadsheet, file or other program.  
+    + Records are stored in a Google Sheet spreadsheet which not only makes their content more accessible in many ways but also means that either selected data or the entire worksheet can be copied. Individual records or fields can be extracted for use in other programs. Data can also be deleted from the spreadsheet or a copy of the spreadsheet. For instance, one colleague may need access only to statistically significant results and may wish to store these in a separate spreadsheet, file or program.  
   
 - Delete a record if created in error  
-  + The last shown record within the records table can be deleted by the user. This enables duplicate tests to be removed immediately upon realising the error, or in the event that a test was carried out on an dataset containing an error, it can be removed immediately. Records older than this can only be changed from within the Google Sheets spreadsheet. To minimise the risk of accidental deletion, a warning is displayed and confirmation is required. To confirm deletion, the user is instructed to type "DELETE" in capitals. Simultaneously, the user is told the pressing Enter will cancel deletion. If a request to delete a record is aborted in this manner, the user will be directed away from the deletion screen and back to the preceeding menu. A lowercase response ("delete") will prompt a message informing the user that the option is case sensitive and asking them to try again.  
+  + The last shown record within the records table can be deleted by the user. This enables duplicate tests to be removed immediately upon realising the error, or in the event that a test was carried out on a dataset containing an error, it can be removed immediately. Records older than this can only be changed from within the Google Sheets spreadsheet. To minimise the risk of accidental deletion, a warning is displayed and confirmation is required. To confirm deletion, the user is instructed to type "DELETE" in capitals. Simultaneously, the user is told that pressing Enter will cancel deletion. If a request to delete a record is aborted in this manner, the user will be directed away from the deletion screen and back to the preceding menu. A lowercase response ("delete") will prompt a message informing the user that the option is case sensitive and asking them to try again.  
   
 - Navigate through the program  
-    + Menus allow for easy and relatively intuitive navigation. Instructions are provided alongside menus, informing the user how to make a selection. T-Tester also enables the user to return to the previous menu where relevant; for example, after cancelling the deletion or a file or after reading a help topic.  
+    + Menus allow for easy and relatively intuitive navigation. Instructions are provided alongside menus, informing the user how to make a selection. T-Tester also enables the user to return to the previous menu where relevant; for example, after cancelling the deletion of a file or after reading a help topic.  
   
 - Minimise the risk of entering incorrect data  
-    + Invalid data is handled through error messages, automatic re-formatting and prompts to the user; however, valid data can nevertheless be incorrect data, largely due to ommission, typo or other user error.
+    + Invalid data is handled through error messages, automatic re-formatting and prompts to the user; however, valid data can nevertheless be incorrect data, largely due to omission, typo or other user error.
     
     To minimise the risk of omitting a value within a sample, the user is asked to specify the number of values they expect to be entering (ie. the number of subjects within a sample), and this is compared to the actual number of values entered when the user submits the sample.  
       
@@ -119,10 +119,10 @@ As a user, I want to...
     **Case 3: The user enters the correct number of values for the sample, but the input contains a typo.**  
     T-Tester relays the values for a sample back to the user in a message such as, "You entered: [1, 2, 3, 4, 6]. Is this correct? Y/N".  The values shown in this message have been automatically formatted, making them easy to read and increasing the user's ability to spot any typos. For example, the data above may have originally been entered by the user as "1,,,, 2,3,  4, 6,,", but the program has formatted it in a more consistent and readable manner. If the data does contain a typo, the user will respond "N" to decline confirmation and be asked to enter the values again.
 
-- Avoid crashing/restarting the program if I inadvertantly enter incorrect input  
+- Avoid crashing/restarting the program if I inadvertently enter incorrect input  
     + When invalid input is entered, a helpful message is displayed prompting the user to amend their input and allowing them to continue from the relevant step of the process. In most cases, this is the previous step within a given process.  
     
-    Where an as yet unforeseen error arises, the program will attempt to return the user to the Main Menu. If, for any reason, this fails, or where the error arises within the Main Menu, the program will close though its own quit process. T-Tester's quit process informs the user, "Sorry, something went wrong. [error message]. Quitting program..." before quitting with Python's built-in quit function. A slight delay is added between the phrases of this message to ensure the reader is not unduly alarmed and has time to take in the message. If, for any reason, the T-Teminal's quit process cannot run as intended, it will simply use the built-in Python quit function without any communication to the user. Ctrl+C/Cmd+C will terminate the program and therefore does not allow further activity or communication from the program itself.  
+    Where an as yet unforeseen error arises, the program will attempt to return the user to the Main Menu. If for any reason, this fails, or where the error arises within the Main Menu, the program will close through its own quit process. T-Tester's quit process informs the user, "Sorry, something went wrong. [error message]. Quitting program..." before quitting with Python's built-in quit function. A slight delay is added between the phrases of this message to ensure the reader is not unduly alarmed and has time to take in the message. If, for any reason, the T-Teminal's quit process cannot run as intended, it will simply use the built-in Python quit function without any communication to the user. Ctrl+C/Cmd+C will terminate the program and therefore does not allow further activity or communication from the program itself.  
     
 - Receive feedback in case of erroneous input  
     + Helpful and descriptive error messages and prompts are used wherever possible within the program whenever invalid data is entered. The user is then offered the opportunity to re-enter this data without needing to restart the program or even restart the testing process if using the program's testing functions.  
@@ -134,25 +134,23 @@ As a user, I want to...
     + The user can exit the program from the Main Menu. In this event, the program will inform the user with a simple "Quitting program..." message. A slight delay is added between this message and exiting the program, ensuring the user has time to read the message.  
     + Ctrl+C/Cmd+C will terminate the program and therefore does not allow further activity or communication from the program itself.  
   
-Further test cases, with particular reference to individual error messages, are discussed in [Test Cases: Invalid Input](#test-cases-invalid-input).  
-  
-Additionally, the [Sample Datasets](##sample-datasets) provided function as test cases for sample entry in T-Tester's testing mode.
+Individual error messages are discussed in [Test Cases](#test-cases). The [Test Cases](#test-cases) section also provides sample datasets which function as test cases for sample entry in T-Tester's testing mode.
   
 ## Features  
   
   
 ### Future Features  
-It debatable whether deletion of records beyond the last shown record is a desirable feature. Deletion of the last shown record may be useful when a user realises, shortly after conducting a test, that the test was already carried out, used an incomplete or incorrect dataset and so on. For more selective deletion of records, access to the related Google Sheets spreadsheet is required. This limitation of the program may actually represent a useful feature in and of itself, as Google Sheets' permissions and access options allow for precise control of who may carry out such selective deletion. Nevertheless, it is possible that the program may expand its deletion options in the future.  
+It is debatable whether deletion of records beyond the last shown record is a desirable feature. Deletion of the last shown record may be useful when a user realises, shortly after conducting a test, that the test was already carried out, used an incomplete or incorrect dataset and so on. For more selective deletion of records, access to the related Google Sheets spreadsheet is required. This limitation of the program may actually represent a useful feature in and of itself, as Google Sheets' permissions and access options allow for precise control of who may carry out such selective deletion. Nevertheless, it is possible that the program may expand its deletion options in the future.  
   
 Currently, the program does not assess skewness and kurtosis. These features could be added for a more rounded and thorough set of pre-test checks.  
 
-Additional inputs could be added to the program's testing feature, such as a "Tester Notes" input. This input could then be added as an additional field to the records kept. The usefulness of such a feature may depend on how the program is being used. The optimal design would be one in which the user can configure which fields are needed within their records and which fields are unecessary. To be truly useful, these settings would need to be stored in a lasting manner. Only the necessary inputs would then be requested during the testing process.  
+Additional inputs could be added to the program's testing feature, such as a "Tester Notes" input. This input could then be added as an additional field to the records kept. The usefulness of such a feature may depend on how the program is being used. The optimal design would be one in which the user can configure which fields are needed within their records and which fields are unnecessary. To be truly useful, these settings would need to be stored in a lasting manner. Only the necessary inputs would then be requested during the testing process.  
     
     
 ## Testing  
 Manual testing, including exploratory testing, was carried out throughout development. New features were tested as they were added and before committing changes. Certain features were pushed and tested within the deployed environment to ensure that rendering was as intended. [PEP8online.com](http://pep8online.com/checkresult) was frequently used during development to validate code.  
   
-In the initial stages of developing the statistical portion the program, and again during a dedicated testing phase toward the end of development, the results of the sample datasets below were verified in IBM's statistical package, [SPSS](https://en.wikipedia.org/wiki/SPSS).  
+In the initial stages of developing the statistical portion of the program, and again during a dedicated testing phase toward the end of development, the results of the sample datasets below were verified in IBM's statistical package, [SPSS](https://en.wikipedia.org/wiki/SPSS).  
   
 Additionally, to further verify results and aid the reader of this document to carry out similar tests, [SocSciStatistics.com](https://www.socscistatistics.com/tests/levene/default.aspx) was also used to confirm results given by T-Tester when checking for homogeneity of variance (Levene's Test). This is freely available online and does not require specialised software.  
   
@@ -162,7 +160,7 @@ In a similar manner, [GraphPad](https://www.graphpad.com/quickcalcs/ttest1.cfm) 
 <details><summary>
 Invalid Input
 </summary></br>  
-Attempting to enter following values in response to their respective input requests shows an error message and prompts the user to correct the error by trying again.  
+Attempting to enter the following values in response to their respective input requests shows an error message and prompts the user to correct the error by trying again.  
   
 **Menus**
 | Request                | Invalid Value Type               | Error Message                                                   |  
@@ -199,7 +197,7 @@ Attempting to enter following values in response to their respective input reque
 | Sample   | Multiple decimals e.g. "5..2"    | Non-numeric value(s) detected. Try again.                                  |  
 | Y        | Any other letter                 | No other operations available at this time. Press Y to return to Main Menu.|  
 
-*Note that a lowercase y/n is handled automatically and does not require user-intervention.  
+*Note that a lowercase y/n is handled automatically and does not require user intervention.  
 ** Note that multiple commas or spaces within an otherwise valid sample (1  ,2, , 3 , 4,,,5) are automatically corrected.  
   
   
@@ -229,13 +227,13 @@ You will now be asked to input the values within the sample. You may type these 
 To verify results, using the resources given in each outcome description, the following resources are available at the time of writing:  
 - [SocSciStatistics.com](https://www.socscistatistics.com/tests/levene/default.aspx)
         <details><summary>
-        How to Use this Resource
+        How to Use This Resource
         </summary>
-        Navigate to the site and, as per the instructions given on screen, enter the values for Sample A of your chosen dataset into the area labelled "Sample 1 (a)". These can be typed manually or copied and pasted but must be formatted either as a comma separated list or with one-value-per-line. Repeat for Sample B in the appropriate area and click the "Calculate" button at the bottom of the screen. The information needed to verify T-Tester's result will be output in red text as the bottom of the screen. Where homogeneity of variance is not found, it will read "The requirement of homogeneity is not met". Otherwise, it will read "The requirement of homogeneity is met."  
+        Navigate to the site and, as per the instructions given on-screen, enter the values for Sample A of your chosen dataset into the area labelled "Sample 1 (a)". These can be typed manually or copied and pasted but must be formatted either as a comma-separated list or with one-value-per-line. Repeat for Sample B in the appropriate area and click the "Calculate" button at the bottom of the screen. The information needed to verify T-Tester's result will be output in red text at the bottom of the screen. Where homogeneity of variance is not found, it will read "The requirement of homogeneity is not met". Otherwise, it will read "The requirement of homogeneity is met."  
         </details>  
 - [GraphPad](https://www.graphpad.com/quickcalcs/ttest1.cfm)
         <details><summary>
-        How to Use this Resource
+        How to Use This Resource
         </summary> 
         Having navigated to the site, the user will see four numbered boxes. In box 1, select the second option ("Enter or paste up to 2000 rows"). In box 2, the correct selection for this test is "Unpaired t test", another name for independent t-test. In box 3, enter the values for Sample A in the first column, one value per row. Repeat for Sample B in the second column. In box 4, click "Calculate Now." The information needed to verify T-Tester's result will be output near the top of the page and phrased in terms of significance. For example, "By conventional criteria, this difference is considered to be not statistically significant". Be sure to start again from scratch with each test so as to avoid errors.
         </details>  
@@ -275,7 +273,7 @@ To verify results, using the resources given in each outcome description, the fo
   >  
   >[SocSciStatistics.com](https://www.socscistatistics.com/tests/levene/default.aspx) output: "The requirement of homogeneity is met."
   >
-  >[GraphPad](https://www.graphpad.com/quickcalcs/ttest1.cfm) output: ""By conventional criteria, this difference is considered to be not statistically significant."    
+  >[GraphPad](https://www.graphpad.com/quickcalcs/ttest1.cfm) output: "By conventional criteria, this difference is considered to be not statistically significant."    
     
 **Test 4: Significance**  
   
@@ -285,7 +283,7 @@ To verify results, using the resources given in each outcome description, the fo
 | Sample B  |     5    |  66.1, 69.9, 67.7, 69.6, 71.1      | 68.88 | Significant | 
 
 >**Outcome 4: Statistically Significant Difference**  
->In Dataset 4, homogeneity of variances is confirmed, the mean average of each group is calculated, and an indepenent t-test is carried out. A statistically significant difference is found, with the mean of Sample A being greater than that of Sample B.    
+>In Dataset 4, homogeneity of variances is confirmed, the mean average of each group is calculated, and an independent t-test is carried out. A statistically significant difference is found, with the mean of Sample A being greater than that of Sample B.    
 >  
 >T-Tester output: Statistically significant difference. The mean average of Sample A (82.82) was greater than Sample B (68.88).  
 >[SocSciStatistics.com](https://www.socscistatistics.com/tests/levene/default.aspx) output: "The requirement of homogeneity is met."
@@ -311,7 +309,7 @@ The site was deployed to Heroku using the following procedure. Before beginning,
 6. Click "Add Buildpack" and add both Python and, in order to use the mock terminal provided by CodeInstitute for this particular project, Node.js, in that order.
 7. Within the deploy section, select GitHub as the deployment method and authorise.
 8. Input the name of the GitHub repository and click "Search", followed by "Connect".  
-9. Choose either "Automatic deploys" or "Manual deploy". In this case, the developer opted for manual deploy for the initial deployment and, having verified that deployment was successful, enabled automoatic deploys thereafter.  
+9. Choose either "Automatic deploys" or "Manual deploy". In this case, the developer opted for manual deploy for the initial deployment and, having verified that deployment was successful, enabled automatic deploys thereafter.  
 10. Select the appropriate branch from which to deploy (in this case, the project had only the Main branch at the time of deployment).
 
 
