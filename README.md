@@ -45,6 +45,8 @@ T-Tester then is an adaptable tool that can be deployed to almost any scenario i
 To explore these features with sample data, see [Sample Datasets](#sample-datasets) below.  
   
 ## User Stories  
+As a user, I want to...  
+  
 - Understand how to use the program  
     + Brief instructions on each of the program's functionalities can be easily accessed from the Main Menu. These are divided by topic, allowing the user to access the most relevant information to their situation. A link to more in-depth information, provided in this README document, is also provided.  
   
@@ -87,14 +89,31 @@ To explore these features with sample data, see [Sample Datasets](#sample-datase
 - Navigate through the program  
     + Menus allow for easy and relatively intuitive navigation. Instructions are provided alongside menus, informing the user how to make a selection. T-Tester also enables the user to return to the previous menu where relevant; for example, after cancelling the deletion or a file or after reading a help topic.  
   
-- Minimise the risk of entering incorrect data 
-    + Helpful and descriptive error messages and prompts are used wherever possible within the program.  
+- Minimise the risk of entering incorrect data  
+    + Invalid data is handled through error messages, automatic re-formatting and prompts to the user; however, valid data can nevertheless be incorrect data, largely due to ommission, typo or other user error.
+    
+    To minimise the risk of omitting a value within a sample, the user is asked to specify the number of values they expect to be entering (ie. the number of subjects within a sample), and this is compared to the actual number of values entered when the user submits the sample.  
+      
+    To ensure this comparison works as efficiently as possible, confirmation is required for both inputs. The following example cases explain how these checks are applied:  
+      
+    **Case 1: The user erroneously enters "13" as the number of subjects for a sample which actually contains 14 values.**  
+    T-Tester will display the message, "You entered: 13. Is this correct? Y/N", requesting confirmation that this number is correct. As it is incorrect, the user enters "N" and is offered the opportunity to re-enter the number.  
+      
+    **Case 2: The user correctly inputs "14" as the number of subjects, but subsequently enters only 13 of these values due to a typo, omission or copy/paste error.**  
+    T-Tester will alert the user of the disparity and restart collection of that particular sample.  
+      
+    **Case 3: The user enters the correct number of values for the sample, but the input contains a typo.**  
+    T-Tester relays the values for a sample back to the user in a message such as, "You entered: [1, 2, 3, 4, 6]. Is this correct? Y/N".  The values shown in this message have been automatically formatted, making them easy to read and increasing the user's ability to spot any typos. For example, the data above may have originally been entered by the user as "1,,,, 2,3,  4, 6,,", but the program has formatted it in a more consistent and readable manner. If the data does contain a typo, the user will respond "N" to decline confirmation and be asked to enter the values again.
 
 - Avoid crashing/restarting the program if I inadvertantly enter incorrect input  
-    + When invalid input is entered, a helpful message is displayed prompting the user to amend their input and allowing them to continue from the relevant step of the process. In most cases, this is the previous step. In some cases, such as when there is a disparity between the number of subjects in a sample and the number of values entered for that sample, the user is taken to the most logical point at which to resume the process. In this last example, the user is returned to the point at which they entered the number of subjects to ensure they can correct this number if needed.  In a small number of cases where an as yet unforeseen error arises, the program will terminate.  
+    + When invalid input is entered, a helpful message is displayed prompting the user to amend their input and allowing them to continue from the relevant step of the process. In most cases, this is the previous step within a given process. In a small number of cases where an as yet unforeseen error arises, the program will terminate. Before quitting, the program alerts the user by communicating, "Sorry, something went wrong. [error message]. Quitting program..." A slight delay is added between the phrases of this message to ensure the reader is not unduly alarmed and has time to take in the message. Ctrl+C/Cmd+C will terminate the program and therefore does not allow further activity or communication from the program itself.
     
 - Receive feedback in case of erroneous input that allows me to correct it  
+    + Helpful and descriptive error messages and prompts are used wherever possible within the program whenever invalid data is entered. The user is then offered the opportunity to re-enter this data without needing to begin the entire testing process again.
+
 - Exit the program easily  
+    + The user can exit the program from the Main Menu. In this event, the program will inform the user with a simple "Quitting program..." message. A slight delay is added between this message and exiting the program, ensuring the user has time to read the message.  
+    + Ctrl+C/Cmd+C will terminate the program and therefore does not allow further activity or communication from the program itself.
   
 ### Sample Datasets:  
 To test different outcomes, the reader may wish to make use of the sample datasets below. 

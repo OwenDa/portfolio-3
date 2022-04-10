@@ -7,3 +7,6 @@ as some sample datasets that can be used to try out the various possible outcome
 of testing. It will also give you a detailed breakdown of the error messages and
 prompts you might receive upon entering an invalid value when prompted for input
 (e.g. entering a letter when asked for a number), and other useful information.
+
+T-Tester was developed in 2022 as a learning and portfolio project and is
+currently intended for demonstration and further learning purposes only.
