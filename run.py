@@ -537,7 +537,7 @@ error_dict = {
         """No other operations available at this time.
     Press Y to return to Main Menu.""",
     "subject_int":
-        """Must be numeric value. Whole numbers only (e.g. '7', not '7.2').
+        """Enter an integer, e.g. '7' (Not '7.2' or 'seven').
     Please try again.""",
     "subject_qty":
         "Five or more subjects required. Try again.",

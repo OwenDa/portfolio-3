@@ -154,28 +154,27 @@ Attempting to enter following values in response to their respective input reque
 **Menus**
 | Request                | Invalid Value Type               | Error Message                                                   |  
 |------------------------|----------------------------------|-----------------------------------------------------------------| 
-| Main Menu Selection    | Blank                            | Invalid Selection. Please choose 1, 2, 3 or 4.                  |
-| Main Menu Selection    | Letter/symbol(s)                 | Invalid Selection. Please choose 1, 2, 3 or 4.                  |  
-| Main Menu Selection    | Number out of option range       | Invalid Selection. Please choose 1, 2, 3 or 4.                  |
-| Help Menu Selection    | Blank                            | Invalid Selection. Please choose from the numbers shown.        |  
-| Main Menu Selection    | Letter/symbol(s)                 | Invalid Selection. Please choose from the numbers shown.        |  
-| Main Menu Selection    | Number out of option range       | Invalid Selection. Please choose from the numbers shown.        |  
-| Records Menu Selection | Blank                            | Invalid Selection. Please choose 1 or 2.                        |  
-| Records Menu Selection | Letter(s)/Symbol(s)              | Invalid Selection. Please choose 1 or 2.                        |  
-| Records Menu Selection | Number out of option range       | Invalid Selection. Please choose 1 or 2.                        |  
+| Main Menu Selection    | Blank                            | Invalid Selection. Please enter a number from the options shown.|
+| Main Menu Selection    | Letter/symbol(s)                 | Invalid Selection. Please enter a number from the options shown.|  
+| Main Menu Selection    | Number out of option range       | Invalid Selection. Please enter a number from the options shown.|
+| Help Menu Selection    | Blank                            | Invalid Selection. Please enter a number from the options shown.|  
+| Main Menu Selection    | Letter/symbol(s)                 | Invalid Selection. Please enter a number from the options shown.|  
+| Main Menu Selection    | Number out of option range       | Invalid Selection. Please enter a number from the options shown.|  
+| Records Menu Selection | Blank                            | Invalid Selection. Please enter a number from the options shown.|  
+| Records Menu Selection | Letter(s)/Symbol(s)              | Invalid Selection. Please enter a number from the options shown.|  
+| Records Menu Selection | Number out of option range       | Invalid Selection. Please enter a number from the options shown.|  
 
 
 **Running Tests**
-| Request             | Invalid Value Type    | Error Message                                                              |  
-|---------------------|-----------------------|----------------------------------------------------------------------------| 
-| Request  | Invalid Value Type               | Error Message                                                              |
+| Request  | Invalid Value Type               | Error Message                                                              |  
+|----------|----------------------------------|----------------------------------------------------------------------------| 
 | Username | Blank                            | Username or ID required (e.g. SamBeckett, User1, etc.)                     |  
 | Username | Single character                 | Username must be at least 2 characters in length                           |  
-| Subjects | Blank                            | Must be numeric value. Try Again.                                          |  
-| Subjects | Letter(s)                        | Must be numeric value. Try Again.                                          |  
+| Subjects | Blank                            | Enter an integer, e.g. '7' (Not '7.2' or 'seven'). Please try again.       |  
+| Subjects | Letter(s)                        | Enter an integer, e.g. '7' (Not '7.2' or 'seven'). Please try again.       |  
 | Subjects | Number below 5                   | Five or more subjects required. Try Again.                                 |  
 | Subjects | Negative number                  | Five or more subjects required. Try Again.                                 |  
-| Subjects | Float, e.g. 5.2                  |                                                                            |  
+| Subjects | Float, e.g. 5.2                  | Enter an integer, e.g. '7' (Not '7.2' or 'seven'). Please try again.       |  
 | Y/N      | Blank                            | Press Y if correct, or press N to re-enter the data.                       |  
 | Y/N      | Letter other than Y/N*           | Press Y if correct, or press N to re-enter the data.                       |  
 | Y/N      | Number                           | Press Y if correct, or press N to re-enter the data.                       |   
