@@ -55,9 +55,12 @@ def testing_mode():
 
 def quit_func():
     """ Quits program after a short delay of 1 second """
-    print("Quitting program...")
-    sleep(1)
-    quit()
+    try:
+        print("Quitting program...")
+        sleep(1)
+        quit()
+    except Exception:
+        quit()
 
 
 def main_menu():
