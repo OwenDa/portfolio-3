@@ -138,7 +138,7 @@ Individual error messages are discussed in [Test Cases](#test-cases). The [Test 
   
 ## Features  
 Upon launching, T-Tester greets the user with a Main Menu, presenting the options available to the user and offering instructions on how to select an option.  
-<img src="assets/images/screenshots/main-menu-flow.png" alt="An overview of the screens available from the Main Menu, including the error message shown in the event of an invalid selection." height="auto" width="75%">  
+<img src="assets/images/screenshots/main-menu-flow.png" alt="An overview of the screens available from the Main Menu, including the error message shown in the event of an invalid selection." height="auto" width="90%">  
   
 T-Tester has a built-in help section allowing the user to access instructions for use.  
 <img src="assets/images/screenshots/help-section-flow.png" alt="An overview of the screens available from within the Help section, including the error message shown in the event of an invalid selection." height="auto" width="75%">  
