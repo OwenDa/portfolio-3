@@ -1,4 +1,4 @@
-Select "Run Tests" from the Main Meun. You will then be asked to enter a
+[bold][bright_cyan]Select "Run Tests" from the Main Menu.[/][/] You will then be asked to enter a
 username/ID. Type your chosen username and press Enter. Your organisation
 may have its own protocol for usernames, such as an ID number or initials.
 

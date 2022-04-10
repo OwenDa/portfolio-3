@@ -137,7 +137,7 @@ def print_file(file_path):
     """
     with open(file_path, mode="r", encoding="utf-8") as f:
         contents = f.read(None)
-        print(contents)
+        console.print(contents)
         show_menu(help_menu)
 
 
