@@ -275,8 +275,8 @@ def delete_last_record():
     console.print("\nCaution: Deletion cannot be undone.\n", style="highlight")
     print("You are about to delete the most current test record on the table.")
     while True:
-        confirm_delete = input("To confirm this action, type 'DELETE'."
-                               "To exit, press any other key and hit Enter.\n")
+        confirm_delete = input("To confirm this action, type 'DELETE'. "
+                               "To exit, press Enter.\n")
         if confirm_delete == "delete":
             msg = error_dict["case_sensitive"]
             error_wrapper(msg)
