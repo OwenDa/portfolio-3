@@ -154,7 +154,7 @@ Manual testing, including exploratory testing, was carried out throughout develo
 
 In the initial stages of developing the statistical portion the program, and again during a dedicated testing phase toward the end of development, the results of the sample datasets below were verified in IBM's statistical package, [SPSS](https://en.wikipedia.org/wiki/SPSS).  
   
-Additionally, to aid the reader of this document to carry out similar tests, [SocSciStatistics.com](https://www.socscistatistics.com/tests/levene/default.aspx) was used to confirm results given by T-Tester when checking for homogeneity of variance (Levene's Test). This is a freely available service and does not require specialised software.  
+Additionally, to aid the reader of this document to carry out similar tests, [SocSciStatistics.com](https://www.socscistatistics.com/tests/levene/default.aspx) was used to confirm results given by T-Tester when checking for homogeneity of variance (Levene's Test). This is freely available online and does not require specialised software.  
 
 In a similar manner, [GraphPad](https://www.graphpad.com/quickcalcs/ttest1.cfm) was used to confirm t-test results.
   
@@ -214,7 +214,7 @@ Attempting to enter following values in response to their respective input reque
 <details><summary>  
 Sample Datasets  
 </summary></br>  
-The following sample datasets can be used to test different outcomes of T-Tester's testing mode.  
+The following sample datasets can be used to test different outcomes of T-Tester's testing mode. In addition to a great deal of fictional data improvised during testing, these datasets have been used as test cases for the various statistical outcomes possible within T-Tester.    
 <br/><br/>  
   
 **How to Use Sample Datasets:**  
@@ -231,50 +231,67 @@ To verify results, using the resources given in each outcome description, the fo
         <details><summary>
         How to Use this Resource
         </summary>
-        Navigate to the site and, as per the instructions given on screen, enter the values for Sample A of your chosen dataset into the area labelled "Sample 1 (a)". These can be typed manually or copied and pasted but must be formatted either as a comma separated list or with one-value-per-line. Repeat for Sample B in the appropriate area and click the "Calculate" button at the bottom of the screen.  
+        Navigate to the site and, as per the instructions given on screen, enter the values for Sample A of your chosen dataset into the area labelled "Sample 1 (a)". These can be typed manually or copied and pasted but must be formatted either as a comma separated list or with one-value-per-line. Repeat for Sample B in the appropriate area and click the "Calculate" button at the bottom of the screen. The information needed to verify T-Tester's result will be output in red text as the bottom of the screen. Where homogeneity of variance is not found, it will read "The requirement of homogeneity is not met". Otherwise, it will read "The requirement of homogeneity is met."  
         </details>  
 - [GraphPad](https://www.graphpad.com/quickcalcs/ttest1.cfm)
         <details><summary>
         How to Use this Resource
         </summary> 
-        Having navigated to the site, the user will see four numbered boxes. In box 1, leave the default option selected ("Enter up to 50 rows"). In box 2, the correct selection for this test is "Unpaired t test", another name for independent t-test. In box 3, enter the values for Sample A in the first column. Repeat for Sample B in the second column. In box 4, click "Calculate Now."  
+        Having navigated to the site, the user will see four numbered boxes. In box 1, select the second option ("Enter or paste up to 2000 rows"). In box 2, the correct selection for this test is "Unpaired t test", another name for independent t-test. In box 3, enter the values for Sample A in the first column, one value per row. Repeat for Sample B in the second column. In box 4, click "Calculate Now." The information needed to verify T-Tester's result will be output near the top of the page and phrased in terms of significance. For example, "By conventional criteria, this difference is considered to be not statistically significant". Be sure to start again from scratch with each test so as to avoid errors.
         </details>  
   
+**Test 1: Unsuitable Data**
+| Dataset 1| Subjects |  Values                               |
+|----------|----------|---------------------------------------|
+| Sample A |     6    |  100,2000,30000,400000,5000000,14     |
+| Sample B |     8    |  1,2,3,4,5,6,7,8                      |  
   
-| Dataset 1| Subjects |  Values                        |
-|----------|----------|--------------------------------|
-| Sample A |     5    |  100,2000,30000,400000,5000000 |
-| Sample B |     5    |  1,2,3,4,5                     |  
+>**Outcome 1: Data Unsuitable**  
+>In Dataset 1, the two samples collected from the user are unsuitable for an independent t-test and will fail when the program checks for homogeneity of variances (Levene's Test), causing the program to bypass the t-test. This can be verified by inputting the same numbers to an online Levene's Test tool, such as [SocSciStatistics.com](https://www.socscistatistics.com/tests/levene/default.aspx) which will output "The requirement of homogeneity is not met".
   
-**Outcome: Data Unsuitable**  
-In *Dataset 1*, the two samples collected from the user are unsuitable for an independent t-test and will fail when the program checks for homogeneity of variances (Levene's Test), causing the program to bypass the t-test. This can be verified by inputting the same numbers to an online Levene's Test tool, such as [SocSciStatistics.com](https://www.socscistatistics.com/tests/levene/default.aspx).
+**Test 2: Non-significance**  
   
+| Dataset 2| Subjects |  Values             | Mean  |
+|----------|----------|---------------------|-------|
+| Sample A |     8    |  3,5,21,7,3,5,87,45 | 22.00 |  
+| Sample B |     7    |  8,7,3,9,5,62,10    | 14.86 |  
   
-| Dataset 2| Subjects |  Values    |
-|----------|----------|------------|
-| Sample A |     5    |  8,7,3,9,5 |
-| Sample B |     5    |  3,5,7,3,5 |  
-  
-**Outcome: No Statistically Significant Difference**  
-In *Dataset 2*, the samples are suitable for an independent t-test and the program will proceed to carry it out. Again, this can be verified by inputting the same numbers to an online Levene's Test tool, such as [SocSciStatistics.com](https://www.socscistatistics.com/tests/levene/default.aspx).
-
-Once carried out, the independent t-test will return no statistically significant difference between the samples in this dataset. This can be verified using an online t-test calculator, such as that available from [GraphPad](https://www.graphpad.com/quickcalcs/ttest1.cfm).  
+  >**Outcome 2: No Statistically Significant Difference**  
+  In Dataset 2, the samples are considered suitable for an independent t-test and the program will proceed to carry it out. Again, this can be verified by inputting the same numbers to [SocSciStatistics.com](https://www.socscistatistics.com/tests/levene/default.aspx) which will output "The requirement of homogeneity is met".  
+  >  
+  >Once carried out, the independent t-test will return no statistically significant difference between the samples in this dataset. This can be verified using an online t-test calculator, such as that available from [GraphPad](https://www.graphpad.com/quickcalcs/ttest1.cfm) which will output "By conventional criteria, this difference is considered to be not statistically significant."  
+  >  
+  >As an additional test, compare the values given by GraphPad for each group's Mean at the bottom of the screen to those stored in the Google Sheets spreadsheet. In this case, both record 22.00 for Sample A and 14.86 for Sample B.  
    
-**Additional Datasets**  
+**Test 3: Identical Data (Non-Significance)**  
   
 | Dataset 3 | Subjects |  Values                       | Mean  | Outcome          |
 |-----------|----------|-------------------------------|-------|------------------|
 | Sample A  |     5    |  66.1, 69.9, 67.7, 69.6, 71.1 | 68.88 | Non-significant  |
-| Sample B  |     5    |  66.1, 69.9, 67.7, 69.6, 71.1 | 68.88 | Non-significant  |
+| Sample B  |     5    |  66.1, 69.9, 67.7, 69.6, 71.1 | 68.88 | Non-significant  | 
   
-In *Dataset 3*, the values entered are identical. The mean average returned for each sample is therefore identical and no statistically significant difference is found.
-
+  >**Outcome 3: No Statistically Significant Difference**  
+  >In Dataset 3, the values entered are identical. Homogeneity of variances is therefore confirmed and the test will proceed. The mean average returned for each sample is identical and no statistically significant difference is found.  
+  >  
+  >[SocSciStatistics.com](https://www.socscistatistics.com/tests/levene/default.aspx) output: "The requirement of homogeneity is met."
+  >
+  >[GraphPad](https://www.graphpad.com/quickcalcs/ttest1.cfm) output: ""By conventional criteria, this difference is considered to be not statistically significant."    
+    
+**Test 4: Significance**  
+  
 | Dataset 4 | Subjects |  Values                            | Mean  | Outcome     |
 |-----------|----------|------------------------------------|-------|-------------|
 | Sample A  |     5    |  83.70, 81.50, 80.60, 83.90, 84.40 | 82.82 | Significant |
 | Sample B  |     5    |  66.1, 69.9, 67.7, 69.6, 71.1      | 68.88 | Significant | 
 
-In *Dataset 4*, differing mean averages are calculated for each sample. Homogeneity of variances is confirmed and an indepenent t-test is carried out accordingly. A statistically significant difference is found, with the mean of Sample A being greater than that of Sample B.  
+>**Outcome 4: Statistically Significant Difference**  
+>In Dataset 4, homogeneity of variances is confirmed, the mean average of each group is calculated, and an indepenent t-test is carried out. A statistically significant difference is found, with the mean of Sample A being greater than that of Sample B.    
+>  
+>T-Tester output: Statistically significant difference. The mean average of Sample A (82.82) was greater than Sample B (68.88).  
+>[SocSciStatistics.com](https://www.socscistatistics.com/tests/levene/default.aspx) output: "The requirement of homogeneity is met."
+>
+>[GraphPad](https://www.graphpad.com/quickcalcs/ttest1.cfm) output: "By conventional criteria, this difference is considered to be extremely statistically significant."  Mean averages for Sample A and Sample B are 82.82 and 68.88 respectively.
+
 </details>  
     
 ## Deployment  
