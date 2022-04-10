@@ -1,3 +1,4 @@
+
 Select [bold][bright_cyan]View Records[/][/] from the Main Menu.
 A table will appear, showing results of previous tests. Each row within
 this table is an individual record.
