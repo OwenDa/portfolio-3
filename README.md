@@ -150,13 +150,13 @@ Additional inputs could be added to the program's testing feature, such as a "Te
     
     
 ## Testing  
-Manual testing, including exploratory testing, was carried out throughout development. New features were tested as they were added and before committing changes. Certain features were pushed and tested within the deployed environment to ensure that rendering was as intended.  
-
+Manual testing, including exploratory testing, was carried out throughout development. New features were tested as they were added and before committing changes. Certain features were pushed and tested within the deployed environment to ensure that rendering was as intended. [PEP8online.com](http://pep8online.com/checkresult) was frequently used during development to validate code.  
+  
 In the initial stages of developing the statistical portion the program, and again during a dedicated testing phase toward the end of development, the results of the sample datasets below were verified in IBM's statistical package, [SPSS](https://en.wikipedia.org/wiki/SPSS).  
   
-Additionally, to aid the reader of this document to carry out similar tests, [SocSciStatistics.com](https://www.socscistatistics.com/tests/levene/default.aspx) was used to confirm results given by T-Tester when checking for homogeneity of variance (Levene's Test). This is freely available online and does not require specialised software.  
-
-In a similar manner, [GraphPad](https://www.graphpad.com/quickcalcs/ttest1.cfm) was used to confirm t-test results.
+Additionally, to further verify results and aid the reader of this document to carry out similar tests, [SocSciStatistics.com](https://www.socscistatistics.com/tests/levene/default.aspx) was also used to confirm results given by T-Tester when checking for homogeneity of variance (Levene's Test). This is freely available online and does not require specialised software.  
+  
+In a similar manner, [GraphPad](https://www.graphpad.com/quickcalcs/ttest1.cfm) was used to confirm t-test results.  
   
 ### Test Cases
 <details><summary>
@@ -295,6 +295,33 @@ To verify results, using the resources given in each outcome description, the fo
 </details>  
     
 ## Deployment  
+<details><summary>
+Click to Expand: Deployment Procedure
+</summary></br>  
+  
+## Heroku  
+The site was deployed to Heroku using the following procedure. Before beginning, ensure that requirements.txt is up to date.    
+1. An account must first be created on [Heroku.com](https://www.heroku.com/)  
+2. Once logged in, select "Create new app".  
+3. The app must then be given a unique name and the developer's region must be selected from a list of options.  
+4. From the Settings tab of the next screen, select "Reveal config vars".  
+5. The file creds.json, which is not included in the associated git repository, was added as a config var.  
+    + Key = "CREDS", Value = Contents of the associated CREDS.json file.
+    + A PORT key was also added with the value of 8000.
+6. Click "Add Buildpack" and add both Python and, in order to use the mock terminal provided by CodeInstitute for this particular project, Node.js, in that order.
+7. Within the deploy section, select GitHub as the deployment method and authorise.
+8. Input the name of the GitHub repository and click "Search", followed by "Connect".  
+9. Choose either "Automatic deploys" or "Manual deploy". In this case, the developer opted for manual deploy for the initial deployment and, having verified that deployment was successful, enabled automoatic deploys thereafter.  
+10. Select the appropriate branch from which to deploy (in this case, the project had only the Main branch at the time of deployment).
+
+
+### Forking & Cloning Repositories  
+Forking a repository allows one to make a copy with which to experiment without affecting or jeopardising the original. This does not require any special permissions from or direct contact with the original developer provided the repository in question is public rather than private. You may wish to do this either to experiment with and learn from another party's code or aid in improving an open-source project by offering changes (note that forking is distinct from [branching](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches)). To do this, one must have a GitHub account and be logged in. Then, simply visit the main page of the repository in question, and select the "Fork" option located in the upper-right corner (desktop) as shown in the image below. [Learn more about forks from GitHub Docs](https://docs.github.com/en/get-started/quickstart/fork-a-repo#forking-a-repository).  
+<img src="assets/images/fork-repository-example.png" alt="Example of GitHub interface showing the option to fork a repository." width="50%" height="auto"> 
+
+Forking a repository does not create locally-stored copies of its files on your computer. To achieve this, you will also need to Clone the repository. For example, you may wish to do this if you wish to have a functioning copy of another party's code in under to compile and execute it locally. Cloning options are found under the "Code" drop-down button of a repository's main page, as shown in the image below. [Learn more about cloning from GitHub Docs](https://docs.github.com/en/get-started/quickstart/fork-a-repo#cloning-your-forked-repository).  
+<img src="assets/images/clone-repository-example.png" alt="Example of GitHub interface showing the available cloning options." width="50%" height="auto">  
+</details>  
   
   
 ## Acknowledgements 
