@@ -1,2 +1,9 @@
-HELP TEXT TO BE ADDED
-RE: SEEKING FURTHER INFORMATION VIA README
+For more information and in-depth help, you can view the program's README file
+on GitHub: https://github.com/OwenDa/portfolio-3#readme
+
+The README will provide you with a few examples regarding the use of the
+independent t-test (the particular type of t-test used by T-Tester), as well
+as some sample datasets that can be used to try out the various possible outcomes
+of testing. It will also give you a detailed breakdown of the error messages and
+prompts you might receive upon entering an invalid value when prompted for input
+(e.g. entering a letter when asked for a number), and other useful information.

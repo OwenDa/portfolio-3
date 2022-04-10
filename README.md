@@ -46,19 +46,55 @@ To explore these features with sample data, see [Sample Datasets](#sample-datase
   
 ## User Stories  
 - Understand how to use the program  
+    + Brief instructions on each of the program's functionalities can be easily accessed from the Main Menu. These are divided by topic, allowing the user to access the most relevant information to their situation. A link to more in-depth information, provided in this README document, is also provided.  
+  
 - Ascertain the suitability of my data for use in the program  
+    + T-Tester checks for homogeneity of variance, an important consideration when conducting independent t-tests. T-Tester also ensures that each sample contains at least five subjects. A famously robust test in this regard, the indepenent t-test can accomodate small sample sizes. However, T-Tester cannot assess methodological issues such as sampling method and representivity. It does not, at the time of writing, provide information on distribution such as skewness and kurtosis.  
+  
 - Compute the mean averages of two samples  
+    + T-Tester calculates the mean average for each sample provided but does not relay non-significant data within the terminal as this could be misleading. Instead, the mean averages are relayed within the terminal only for statistically significant results. However, a record of all means is kept within the associated Google Sheets spreadsheet, should an organisation have other uses for this information.  
+  
 - Compare the means of two samples, if suitable  
+    + T-Tester's primary function is to carry out an indepenent t-test, comparing the means of two samples and determining the statistical significance of any difference identified.
+  
 - See the results of the analysis  
+    + Resuls of any tests conducted (Levene's test, indepenent t-test) are relayed within the terminal in terms of significance.
+    
+        | Possible Outputs                                                                                                   |  
+        |--------------------------------------------------------------------------------------------------------------------|  
+        | T-test not conducted due to unequal variance. Data is unsuitable for t-test. Reason: Lacks homogeneity of variance.|  
+        | No statistically significant difference found                                                                      |  
+        | Statistically significant difference. The mean average of Sample A (3.44) was greater than that of Sample B (2.88).|  
+  
 - Read records of past test results  
-- Create a new record for each new test conducted
+    + The Main Menu provides an option to "View Records" which allows the user to view a table of past test results within the program. Records can also be viewed in the related Google Sheet. 
+    
+- Create a new record for each new test conducted  
+    + A new record is added for each test process, recording the time and date of the test's completion, the user's name, username or ID, the mean average for each sample used within the test(s) and one of the three possible outputs in the table above.  
+  
 - Store records in a manner that makes them easy to share  
-- Update the externally-stored records automatically with my new data
+    + While accessible as a table within the program, records are stored in a Google Sheets spreadsheet, meaning they could be easily shared within an organisation or to other parties if desired. This also means that records are accessible on multiple devices and when the program is closed or the user does not have access to the program.  
+
+- Update the externally-stored records automatically   
+    + Newly created records are added to the connected Google Sheet rather than the program itself. This is also true when deleting data; it is the Google Sheet which is being updated. The program simply retrieves this information from the Google Sheet in order to display records in a convenient manner within the terminal. Changes to the Google Sheet are, therefore, reflected within the program, although it may be necessary to restart the program in order to see the most recent version of the available records.  
+  
 - Store records in a manner that allows me or others to copy, extract, manipulate or delete data  
+    + Records are stored in a Google Sheet spreadsheet which not only makes their content more accessible in many ways but also means that either selected data or the entire worksheet can be copied. Individual records or fields can be extracted for use in other programs. Data can also be deleted from the spreadsheet or a copy of the spreadsheet. For instance, one colleague may need access only to statistically significant results, and may wish to store these in a separate spreadsheet, file or other program.  
+  
 - Delete a record if created in error  
+  + The last shown record within the records table can be deleted by the user. This enables duplicate tests to be removed immediately upon realising the error, or in the event that a test was carried out on an dataset containing an error, it can be removed immediately. Records older than this can only be changed from within the Google Sheets spreadsheet. To minimise the risk of accidental deletion, a warning is displayed and confirmation is required. To confirm deletion, the user is instructed to type "DELETE" in capitals. Simultaneously, the user is told the pressing Enter will cancel deletion. If a request to delete a record is aborted in this manner, the user will be directed away from the deletion screen and back to the preceeding menu. A lowercase response ("delete") will prompt a message informing the user that the option is case sensitive and asking them to try again.  
+  
 - Navigate through the program  
+    + Menus allow for easy and relatively intuitive navigation. Instructions are provided alongside menus, informing the user how to make a selection. T-Tester also enables the user to return to the previous menu where relevant; for example, after cancelling the deletion or a file or after reading a help topic.  
+  
+- Minimise the risk of entering incorrect data 
+    + Helpful and descriptive error messages and prompts are used wherever possible within the program.  
+
+- Avoid crashing/restarting the program if I inadvertantly enter incorrect input  
+    + When invalid input is entered, a helpful message is displayed prompting the user to amend their input and allowing them to continue from the relevant step of the process. In most cases, this is the previous step. In some cases, such as when there is a disparity between the number of subjects in a sample and the number of values entered for that sample, the user is taken to the most logical point at which to resume the process. In this last example, the user is returned to the point at which they entered the number of subjects to ensure they can correct this number if needed.  In a small number of cases where an as yet unforeseen error arises, the program will terminate.  
+    
+- Receive feedback in case of erroneous input that allows me to correct it  
 - Exit the program easily  
-- 
   
 ### Sample Datasets:  
 To test different outcomes, the reader may wish to make use of the sample datasets below. 
