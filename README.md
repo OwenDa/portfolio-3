@@ -137,7 +137,11 @@ As a user, I want to...
 Individual error messages are discussed in [Test Cases](#test-cases). The [Test Cases](#test-cases) section also provides sample datasets which function as test cases for sample entry in T-Tester's testing mode.
   
 ## Features  
+Upon launching, T-Tester greets the user with a Main Menu, presenting the options available to the user and offering instructions on how to select an option.  
+<img src="assets/images/screenshots/main-menu-flow.png" alt="An overview of the screens available from the Main Menu, including the error message shown in the event of an invalid selection." height="auto" width="75%">  
   
+T-Tester has a built-in help section allowing the user to access instructions for use.  
+<img src="assets/images/screenshots/help-section-flow.png" alt="An overview of the screens available from within the Help section, including the error message shown in the event of an invalid selection." height="auto" width="75%">  
   
 ### Future Features  
 It is debatable whether deletion of records beyond the last shown record is a desirable feature. Deletion of the last shown record may be useful when a user realises, shortly after conducting a test, that the test was already carried out, used an incomplete or incorrect dataset and so on. For more selective deletion of records, access to the related Google Sheets spreadsheet is required. This limitation of the program may actually represent a useful feature in and of itself, as Google Sheets' permissions and access options allow for precise control of who may carry out such selective deletion. Nevertheless, it is possible that the program may expand its deletion options in the future.  
@@ -330,4 +334,5 @@ Forking a repository does not create locally-stored copies of its files on your 
 5. [SocSciStatistics.com](https://www.socscistatistics.com/tests/levene/default.aspx) was used during testing to verify results.
 6. [GraphPad](https://www.graphpad.com/quickcalcs/ttest1.cfm) was also used during testing to the same end.  
 7. IBM's statistical package, [SPSS](https://en.wikipedia.org/wiki/SPSS), was used to verify results of test cases and during development.
+  
   
