@@ -54,7 +54,10 @@ def testing_mode():
 
 
 def quit_func():
-    """ Quits program after a short delay of 1 second """
+    """
+    Quits program after alerting the user and providing a 1-second delay.
+    If this fails for any reason, terminates program without further action.
+    """
     try:
         print("Quitting program...")
         sleep(1)
@@ -67,8 +70,9 @@ def main_menu():
     """
     Main Menu and welcome screen. Prints options available and awaits input.
     Calls validation func to ensure choice is within range. Throws error and
-    terminates program if Menu cannot be presented or valid choice cannot be
-    processed for any reason.
+    terminates program if:
+    - Menu cannot be presented or
+    - valid choice cannot be processed for any reason.
     """
     while True:
         try:
@@ -114,21 +118,26 @@ def main_menu():
 
 
 def return_to_main_menu():
-    """ Guides user back to Main Menu screen when ready """
-    while True:
-        try:
-            choice = input("Returning to Main Menu. Press Y to confirm.\n")
-            if choice.upper() == "Y":
-                main_menu()
-            else:
-                raise ValueError
-        except ValueError:
-            msg = error_dict["no_other_operations"]
-            error_wrapper(msg)
-            continue
-        except Exception as e:
-            except_str(e)
-            quit_func()
+    """
+    Guides user back to Main Menu screen when ready. Throws an error in the
+    event of any input other than y/Y and re-prompts user. If this function
+    cannot run for any reason, terminates program.
+    """
+    try:
+        while True:
+            try:
+                choice = input("Returning to Main Menu. Press Y to confirm.\n")
+                if choice.upper() == "Y":
+                    main_menu()
+                else:
+                    raise ValueError
+            except ValueError:
+                msg = error_dict["no_other_operations"]
+                error_wrapper(msg)
+                continue
+    except Exception as e:
+        except_str(e)
+        quit_func()
 
 
 # HELP SECTION:
