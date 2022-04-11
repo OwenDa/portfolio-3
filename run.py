@@ -618,8 +618,13 @@ def validate_subject_qty(qty):
             raise TypeError(f"{error_dict['blank_input']}")
         if "-" in qty:
             raise ValueError("Enter a single, positive number, eg. 7 or 128.")
-        if isinstance(qty, float):
-            raise ValueError(f"{error_dict['subject_int']}")
+        try:
+            float_qty = float(qty)
+        except Exception:
+            pass
+        else:
+            if float_qty % 1 != 0:
+                raise ValueError(f"{error_dict['subject_int']}")
         if not qty.isdigit():
             raise TypeError(f"{error_dict['non_numeric_detected']}")
         qty = int(qty)
