@@ -44,10 +44,10 @@ console = Console(theme=custom_theme)
 
 
 # MAIN MENU AND MAIN MENU OPTIONS:
-main_menu_options = {"help": "1. Help",
-                     "run_tests": "2. Run Tests",
-                     "view_records": "3. View Records",
-                     "quit": "4. Quit", }
+main_menu_options = ["1. Help",
+                     "2. Run Tests",
+                     "3. View Records",
+                     "4. Quit", ]
 
 
 def testing_mode():
@@ -84,13 +84,8 @@ def main_menu():
         try:
             console.print("Ｔ－Ｔｅｓｔｅｒ", style="menu", justify="center")
             console.print("Main Menu", style="menu", justify="center")
-            console.print("""
-                        1. Help
-                        2. Run Tests
-                        3. View Records
-                        4. Quit
-
-                        At any time, press Ctrl+C/Cmd+C to quit.
+            get_menu_options(main_menu_options)
+            console.print("""\n    At any time, press Ctrl+C/Cmd+C to quit.
                         """, style="menu")
             choice = input("""
                         Enter a number to make a selection,
@@ -151,6 +146,8 @@ help_files = {"run_tests": "assets/help-docs/run-tests.txt",
               "view_records": "assets/help-docs/view-records.txt",
               "delete_records": "assets/help-docs/delete-records.txt",
               "more_info": "assets/help-docs/more-info.txt", }
+
+help_menu_options = []
 
 
 def print_file(file_path):
@@ -585,10 +582,10 @@ def except_str(e):
     sleep(1)
 
 
-def validate_menu_choice(choice, menu_options_dict):
+def validate_menu_choice(choice, menu_options_list):
     """ Error handling for menu choices """
     try:
-        option_range = len(menu_options_dict)
+        option_range = len(menu_options_list)
         if len(choice) == 0:
             raise ValueError(f"{error_dict['blank_input']}")
         if not choice.isdigit():
@@ -603,6 +600,12 @@ def validate_menu_choice(choice, menu_options_dict):
         error_wrapper(e)
         return False
     return True
+
+
+def get_menu_options(options_list):
+    """ Prints menu options to body of menus """
+    for item in options_list:
+        console.print(f"    {item}", style="menu")
 
 
 def validate_subject_qty(qty):
