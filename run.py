@@ -347,22 +347,18 @@ def get_qty_subjects():
     while True:
         try:
             while True:
-                qty = int(input(
-                    "Enter the number of subjects in this sample: \n"))
-                if qty < 5:
-                    msg = error_dict["subject_qty"]
-                    error_wrapper(msg)
+                qty = input(
+                    "Enter the number of subjects in this sample: \n")
+                if validate_subject_qty(qty):
+                    qty = int(qty)
+                    break
+                else:
                     continue
-                break
-        except ValueError:
-            msg = error_dict["subject_int"]
-            error_wrapper(msg)
-            continue
+            break
         except Exception as e:
             except_str(e)
             return_to_main_menu()
-        else:
-            return qty
+    return qty
 
 
 def confirm_proceed(last_input):
@@ -539,7 +535,9 @@ error_dict = {
     "non_numeric_detected":
         "Non-numeric characters detected. Try again.",
     "case_sensitive":
-        "This option is case-sensitive. To delete, type 'DELETE'", }
+        "This option is case-sensitive. To delete, type 'DELETE'",
+    "blank_input":
+        "Cannot be left blank. Please enter your input and press Enter."}
 
 
 def error_wrapper(msg):
@@ -559,6 +557,32 @@ def except_str(e):
     print("Sorry, something went wrong.")
     print(f"Error: {e}.")
     sleep(1)
+
+
+def validate_subject_qty(qty):
+    """
+    Checks number of subjects expected by user and
+    if less than five, raises an error.
+    """
+    try:
+        if qty == "":
+            raise TypeError(f"{error_dict['blank_input']}")
+        if "-" in qty:
+            raise ValueError("Enter a single, positive number, eg. 7 or 128.")
+        if isinstance(qty, float):
+            raise ValueError(f"{error_dict['subject_int']}")
+        if not qty.isdigit():
+            raise TypeError(f"{error_dict['non_numeric_detected']}")
+        qty = int(qty)
+        if qty < 5:
+            raise ValueError(f"{error_dict['subject_qty']}")
+    except ValueError as e:
+        error_wrapper(e)
+        return False
+    except TypeError as e:
+        error_wrapper(e)
+        return False
+    return True
 
 
 # MAIN AS MAIN_MENU
