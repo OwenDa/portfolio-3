@@ -298,24 +298,27 @@ def delete_last_record():
     while True:
         confirm_delete = input("To confirm this action, type 'DELETE'. "
                                "To exit, press Enter.\n")
-        if confirm_delete == "delete":
-            msg = error_dict["case_sensitive"]
-            error_wrapper(msg)
+        try:
+            if confirm_delete == "delete":
+                raise ValueError(error_dict["case_sensitive"])
+        except ValueError as e:
+            error_wrapper(e)
             continue
-        elif confirm_delete == "DELETE":
-            try:
-                test_records.delete_rows(len(records))
-                feedback = ("Last record successfully deleted. "
-                            "Returning to previous menu...")
-                exit_with_feedback(feedback)
-            except Exception as e:
-                msg = (f"Operation failed.\nError: {e}.")
-                error_wrapper(msg)
+        else:
+            if confirm_delete == "DELETE":
+                try:
+                    test_records.delete_rows(len(records))
+                    feedback = ("Last record successfully deleted. "
+                                "Returning to previous menu...")
+                    exit_with_feedback(feedback)
+                except Exception as e:
+                    msg = (f"Operation failed.\nError: {e}.")
+                    error_wrapper(msg)
+                    feedback = "Exiting without making changes...\n"
+                    exit_with_feedback(feedback)
+            else:
                 feedback = "Exiting without making changes...\n"
                 exit_with_feedback(feedback)
-        else:
-            feedback = "Exiting without making changes...\n"
-            exit_with_feedback(feedback)
 
 
 # DATA COLLECTION:
