@@ -147,7 +147,11 @@ help_files = {"run_tests": "assets/help-docs/run-tests.txt",
               "delete_records": "assets/help-docs/delete-records.txt",
               "more_info": "assets/help-docs/more-info.txt", }
 
-help_menu_options = []
+help_menu_options = ["1. Return to Main Menu",
+                     "2. Running Tests in T-Tester",
+                     "3. Viewing Records",
+                     "4. Deleting Records",
+                     "5. More information", ]
 
 
 def print_file(file_path):
@@ -204,34 +208,32 @@ def help_text(topic):
 
 
 def help_menu():
-    """ Help Section Menu """
-    while True:
-        console.print("\nＯｐｔｉｏｎｓ", style="menu", justify="center")
-        try:
-            console.print("""
-                        1. Return to Main Menu
-                        2. Running Tests in T-Tester
-                        3. Viewing Records
-                        4. Deleting Records
-                        5. More information""", style="menu")
-            choice = int(input("""
-                        Enter a number to make a selection,
-                        and then press the "Enter" key:
-        \n"""))
-            if choice == 1:
-                main_menu()
-            elif choice > 1 and choice < 6:
-                topic = choice
-                help_text(topic)
+    """
+    Help Section Menu: Retrieves options from get_menu_options and calls
+    validate_menu_choice to validate. Passes choice to help_text to get
+    correct help topic for user. If Help Menu cannot be run, alerts user
+    and exits to Main Menu.
+    """
+    try:
+        while True:
+            console.print("\nＯｐｔｉｏｎｓ", style="menu", justify="center")
+            get_menu_options(help_menu_options)
+            choice = input("""
+                            Enter a number to make a selection,
+                            and then press the "Enter" key:
+            \n""")
+            if validate_menu_choice(choice, help_menu_options):
+                choice = int(choice)
+                if choice == 1:
+                    main_menu()
+                elif choice > 1:
+                    topic = choice
+                    help_text(topic)
             else:
-                raise ValueError
-        except ValueError:
-            msg = error_dict["menu_range"]
-            error_wrapper(msg)
-            continue
-        except Exception as e:
-            except_str(e)
-            return_to_main_menu()
+                continue
+    except Exception as e:
+        except_str(e)
+        return_to_main_menu()
 
 
 def main_help_func():
