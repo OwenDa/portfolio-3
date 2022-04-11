@@ -180,9 +180,9 @@ def show_menu(menu_name):
 def help_text(topic):
     """
     Used within help_menu() to determine the topic shown.
-    Uses print_file() to output the contents of the correct file
+    Calls print_file() to output the contents of the correct file
     based on key:filepath value stored in help_files dict.
-    Throws error if invalid selection is made or function
+    Throws error if invalid selection is made or these actions
     cannot be run.
     """
     try:
@@ -197,8 +197,7 @@ def help_text(topic):
         else:
             raise ValueError
     except ValueError as e:
-        msg = e
-        error_wrapper(msg)
+        error_wrapper(e)
     try:
         print_file(file_path)
     except Exception as e:
@@ -208,10 +207,10 @@ def help_text(topic):
 
 def help_menu():
     """
-    Help Section Menu: Retrieves options from get_menu_options and calls
-    validate_menu_choice to validate. Passes choice to help_text to get
-    correct help topic for user. If Help Menu cannot be run, alerts user
-    and exits to Main Menu.
+    Calls get_menu_options() to print available menu options and requests
+    user input to make selection. Then calls validate_menu_choice() to
+    validate selection. Finally, passes choice to help_text().
+    If these operations cannot be run, alerts user and exits to Main Menu.
     """
     try:
         while True:
@@ -235,7 +234,11 @@ def help_menu():
 
 
 def main_help_func():
-    """ Offers user help in using the program """
+    """
+    Offers user instructions to use the Help docs and calls
+    help_menu() to print list of help topics available.
+    File will close when program exits the 'with' block.
+    """
     with open("assets/help-docs/help-intro.txt",
               mode="r", encoding="utf-8") as f:
         contents = f.read(None)
@@ -249,7 +252,11 @@ records_menu_options = ["1. Return to Main Menu",
 
 
 def build_table():
-    """ Build table from previous records """
+    """
+    Builds table from previous records stored in records
+    variable (which retrieves records from rows of Google Sheet)
+    and then shows menu of options.
+    """
     table = Table(title="Test Records")
     for heading in records[0]:
         table.add_column(f"{heading}", style="bright_cyan")
@@ -260,7 +267,11 @@ def build_table():
 
 
 def records_menu():
-    """ Records Area Menu """
+    """
+    Records Area Menu: Calls functions to print menu options and to
+    validate menu selection. For valid input, calls either main_menu or
+    initiates process to delete the last record shown on table.
+    """
     try:
         while True:
             console.print("\nＯｐｔｉｏｎｓ", style="menu", justify="center")
