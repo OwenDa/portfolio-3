@@ -350,7 +350,7 @@ def collect_data():
         else:
             continue
         sample = get_sample()
-        if validate_data(sample, qty):
+        if validate_sample_qty(sample, qty):
             pass
         else:
             continue
@@ -437,22 +437,23 @@ def format_data(data):
     return data
 
 
-def validate_data(sample, qty):
+def validate_sample_qty(sample, qty):
     """
-    Ensures correct number of values per sample
+    Ensures correct number of values per sample.
     """
-    if len(sample) == qty:
-        return True
-    else:
-        msg = (f"{len(sample)} values entered. "
-               f"Expected {qty}.\nPlease begin this sample again.")
-        error_wrapper(msg)
+    try:
+        if len(sample) != qty:
+            raise ValueError(f"{len(sample)} values entered. Expected {qty}."
+                             f" Please begin this sample again.")
+    except ValueError as e:
+        error_wrapper(e)
         return False
+    return True
 
 
 # STATISTICAL OPERATIONS:
 def describe(sample):
-    """ Output descriptive stats (mean and values) """
+    """ Returns descriptive stats (mean and values) """
     mean_avg = round(mean(sample), 2)
     return mean_avg
 
@@ -460,10 +461,10 @@ def describe(sample):
 def homogeneity_of_variance_check(a, b):
     """
     Performs Levene's Test to check suitability of data for t-test
-      True = Suitable (p = >.05), null hypothesis cannot be rejected
-      and equality of variance assumed.
-      False = Unsuitable (p = <.05), reject null hypothesis,
-      data is too heterogenous meet assumptions of ind. t-test.
+    True = Suitable (p = >.05), null hypothesis cannot be rejected
+    and equality of variance assumed.
+    False = Unsuitable (p = <.05), reject null hypothesis,
+    data is too heterogenous to meet assumptions of ind. t-test.
     """
     result = stats.levene(a, b, center='mean')
     if result[1] > .05:
@@ -541,7 +542,7 @@ def date_and_time():
     return test_date, test_time
 
 
-# ERROR HANDLING & FORMATTING:
+# ERROR HANDLING & ERROR MESSAGE FORMATTING:
 error_dict = {
     "menu_range":
         "Invalid Selection. Please enter a number from the options shown.",
@@ -572,8 +573,9 @@ def error_wrapper(msg):
 
 def except_str(e):
     """
-    Formatted feedback for Exceptions.
-    Does not interfere with BaseException.
+    Formatted feedback for Exceptions. Does not interfere with BaseException.
+    Pairs with quit_func() or return_to_main_menu() depending on severity of
+    failure (ie. failure to load Main Menu vs failure to load Help menu).
     """
     print("Sorry, something went wrong.")
     print(f"Error: {e}.")
