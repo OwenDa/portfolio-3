@@ -85,12 +85,11 @@ def main_menu():
             console.print("Ｔ－Ｔｅｓｔｅｒ", style="menu", justify="center")
             console.print("Main Menu", style="menu", justify="center")
             get_menu_options(main_menu_options)
-            console.print("""\n    At any time, press Ctrl+C/Cmd+C to quit.
-                        """, style="menu")
-            choice = input("""
-                        Enter a number to make a selection,
-                        and then press the "Enter" key:
-\n""")
+            console.print("\n    At any time, press Ctrl+C/Cmd+C to quit.",
+                          style="menu")
+            choice = input(
+                """    Enter a number to make a selection, and then press the "Enter" key:
+                \n""")
             try:
                 if validate_menu_choice(choice, main_menu_options):
                     choice = int(choice)
@@ -218,10 +217,9 @@ def help_menu():
         while True:
             console.print("\nＯｐｔｉｏｎｓ", style="menu", justify="center")
             get_menu_options(help_menu_options)
-            choice = input("""
-                            Enter a number to make a selection,
-                            and then press the "Enter" key:
-            \n""")
+            choice = input(
+                """    Enter a number to make a selection, and then press the "Enter" key:
+                \n""")
             if validate_menu_choice(choice, help_menu_options):
                 choice = int(choice)
                 if choice == 1:
@@ -246,6 +244,10 @@ def main_help_func():
 
 
 # RECORDS & BUILD TABLE AREA:
+records_menu_options = ["1. Return to Main Menu",
+                        "2. Delete Last Record Shown", ]
+
+
 def build_table():
     """ Build table from previous records """
     table = Table(title="Test Records")
@@ -259,30 +261,24 @@ def build_table():
 
 def records_menu():
     """ Records Area Menu """
-    while True:
-        console.print("\nＯｐｔｉｏｎｓ", style="menu", justify="center")
-        try:
-            console.print("""
-                        1. Return to Main Menu
-                        2. Delete Last Record Shown
-                        """, style="menu")
-            choice = int(input("""
-                        Enter a number to make a selection,
-                        and then press the "Enter" key:
-        \n"""))
-            if choice == 1:
-                main_menu()
-            elif choice == 2:
-                delete_last_record()
+    try:
+        while True:
+            console.print("\nＯｐｔｉｏｎｓ", style="menu", justify="center")
+            get_menu_options(records_menu_options)
+            choice = input(
+                """    Enter a number to make a selection, and then press the "Enter" key:
+                \n""")
+            if validate_menu_choice(choice, records_menu_options):
+                choice = int(choice)
+                if choice == 1:
+                    main_menu()
+                elif choice == 2:
+                    delete_last_record()
             else:
-                raise ValueError
-        except ValueError:
-            msg = error_dict["menu_range"]
-            error_wrapper(msg)
-            continue
-        except Exception as e:
-            except_str(e)
-            return_to_main_menu()
+                continue
+    except Exception as e:
+        except_str(e)
+        return_to_main_menu()
 
 
 def delete_last_record():
