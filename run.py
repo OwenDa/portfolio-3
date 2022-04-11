@@ -559,7 +559,8 @@ error_dict = {
     "case_sensitive":
         "This option is case-sensitive. To delete, type 'DELETE'",
     "blank_input":
-        "Cannot be left blank. Please enter your input and press Enter."}
+        "Cannot be left blank. Please enter your input and press Enter.",
+    "negative_number": "Enter a single, positive number, eg. 7 or 128.", }
 
 
 def error_wrapper(msg):
@@ -617,7 +618,7 @@ def validate_subject_qty(qty):
         if qty == "":
             raise TypeError(f"{error_dict['blank_input']}")
         if "-" in qty:
-            raise ValueError("Enter a single, positive number, eg. 7 or 128.")
+            raise ValueError(f"{error_dict['negative_number']}")
         try:
             float_qty = float(qty)
         except Exception:

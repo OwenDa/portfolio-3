@@ -15,8 +15,9 @@ T-Tester is a simple and adaptable tool that runs in the terminal and can be ada
     + [Test Cases](#test-cases)
         - Invalid Input
         - Sample Datasets
-6. [Deployment](#deployment)  
-7. [Acknowledgements](#acknowledgements) 
+6. [Fixes](#fixes)
+7. [Deployment](#deployment)  
+8. [Acknowledgements](#acknowledgements) 
   
 
 ## Overview  
@@ -392,6 +393,67 @@ To verify results, using the resources given in each outcome description, the fo
 <br/><br/>
 </details>  
     
+## Fixes
+A number of fixes were applied during development; however, one fix of paricular interest applies to the code block below. When the user is prompted to input the number of subjects in a particular sample, this input is passed to a validation function which must establish that the input:  
++ is not blank  
++ is not stated as a negative number  
++ is not a decimal number that cannot be resolved into an integer, e.g. "7.2"   
++ is not a string that cannot be resolved into an integer, eg. "five" or "g"  
++ is not less than 5  
+  
+Function code is shown below. Note that `error_dict` contains error messages that can be reused throughout the project. For example, `{error_dict['blank_input']}` retrieves the error message relevant to blank data.  
+  
+    `if qty == "":  
+        raise TypeError(f"{error_dict['blank_input']}")  
+    if "-" in qty:  
+        raise ValueError("Enter a single, positive number, eg. 7 or 128.")  
+    try:  
+        float_qty = float(qty)  
+    except Exception:  
+        pass  
+    else:  
+        if float_qty % 1 != 0:  
+            raise ValueError(f"{error_dict['subject_int']}")  
+    if not qty.isdigit():  
+        raise TypeError(f"{error_dict['non_numeric_detected']}")  
+    qty = int(qty)  
+    if qty < 5:  
+        raise ValueError(f"{error_dict['subject_qty']}")`  
+  
+Achieving the desired result required a good deal of trial and error with various methods. While numbers such as "2.3" were caught by the the `non-numberic_detected` error check, the goal was to provide a more specific message to the user. The sequencing of the solution above requires consideration of the variable's type at each stage of the code.   
+  
+    `  # Variable (qty) begins as string input
+    if qty == "":  
+        # If this string is empty, raise error re. blank input.
+        raise TypeError(f"{error_dict['blank_input']}")  
+    if "-" in qty:  
+        # If minus sign or hypen appears in string, raise error re. negative numbers.
+        raise ValueError(f"{error_dict['negative_number']}")
+    try:  
+        # Try to cast qty as float and assign result to new variable.
+        float_qty = float(qty)  
+    except Exception:  
+        # If qty cannot be cast as float, do nothing. This prevents creating an unwarranted error which may hide the true error, if any.
+        pass  
+    else:  
+        # If qty can be cast as float (e.g. "5.5" or "5.0"), discover whether this value can be cast as an integer with ease (e.g. "5.0")
+        # by checking whether there is a remainder when divided by 1. A whole number such as 5.0 will leave no remainder.
+        if float_qty % 1 != 0:
+            # If there is a remainder, raise an error informing the user that only whole numbers may be entered.  
+            raise ValueError(f"{error_dict['subject_int']}")  
+    if not qty.isdigit(): 
+        # The variable qty is still a string at this point. A float version, if created, was assigned to a new variable.
+        # Python's isdigit() method ascertains whether the string is a digit in string format, e.g. "42".
+        # If qty is not identifiable as a digit, raise an error re. non-numerical values.
+        raise TypeError(f"{error_dict['non_numeric_detected']}")  
+    qty = int(qty)
+    # Convert qty to an integer.  
+    if qty < 5: 
+    # If the value of the integer qty is less than 5, raise an error informing the user that 5 or more values will be required. 
+        raise ValueError(f"{error_dict['subject_qty']}")`
+  
+This codeblock is an extract from a function which returns False if any of the errors above are raised. That function is called within a loop. If the function returns False, the user is returned to the relevant input to re-enter their data. If the function returns True, the user may proceed to the next stage of the program.  
+  
 ## Deployment  
 <details><summary>
 Click to Expand: Deployment Procedure
