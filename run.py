@@ -326,13 +326,14 @@ def get_tester_id():
     an organisation ID may be required. """
     while True:
         tester_id = input("Enter a username or ID of your choice: \n")
-        if tester_id == "":
-            msg = "Username or ID required (e.g. SamBeckett, User1, etc.)"
-            error_wrapper(msg)
-            continue
-        elif len(tester_id) < 2:
-            msg = "Username must be at least 2 characters in length."
-            error_wrapper(msg)
+        try:
+            if tester_id == "":
+                raise ValueError(
+                    "Username/ID required (eg. SamBeckett, User1, etc.)")
+            if len(tester_id) < 2:
+                raise ValueError("ID must be at least 2 characters in length.")
+        except ValueError as e:
+            error_wrapper(e)
             continue
         else:
             print(f"\nWelcome, {tester_id}.\n")
