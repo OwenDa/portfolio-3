@@ -385,26 +385,31 @@ def get_qty_subjects():
 def confirm_proceed(last_input):
     """
     Generic function in which the user can:
-    - confirm their last input if correct or
-    - return to previous step.
-    Deployed within loops:
-    pass if correct, continue to repeat input.
+    - confirm their last input if correct or return to previous step.
+    Displays error and prompts re-input in case of input other than Y/y/N/n.
+    Deployed within loops elsewhere:
+    - pass if True, continue to repeat input if False.
     """
     while True:
         console.print(f"\nYou entered: {last_input}")
         answer = input("Is this correct? Y/N \n")
-        if answer.upper() == "Y":
-            console.print("\nProceeding to next step...\n", style="highlight")
-            sleep(.5)
-            return True
-        elif answer.upper() == "N":
-            console.print(
-                "\nReturning to previous step...\n", style="highlight")
-            sleep(.5)
-            return False
-        else:
-            msg = "Press Y if correct, or press N to re-enter the data."
-            error_wrapper(msg)
+        try:
+            answer = answer.upper()
+            if answer == "Y":
+                console.print("\nProceeding to next step...\n",
+                              style="highlight")
+                sleep(.5)
+                return True
+            elif answer == "N":
+                console.print("\nReturning to previous step...\n",
+                              style="highlight")
+                sleep(.5)
+                return False
+            else:
+                raise ValueError("Press Y if correct, "
+                                 "or press N to re-enter the data.")
+        except ValueError as e:
+            error_wrapper(e)
             continue
 
 
