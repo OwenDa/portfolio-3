@@ -64,11 +64,16 @@ def quit_func():
 
 
 def main_menu():
-    """ Main Menu and welcome screen. """
+    """
+    Main Menu and welcome screen. Prints options available and awaits input.
+    Calls validation func to ensure choice is within range. Throws error and
+    terminates program if Menu cannot be presented or valid choice cannot be
+    processed for any reason.
+    """
     while True:
-        console.print("Ｔ－Ｔｅｓｔｅｒ", style="menu", justify="center")
-        console.print("Main Menu", style="menu", justify="center")
         try:
+            console.print("Ｔ－Ｔｅｓｔｅｒ", style="menu", justify="center")
+            console.print("Main Menu", style="menu", justify="center")
             console.print("""
                         1. Help
                         2. Run Tests
@@ -77,28 +82,32 @@ def main_menu():
 
                         At any time, press Ctrl+C/Cmd+C to quit.
                         """, style="menu")
-            choice = int(input("""
+            choice = input("""
                         Enter a number to make a selection,
                         and then press the "Enter" key:
-\n"""))
-            if choice == 1:
-                main_help_func()
-                break
-            elif choice == 2:
-                testing_mode()
-                break
-            elif choice == (3):
-                build_table()
-                break
-            elif choice == (4):
+\n""")
+            try:
+                if validate_main_menu_choice(choice):
+                    choice = int(choice)
+                    if choice == 1:
+                        main_help_func()
+                        break
+                    elif choice == 2:
+                        testing_mode()
+                        break
+                    elif choice == (3):
+                        build_table()
+                        break
+                    elif choice == (4):
+                        quit_func()
+                        break
+                    else:
+                        raise Exception
+                else:
+                    continue
+            except Exception as e:
+                except_str(e)
                 quit_func()
-                break
-            else:
-                raise ValueError
-        except ValueError:
-            msg = error_dict["menu_range"]
-            error_wrapper(msg)
-            continue
         except Exception as e:
             except_str(e)
             quit_func()
@@ -557,6 +566,23 @@ def except_str(e):
     print("Sorry, something went wrong.")
     print(f"Error: {e}.")
     sleep(1)
+
+
+def validate_main_menu_choice(choice):
+    """ Error handling for Main Menu choices """
+    try:
+        if not choice.isdigit():
+            raise TypeError(f"{error_dict['non_numeric_detected']}")
+        choice = int(choice)
+        if choice <= 0 or choice > 4:
+            raise ValueError(f"{error_dict['menu_range']}")
+    except TypeError as e:
+        error_wrapper(e)
+        return False
+    except ValueError as e:
+        error_wrapper(e)
+        return False
+    return True
 
 
 def validate_subject_qty(qty):
