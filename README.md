@@ -23,7 +23,8 @@ T-Tester is a simple and adaptable tool that runs in the terminal and can be ada
 As the name may suggest, the primary function of T-Tester is to carry out the statistical test known as a t-test. While there are several forms of t-test, also known as Student's t-test, perhaps the most commonly used is the independent t-test.  
   
 Developed by William Sealy Gossett, publishing under the pseudonym Student, t-tests are frequently implemented to check the reliability and generalisability of an apparent difference in mean averages.  As a brief example, one might imagine a survey in which the heights of 100 people from two different regions are recorded. The mean average height from Region A is unlikely to be identical to that of Region B. However, such a difference may result from either random chance or be reflective of a real-world difference. In this scenario, the researcher's objective is to assess the reliability of this difference via statistical analysis. A difference that meets the test's criteria to be considered reliable can be referred to as a statistically significant difference.  
-  
+
+### Example Uses
 Other examples where a t-test might be deployed include:  
 - Comparing the mean average weekly (or other interval) sales within two branches of a store chain.  
 - Comparing the mean average weekly (or other interval) sales of one store from two different years or quarters.  
@@ -48,7 +49,7 @@ T-Tester then is an adaptable tool that can be deployed to almost any scenario i
 - Allowing the user to view previous records in a formatted table within the terminal.  
 - Allowing the user to delete the last record shown within the table; for example, where a test is erroneously carried out twice.  
   
-To explore these features with sample data, see "Sample Datasets" in [Testing](#testing).  
+To view images of these features, see [Features](#features). To explore these features with sample data, see "Sample Datasets" in [Testing](#testing).  
   
   
 ## Tech Stack  
@@ -140,10 +141,12 @@ As a user, I want to...
 Individual error messages are discussed in [Test Cases](#test-cases). The [Test Cases](#test-cases) section also provides sample datasets which function as test cases for sample entry in T-Tester's testing mode.
   
 ## Features  
-Upon launching, T-Tester greets the user with a Main Menu, presenting the options available to the user and offering instructions on how to select an option.  
+Upon launching, T-Tester greets the user with a Main Menu, presenting the options available to the user and offering instructions on how to select an option. Available options include a Help section, the ability to run statistical tests, an area in which to view records and, if desired, delete records. The final option allows the user to quit the program.  
+
 <img src="assets/images/screenshots/main-menu-flow.png" alt="An overview of the screens available from the Main Menu, including the error message shown in the event of an invalid selection." height="auto" width="95%">  
   <br/><br/>
 T-Tester has a built-in help section allowing the user to access instructions for use.  
+
 <img src="assets/images/screenshots/help-section-flow.png" alt="An overview of the screens available from within the Help section, including the error message shown in the event of an invalid selection." height="auto" width="95%">  
   <br/><br/>
 T-Tester's primary function is to carry out an independent t-test, comparing the means of two samples and determining the statistical significance of any difference identified. This function is accessible from the "Run Tests" option of the Main Menu. The user is then asked to enter a username/ID. This ID will be saved along with the results of the test process when completed. The ID may be anything the user wishes, provided it is two character or more in length. This allows for initials to be used as an ID if desired. If the username is less than two characters in length or the user submits empty input, an error message is shown and the user is prompted to enter the information again. All error messages requiring re-entry are detailed in [Testing](#test-cases) as test cases.  
@@ -170,19 +173,33 @@ The results of the independent t-test are then reported in terms of their signif
   
 <img src="assets/images/screenshots/nonsig-and-sig-outputs.png" alt="Results are output in terms of their significance." height="auto" width="100%"> 
 <br/><br/>
-A table of past results (records) can be viewed within T-Tester, although the results are, in fact, stored in a Google Sheets spreadsheet, meaning they can be easily shared, copied, extracted for use elsewhere and so on.  
+A table of past results (records) can be viewed within T-Tester, although the results are, in fact, stored in a Google Sheets spreadsheet, meaning they can be easily shared, copied, extracted for use elsewhere and so on. 
+
 <img src="assets/images/screenshots/spreadsheet.png" alt="Records are stored in a Google Sheets spreadsheet." height="auto" width="60%">  
 <br/><br/>
 To view past records within the program, the user can select View Records from the Main Menu. This will open the records section which contains a table showing results of previous tests. Each row within this table is an individual record of a completed test process. All completed test processes are stored, regardless of outcome.  
-<img src="assets/images/screenshots/view-records-tables.png" alt="Records are stored in a Google Sheets spreadsheet." height="auto" width="100%">  
+
+<img src="assets/images/screenshots/view-records-tables.png" alt="A table of past results available to view within the program." height="auto" width="60%">  
+<br/><br/>
+Beneath the table, the user has the option to return to the Main Menu or delete the last record currently shown on the table. This is a permanent deletion and will also affect the Google Sheets spreadsheet. Historical edits within Google Sheets, if available, are the only means of undoing this deletion. Depending on how access to the spreadsheet is granted within an organisation, this may mean that only upper administators have the option to selectively delete records and/or restore them. The user of the program, however, will still be able to remove their last test should they discover it used incomplete data or was already performed, for instance.  
+
+<img src="assets/images/screenshots/view-records-options.png" alt="Options presented to the user within the View Records section." height="auto" width="60%">  
+<br/><br/>
+A warning message is shown ensuring the user understands the action they are undertaking. To confirm deletion, the user must type DELETE in capital letters, after which confirmation is given and they are returned to the previous menu.  
+
+<img src="assets/images/screenshots/delete-records-successful-flow.png" alt="Output reads: Caution, deletion cannot be undone. You are about to delete the most current test record on the table, followed by instructions to confirm or cancel." height="auto" width="60%">  
+<br/><br/>
+As is appropriate for an action of this nature, cancelling the action is easier than confirming it. To cancel the action, they user may simply press Enter. Cancelling produces the output "Exiting without making changes..." to reassure the user, and after a momentary delay to allow the user to read this message, they are returned to the previous menu.  
+  
+The only invalid input at this time is "delete" written in lower case letters. Requiring the user to turn on CapsLock or hold Shift ensures that a moment can elapse in which they can be certain they wish to proceed with this action. This is similar to the confirmation-of-deletion process used by MailChimp, for example, where a user is required to type "PERMANENTLY DELETE" in capital letters before taking irreversible action.  
+
+<img src="assets/images/screenshots/delete-records-invalid-input.png" alt="Output reads: This option is case-sensitive. To delete, type 'DELETE'." height="auto" width="60%">  
 <br/><br/>
 
-These records are retrieved from a Google Sheets spreadsheet in which
-records are created after each test process is completed.
+As mentioned previously, the user may quit the program from the Main Menu. This produces the output "Qutting program..." and after a delay of 1 second, the program will terminate.  
 
-You may also view records from the Google Sheets spreadsheet; however,
-you must have access to the spreadsheet to do so. Contact your
-organisation's admin to request access.
+<img src="assets/images/screenshots/quitting-screenshot.png" alt="Output reads simply, 'Quitting program'." height="auto" width="60%">  
+<br/><br/>
 
 ### Future Features  
 It is debatable whether deletion of records beyond the last shown record is a desirable feature. Deletion of the last shown record may be useful when a user realises, shortly after conducting a test, that the test was already carried out, used an incomplete or incorrect dataset and so on. For more selective deletion of records, access to the related Google Sheets spreadsheet is required. This limitation of the program may actually represent a useful feature in and of itself, as Google Sheets' permissions and access options allow for precise control of who may carry out such selective deletion. Nevertheless, it is possible that the program may expand its deletion options in the future.  
