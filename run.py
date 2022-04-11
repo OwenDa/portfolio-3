@@ -52,7 +52,8 @@ main_menu_options = ["1. Help",
 
 def testing_mode():
     """
-    Triggers testing_main() function when selected from Menu
+    Calls testing_main() function to enter program's testing
+    mode, first alerting the user and allowing time to read message.
     """
     print("Entering Testing Mode...\n")
     sleep(1)
@@ -120,7 +121,7 @@ def main_menu():
 def return_to_main_menu():
     """
     Guides user back to Main Menu screen when ready. Throws an error in the
-    event of any input other than y/Y and re-prompts user. If this function
+    event of any input other than y/Y and re-prompts user. If these actions
     cannot run for any reason, terminates program.
     """
     try:
@@ -155,9 +156,9 @@ help_menu_options = ["1. Return to Main Menu",
 
 def print_file(file_path):
     """
-    Opens a given txt file in read mode and outputs content.
-    Offers user the option to show the help menu when ready.
-    File will be closed upon exiting the with block.
+    Opens a given .txt file in read mode and outputs content.
+    Calls show_menu() to provide option to show help menu when user
+    is ready. Txt file will close upon exiting the 'with' block.
     """
     with open(file_path, mode="r", encoding="utf-8") as f:
         contents = f.read(None)
@@ -167,8 +168,9 @@ def print_file(file_path):
 
 def show_menu(menu_name):
     """
-    Maximise available terminal display while reading Help docs
-    by showing menu only when asked.
+    Maximises available terminal display while reading Help docs by
+    showing menu only after user input. Takes menu_name as parameter.
+    This structure allows for reuse in case of future scaling.
     """
     console.print(("Finished reading? "
                    "Press Enter to show the menu."), style="highlight")
@@ -294,8 +296,10 @@ def records_menu():
 
 def delete_last_record():
     """
-    Allows the user to delete the last record shown on the table
-    or exit without making changes should they wish to abort.
+    Allows the user to delete the last record shown on the table by
+    inputting a confirmation phrase OR exit without making changes.
+    Throws error only in case of invalid (lowercase) confirmation phrase
+    or if delete_rows() cannot be run. Provides feedback in all cases.
     """
 
     def exit_with_feedback(feedback):
@@ -335,9 +339,9 @@ def delete_last_record():
 # DATA COLLECTION:
 def get_tester_id():
     """
-    Request user's name or organisational ID for records.
-    Currently allows any name; however, in professional environments,
-    an organisation ID may be required. """
+    Request user's name or organisational ID for records. Welcomes user
+    by name/ID and returns the value for later use. Throws error if
+    input is less than 2 characters or blank (empty). """
     while True:
         tester_id = input("Enter a username or ID of your choice: \n")
         try:
@@ -356,7 +360,8 @@ def get_tester_id():
 
 def collect_data():
     """
-    Collect sample values from user input
+    Collect sample values from user input and call funcs to
+    confirm and validate.
     """
     while True:
         qty = get_qty_subjects()
@@ -379,6 +384,8 @@ def collect_data():
 def get_qty_subjects():
     """
     Requests the number of subjects (ie. expected number of values) in sample
+    and calls validation function to check the input. If these actions cannot
+    be performed for any reason, throws error and returns to Main Menu.
     """
     while True:
         try:
@@ -430,7 +437,8 @@ def confirm_proceed(last_input):
 
 def get_sample():
     """
-    Requests values contained within sample
+    Requests values contained within sample. Calls format_data func
+    to format input. Throws error and alerts user if data invalid.
     """
     while True:
         raw_data = input("Enter the values separated by commas: \n")
@@ -459,7 +467,9 @@ def format_data(data):
 
 def validate_sample_qty(sample, qty):
     """
-    Ensures correct number of values per sample.
+    Ensures correct number of values per sample by comparing to previously
+    entered input (qty). Throws error and returns False if values do not
+    match. This will also catch empty input as "0" values cannot match qty.
     """
     try:
         if len(sample) != qty:
@@ -473,21 +483,21 @@ def validate_sample_qty(sample, qty):
 
 # STATISTICAL OPERATIONS:
 def describe(sample):
-    """ Returns descriptive stats (mean and values) """
+    """ Returns descriptive stats (mean average) of sample """
     mean_avg = round(mean(sample), 2)
     return mean_avg
 
 
 def homogeneity_of_variance_check(a, b):
     """
-    Performs Levene's Test to check suitability of data for t-test
-    True = Suitable (p = >.05), null hypothesis cannot be rejected
+    Performs Levene's Test to check suitability of data for t-test.
+    True (p = > ALPHA) = Suitable: null hypothesis cannot be rejected
     and equality of variance assumed.
-    False = Unsuitable (p = <.05), reject null hypothesis,
-    data is too heterogenous to meet assumptions of ind. t-test.
+    False = Unsuitable, reject null hypothesis: data is too
+    heterogenous to meet assumptions of ind. t-test.
     """
     result = stats.levene(a, b, center='mean')
-    if result[1] > .05:
+    if result[1] > ALPHA:
         return True
     else:
         return False
@@ -495,7 +505,9 @@ def homogeneity_of_variance_check(a, b):
 
 def t_test(first_sample, second_sample):
     """
-    Outputs results of t-tests to terminal in terms of significance
+    Runs independent t-test on samples given.
+    Compares sig value (p-value) to ALPHA to output results of
+    t-test to terminal in terms of significance.
     """
     test_values = stats.ttest_ind(first_sample, second_sample)
     if test_values[1] < ALPHA:
@@ -517,7 +529,9 @@ def output_means(a, b):
 
 def testing_main():
     """
-    Main test-mode function to run all other test-related functions
+    Main statistical function to run all stats testing funcs.
+    After calling all test funcs, provides appropriate output for test
+    outcome. Calls update_test_records and finally exits to Main Menu.
     """
     tester_id = get_tester_id()
     sample_a = collect_data()
@@ -543,8 +557,8 @@ def testing_main():
 # DATA HANDLING:
 def update_test_records(*args):
     """
-    Updates test records stored in Google Sheets
-    Currently uses *args for flexible development
+    Updates test records stored in Google Sheets and informs
+    user in the process. Currently uses *args for flexible development
     """
     console.print("\nUpdating test records...\n", style="highlight")
     test_records.append_row(args)
@@ -555,7 +569,7 @@ def update_test_records(*args):
 
 
 def date_and_time():
-    """ Get time and date of test for records """
+    """ Get time and date of test completion for records """
     now = datetime.datetime.now()
     test_time = now.strftime("%H:%M")
     test_date = now.strftime("%d.%m.%y")
@@ -595,7 +609,7 @@ def error_wrapper(msg):
 def except_str(e):
     """
     Formatted feedback for Exceptions. Does not interfere with BaseException.
-    Pairs with quit_func() or return_to_main_menu() depending on severity of
+    In use, paired with quit_func() or return_to_main_menu() depending on
     failure (ie. failure to load Main Menu vs failure to load Help menu).
     """
     print("Sorry, something went wrong.")
@@ -604,7 +618,12 @@ def except_str(e):
 
 
 def validate_menu_choice(choice, menu_options_list):
-    """ Error handling for menu choices """
+    """
+    Error handling for menu option selection:
+    Raises an error if user choice is not within range of menu
+    options available in a given menu_options_list, is blank
+    input or non-numeric. Otherwise, returns True.
+    """
     try:
         option_range = len(menu_options_list)
         if len(choice) == 0:
@@ -624,15 +643,20 @@ def validate_menu_choice(choice, menu_options_list):
 
 
 def get_menu_options(options_list):
-    """ Prints menu options to body of menus """
+    """
+    Takes a menu_options list as parament.
+    Prints menu options to body of menus.
+    """
     for item in options_list:
         console.print(f"    {item}", style="menu")
 
 
 def validate_subject_qty(qty):
     """
-    Checks number of subjects expected by user and
-    if less than five, raises an error.
+    Checks number of subjects expected as input by user.
+    Raises an error if input is blank, negative number,
+    decimal that cannot be made whole number, non-numeric or
+    less than 5. Otherwise, casts input to int and returns True.
     """
     try:
         if qty == "":
