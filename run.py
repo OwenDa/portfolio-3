@@ -44,6 +44,12 @@ console = Console(theme=custom_theme)
 
 
 # MAIN MENU AND MAIN MENU OPTIONS:
+main_menu_options = {"help": "1. Help",
+                     "run_tests": "2. Run Tests",
+                     "view_records": "3. View Records",
+                     "quit": "4. Quit", }
+
+
 def testing_mode():
     """
     Triggers testing_main() function when selected from Menu
@@ -91,7 +97,7 @@ def main_menu():
                         and then press the "Enter" key:
 \n""")
             try:
-                if validate_main_menu_choice(choice):
+                if validate_menu_choice(choice, main_menu_options):
                     choice = int(choice)
                     if choice == 1:
                         main_help_func()
@@ -173,9 +179,11 @@ def show_menu(menu_name):
 
 def help_text(topic):
     """
-    Used within help_menu() to determine the help text shown.
+    Used within help_menu() to determine the topic shown.
     Uses print_file() to output the contents of the correct file
     based on key:filepath value stored in help_files dict.
+    Throws error if invalid selection is made or function
+    cannot be run.
     """
     try:
         if topic == 2:
@@ -577,13 +585,16 @@ def except_str(e):
     sleep(1)
 
 
-def validate_main_menu_choice(choice):
-    """ Error handling for Main Menu choices """
+def validate_menu_choice(choice, menu_options_dict):
+    """ Error handling for menu choices """
     try:
+        option_range = len(menu_options_dict)
+        if len(choice) == 0:
+            raise ValueError(f"{error_dict['blank_input']}")
         if not choice.isdigit():
             raise TypeError(f"{error_dict['non_numeric_detected']}")
         choice = int(choice)
-        if choice <= 0 or choice > 4:
+        if choice < 1 or choice > option_range:
             raise ValueError(f"{error_dict['menu_range']}")
     except TypeError as e:
         error_wrapper(e)
