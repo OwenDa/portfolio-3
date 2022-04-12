@@ -468,13 +468,13 @@ def get_qty_subjects():
 
 def get_sample():
     """
-    Requests values contained within sample. Calls format_data func
+    Requests values contained within sample. Calls format_sample_data()
     to format input. Throws error and alerts user if data invalid.
     """
     while True:
         raw_data = input("Enter the values separated by commas: \n")
         try:
-            sample = format_data(raw_data)
+            sample = format_sample_data(raw_data)
         except ValueError:
             msg = error_dict["non_numeric_detected"]
             error_wrapper(msg)
@@ -520,8 +520,8 @@ def validate_subject_qty(qty):
         return True
 
 
-def format_data(data):
-    """ Format data and remove errant characters """
+def format_sample_data(data):
+    """ Format input and remove errant characters """
     data = data.replace(" ", "")
     data = data.replace(",,", ",")
     data = data.split(",")
