@@ -150,7 +150,7 @@ T-Tester has a built-in help section allowing the user to access instructions fo
 
 <img src="assets/images/screenshots/help-section-flow.png" alt="An overview of the screens available from within the Help section, including the error message shown in the event of an invalid selection." height="auto" width="95%">  
   <br/><br/>
-T-Tester's primary function is to carry out an independent t-test, comparing the means of two samples and determining the statistical significance of any difference identified. This function is accessible from the "Run Tests" option of the Main Menu. The user is then asked to enter a username/ID. This ID will be saved along with the results of the test process when completed. The ID may be anything the user wishes, provided it is two character or more in length. This allows for initials to be used as an ID if desired. If the username is less than two characters in length or the user submits empty input, an error message is shown and the user is prompted to enter the information again. All error messages requiring re-entry are detailed in [Testing](#test-cases) as test cases.  
+T-Tester's primary function is to carry out an independent t-test, comparing the means of two samples and determining the statistical significance of any difference identified. This function is accessible from the "Run Tests" option of the Main Menu. The user is then asked to enter a username/ID. This ID will be saved along with the results of the test process when completed. The ID may be anything the user wishes, provided it is two or more characters in length. This allows for initials to be used as an ID if desired. If the username is less than two characters in length or the user submits empty input, an error message is shown and the user is prompted to enter the information again. All error messages requiring re-entry are detailed in [Testing](#test-cases) as test cases.  
   
 <img src="assets/images/screenshots/run-tests-username-flow.png" alt="The user is asked to enter an ID." height="auto" width="60%">  
   <br/><br/>
@@ -158,19 +158,19 @@ Next, the user is prompted to enter the number of subjects in the first sample. 
   
 <img src="assets/images/screenshots/run-tests-subject-qty-flow.png" alt="The user is prompted to enter the number of subjects within a sample." height="auto" width="100%">  
   <br/><br/>
-This number will subsequently be used to verify the sample once submitted. Thererfore, to ensure the number is correct, the user is prompted to confirm by typing Y or N. "N" will cause the step to be repeated, while "Y" will proceed to the next step. Lowercase input is automatically handled and will not cause an error; however, blank or otherwise empty input will require re-entry.
+This number will subsequently be used to verify the sample once submitted. Therefore, to ensure the number is correct, the user is prompted to confirm by typing Y or N. "N" will cause the step to be repeated, while "Y" will proceed to the next step. Lowercase input is automatically handled and will not cause an error; however, blank or otherwise empty input will require re-entry.
   
 <img src="assets/images/screenshots/run-tests-confirm-subject-qty-flow.png" alt="The user is prompted to confirm the number of subjects within a sample." height="auto" width="100%"> 
 <br/><br/>
-The user is asked to input the values within that sample. These can be typed or pasted in from elsewhere. To be interpreted correctly by T-Tester, the values must be separated by commas. However, duplicate commas and erroneous spaces are handled automatically by T-Tester. This means that duplicate commas will not create empty values that could trigger a disparity between the number of values entered and the number of subjects previously declared, or affect the statistical processes that follow. T-Tester will also check the number of values is greater than four. Independent t-tests are famously robust and work well with samll sample sizes, and five or more may be considered a reasonable threshold.  
+The user is asked to input the values within that sample. These can be typed or pasted in from elsewhere. To be interpreted correctly by T-Tester, the values must be separated by commas. However, duplicate commas and erroneous spaces are handled automatically by T-Tester. This means that duplicate commas will not create empty values that could trigger a disparity between the number of values entered and the number of subjects previously declared, or affect the statistical processes that follow. T-Tester will also check the number of values is greater than four. Independent t-tests are famously robust and work well with small sample sizes, and five or more may be considered a reasonable threshold.  
   
 <img src="assets/images/screenshots/formatted-sample-values.jpg" alt="Otherwise valid sample value entered with duplicate commas or spaces will not cause an error." height="auto" width="60%"> 
 <br/><br/>
-T-Tester also performs Levene's test for homogeneity of variances. This aids in ensuring that an independent t-test will be suitable for use with the data provided. If homogeneity of variance is found, T-Tester will proceed to conducts an indepenent t-test.  
+T-Tester also performs Levene's test for homogeneity of variances. This aids in ensuring that an independent t-test will be suitable for use with the data provided. If homogeneity of variance is found, T-Tester will proceed to conduct an independent t-test.  
 
 <img src="assets/images/screenshots/dataset-1-outcome.png" alt="A lack of homogeneity of variance will stop the program from conducting further tests but will be reported to the user and recorded." height="auto" width="60%">  
   <br/><br/>
-The results of the independent t-test are then reported in terms of their significance, with means being reported alongside any significant results. The user is also informated that the connected spreadsheet has been updated with a newly created records of test results.
+The results of the independent t-test are then reported in terms of their significance, with means being reported alongside any significant results. The user is also informed that the connected spreadsheet has been updated with a newly created records of test results.
   
 <img src="assets/images/screenshots/nonsig-and-sig-outputs.png" alt="Results are output in terms of their significance." height="auto" width="100%"> 
 <br/><br/>
@@ -182,7 +182,7 @@ To view past records within the program, the user can select View Records from t
 
 <img src="assets/images/screenshots/view-records-tables.png" alt="A table of past results available to view within the program." height="auto" width="60%">  
 <br/><br/>
-Beneath the table, the user has the option to return to the Main Menu or delete the last record currently shown on the table. This is a permanent deletion and will also affect the Google Sheets spreadsheet. Historical edits within Google Sheets, if available, are the only means of undoing this deletion. Depending on how access to the spreadsheet is granted within an organisation, this may mean that only upper administators have the option to selectively delete records and/or restore them. The user of the program, however, will still be able to remove their last test should they discover it used incomplete data or was already performed, for instance.  
+Beneath the table, the user has the option to return to the Main Menu or delete the last record currently shown on the table. This is a permanent deletion and will also affect the Google Sheets spreadsheet. Historical edits within Google Sheets, if available, are the only means of undoing this deletion. Depending on how access to the spreadsheet is granted within an organisation, this may mean that only upper administrators have the option to selectively delete records and/or restore them. The user of the program, however, will still be able to remove their last test should they discover it used incomplete data or was already performed, for instance.  
 
 <img src="assets/images/screenshots/view-records-options.png" alt="Options presented to the user within the View Records section." height="auto" width="60%">  
 <br/><br/>
@@ -190,14 +190,14 @@ A warning message is shown ensuring the user understands the action they are und
 
 <img src="assets/images/screenshots/delete-records-successful-flow.png" alt="Output reads: Caution, deletion cannot be undone. You are about to delete the most current test record on the table, followed by instructions to confirm or cancel." height="auto" width="60%">  
 <br/><br/>
-As is appropriate for an action of this nature, cancelling the action is easier than confirming it. To cancel the action, they user may simply press Enter. Cancelling produces the output "Exiting without making changes..." to reassure the user, and after a momentary delay to allow the user to read this message, they are returned to the previous menu.  
+As is appropriate for an action of this nature, cancelling the action is easier than confirming it. To cancel the action, the user may simply press Enter. Cancelling produces the output "Exiting without making changes..." to reassure the user, and after a momentary delay to allow the user to read this message, they are returned to the previous menu.  
   
 The only invalid input at this time is "delete" written in lower case letters. Requiring the user to turn on CapsLock or hold Shift ensures that a moment can elapse in which they can be certain they wish to proceed with this action. This is similar to the confirmation-of-deletion process used by MailChimp, for example, where a user is required to type "PERMANENTLY DELETE" in capital letters before taking irreversible action.  
 
 <img src="assets/images/screenshots/delete-records-invalid-input.png" alt="Output reads: This option is case-sensitive. To delete, type 'DELETE'." height="auto" width="60%">  
 <br/><br/>
 
-As mentioned previously, the user may quit the program from the Main Menu. This produces the output "Qutting program..." and after a delay of 1 second, the program will terminate.  
+As mentioned previously, the user may quit the program from the Main Menu. This produces the output "Quitting program..." and after a delay of 1 second, the program will terminate.  
 
 <img src="assets/images/screenshots/quitting-screenshot.png" alt="Output reads simply, 'Quitting program'." height="auto" width="60%">  
 <br/><br/>
@@ -339,7 +339,7 @@ To verify results, using the resources given in each outcome description, the fo
   >Once carried out, the independent t-test will return no statistically significant difference between the samples in this dataset. This can be verified using an online t-test calculator, such as that available from [GraphPad](https://www.graphpad.com/quickcalcs/ttest1.cfm) which will output "By conventional criteria, this difference is considered to be not statistically significant."  
   >  
   >As an additional test, compare the values given by GraphPad for each group's Mean at the bottom of the screen to those stored in the Google Sheets spreadsheet. In this case, both record 22.00 for Sample A and 14.86 for Sample B.  
-  >This result is confirmed by SPSS as shown in the image below. To begin with, the means are in agreement, although SPSS does not round to the same number of decimal places. A non-signficant result (p = > .05) for Levene's test confirms homoegeneity of variances. And finally, a non-significant result is shown for the independent t-test.  
+  >This result is confirmed by SPSS as shown in the image below. To begin with, the means are in agreement, although SPSS does not round to the same number of decimal places. A non-significant result (p = > .05) for Levene's test confirms homogeneity of variances. And finally, a non-significant result is shown for the independent t-test.  
   ><img src="assets/images/screenshots/dataset-2-nonsig-spss.png" alt="Dataset 2's outcome is confirmed by SPSS." height="auto" width="90%">  
   ><br/>
   >To avoid misleading the user, T-Tester does not output means for non-significant results to the terminal; however, they are preserved in the spreadsheet which is shown at the end of this section.  
@@ -394,7 +394,7 @@ To verify results, using the resources given in each outcome description, the fo
 </details>  
     
 ## Issues
-Various fixes were applied during development as small issues arose; however, one issue of paricular interest applies to the code block below. When the user is prompted to input the number of subjects in a particular sample, this input is passed to a validation function which must establish that the input:  
+Various fixes were applied during development as small issues arose; however, one issue of particular interest applies to the code block below. When the user is prompted to input the number of subjects in a particular sample, this input is passed to a validation function which must establish that the input:  
 + is not blank  
 + is not stated as a negative number  
 + is not a decimal number that cannot be resolved into an integer, e.g. "7.2"   
@@ -420,7 +420,7 @@ Function code is shown below. Note that `error_dict` contains error messages tha
     if qty < 5:  
         raise ValueError(f"{error_dict['subject_qty']}")`  
   
-Achieving the desired result required a good deal of trial and error with various methods. While numbers such as "2.3" were caught by the the `non-numberic_detected` error check, the goal was to provide a more specific message to the user. The sequencing of the solution above requires consideration of the variable's type at each stage of the code.   
+Achieving the desired result required a good deal of trial and error with various methods. While numbers such as "2.3" were caught by the `non-numberic_detected` error check, the goal was to provide a more specific message to the user. The sequencing of the solution above requires consideration of the variable's type at each stage of the code.   
   
     `  # Variable (qty) begins as string input
     if qty == "":  
@@ -452,7 +452,7 @@ Achieving the desired result required a good deal of trial and error with variou
     # If the value of the integer qty is less than 5, raise an error informing the user that 5 or more values will be required. 
         raise ValueError(f"{error_dict['subject_qty']}")`
   
-This codeblock is an extract from a function which returns False if any of the errors above are raised. That function is called within a loop. If the function returns False, the user is returned to the relevant input to re-enter their data. If the function returns True, the user may proceed to the next stage of the program.  
+This code block is an extract from a function that returns False if any of the errors above are raised. That function is called within a loop. If the function returns False, the user is returned to the relevant input to re-enter their data. If the function returns True, the user may proceed to the next stage of the program.  
   
   
 ## Deployment  

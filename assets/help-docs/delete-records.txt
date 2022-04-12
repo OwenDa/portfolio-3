@@ -1,10 +1,7 @@
-Select [bold][bright_cyan]View Records[/][/] from the Main Menu.
-A table of records will be retried from a Google Sheets spreadsheet.
+There are two ways to [bold][bright_cyan]delete a record[/][/]. Either method will permanently
+delete the record from [bold]both[/] the table and the linked spreadsheet.
 
-There are two ways to delete a record. Either method will permanently
-delete the record from [bold]both[/] the table and the spreadsheet.
-
-[bold][bright_cyan]Deleting a record within T-Tester[/][/]
+[bold][bright_cyan]Deleting record within T-Tester's 'View Records' Screen[/][/]
 Using this method, you may only delete the last record shown on the table.
 Ensure this is the record you wish to delete before continuing, the select
 "Delete Last Record Shown" from the Options menu below the table.

@@ -324,7 +324,7 @@ def delete_last_record():
             if confirm_delete == "DELETE":
                 try:
                     test_records.delete_rows(len(records))
-                    feedback = ("Last record successfully deleted. "
+                    feedback = ("Last record successfully deleted."
                                 "Returning to previous menu...")
                     exit_with_feedback(feedback)
                 except Exception as e:
