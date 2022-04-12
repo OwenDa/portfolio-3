@@ -178,7 +178,7 @@ def main_help_func():
     """
     with open("assets/help-docs/help-intro.txt",
               mode="r", encoding="utf-8") as f:
-        contents = f.read(None)
+        contents = f.read()
         console.print(contents)
     help_menu()
 
@@ -490,16 +490,14 @@ def get_sample():
 
 def validate_subject_qty(qty):
     """
-    Checks number of subjects expected as input by user.
-    Raises an error if input is blank, negative number,
-    decimal that cannot be made whole number, non-numeric or
-    less than 5. Otherwise, returns True.
+    Checks number of subjects as input by user. Raises specific
+    errors if input is blank, decimal number that cannot be
+    made whole without change of numeric value, non-numeric text,
+    negative number or less than 5. Otherwise, returns True.
     """
     try:
         if qty == "":
             raise ValueError(f"{error_dict['blank_input']}")
-        if "-" in qty:
-            raise ValueError(f"{error_dict['negative_number']}")
         if not qty.isdigit():
             try:
                 qty = float(qty)
@@ -511,6 +509,8 @@ def validate_subject_qty(qty):
                 else:
                     qty = int(qty)
         qty = int(qty)
+        if qty < 0:
+            raise ValueError(f"{error_dict['negative_number']}")
         if qty < 5:
             raise ValueError(f"{error_dict['subject_qty']}")
     except Exception as e:
@@ -626,7 +626,7 @@ error_dict = {
         """No other operations available at this time.
     Press Y to return to Main Menu.""",
     "subject_int":
-        """Enter an integer, e.g. '7' (Not '7.2' or 'seven').
+        """Enter an integer (e.g. '7', not '7.2')).
     Please try again.""",
     "subject_qty":
         "Five or more subjects required. Try again.",
@@ -636,7 +636,7 @@ error_dict = {
         "This option is case-sensitive. To delete, type 'DELETE'",
     "blank_input":
         "Cannot be left blank. Please enter your input and press Enter.",
-    "negative_number": "Enter a single, positive number, eg. 7 or 128.", }
+    "negative_number": "Enter a positive number, eg. 7 or 128.", }
 
 
 def error_wrapper(msg):
