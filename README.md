@@ -15,7 +15,7 @@ T-Tester is a simple and adaptable tool that runs in the terminal and can be ada
     + [Test Cases](#test-cases)
         - Invalid Input
         - Sample Datasets
-6. [Fixes](#fixes)
+6. [Issues](#issues)
 7. [Deployment](#deployment)  
 8. [Acknowledgements](#acknowledgements) 
   
@@ -393,20 +393,20 @@ To verify results, using the resources given in each outcome description, the fo
 <br/><br/>
 </details>  
     
-## Fixes
-A number of fixes were applied during development; however, one fix of paricular interest applies to the code block below. When the user is prompted to input the number of subjects in a particular sample, this input is passed to a validation function which must establish that the input:  
+## Issues
+Various fixes were applied during development as small issues arose; however, one issue of paricular interest applies to the code block below. When the user is prompted to input the number of subjects in a particular sample, this input is passed to a validation function which must establish that the input:  
 + is not blank  
 + is not stated as a negative number  
 + is not a decimal number that cannot be resolved into an integer, e.g. "7.2"   
 + is not a string that cannot be resolved into an integer, eg. "five" or "g"  
 + is not less than 5  
   
-Function code is shown below. Note that `error_dict` contains error messages that can be reused throughout the project. For example, `{error_dict['blank_input']}` retrieves the error message relevant to blank data.  
+Function code is shown below. Note that `error_dict` contains error messages that can be reused throughout the project. For example, `{error_dict['blank_input']}` retrieves the error message relevant to blank data. This structure is to allow for re-use of recurring messages but also to facilitate reuse in the case of future scaling.
   
     `if qty == "":  
         raise TypeError(f"{error_dict['blank_input']}")  
     if "-" in qty:  
-        raise ValueError("Enter a single, positive number, eg. 7 or 128.")  
+        raise ValueError(f"{error_dict['negative_number']}") 
     try:  
         float_qty = float(qty)  
     except Exception:  
@@ -453,6 +453,7 @@ Achieving the desired result required a good deal of trial and error with variou
         raise ValueError(f"{error_dict['subject_qty']}")`
   
 This codeblock is an extract from a function which returns False if any of the errors above are raised. That function is called within a loop. If the function returns False, the user is returned to the relevant input to re-enter their data. If the function returns True, the user may proceed to the next stage of the program.  
+  
   
 ## Deployment  
 <details><summary>

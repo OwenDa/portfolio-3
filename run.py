@@ -6,6 +6,7 @@ operations are carried out, until or unless:
   A) data is found unsuitable (input error, unequal variances),
   B) the expected flow of the program is completed,
   C) the user exits the program.
+
 """
 
 # IMPORTS:
@@ -386,6 +387,7 @@ def get_qty_subjects():
     Requests the number of subjects (ie. expected number of values) in sample
     and calls validation function to check the input. If these actions cannot
     be performed for any reason, throws error and returns to Main Menu.
+    Note: qty MUST be cast as float after validation before converting to int.
     """
     while True:
         try:
@@ -393,6 +395,7 @@ def get_qty_subjects():
                 qty = input(
                     "Enter the number of subjects in this sample: \n")
                 if validate_subject_qty(qty):
+                    qty = float(qty)
                     qty = int(qty)
                     break
                 else:
@@ -656,32 +659,31 @@ def validate_subject_qty(qty):
     Checks number of subjects expected as input by user.
     Raises an error if input is blank, negative number,
     decimal that cannot be made whole number, non-numeric or
-    less than 5. Otherwise, casts input to int and returns True.
+    less than 5. Otherwise, returns True.
     """
     try:
         if qty == "":
-            raise TypeError(f"{error_dict['blank_input']}")
+            raise ValueError(f"{error_dict['blank_input']}")
         if "-" in qty:
             raise ValueError(f"{error_dict['negative_number']}")
-        try:
-            float_qty = float(qty)
-        except Exception:
-            pass
-        else:
-            if float_qty % 1 != 0:
-                raise ValueError(f"{error_dict['subject_int']}")
         if not qty.isdigit():
-            raise TypeError(f"{error_dict['non_numeric_detected']}")
+            try:
+                qty = float(qty)
+            except Exception:
+                raise ValueError(f"{error_dict['non_numeric_detected']}")
+            else:
+                if qty % 1 != 0:
+                    raise ValueError(f"{error_dict['subject_int']}")
+                else:
+                    qty = int(qty)
         qty = int(qty)
         if qty < 5:
             raise ValueError(f"{error_dict['subject_qty']}")
-    except ValueError as e:
+    except Exception as e:
         error_wrapper(e)
         return False
-    except TypeError as e:
-        error_wrapper(e)
-        return False
-    return True
+    else:
+        return True
 
 
 # MAIN AS MAIN_MENU
