@@ -394,12 +394,12 @@ To verify results, using the resources given in each outcome description, the fo
 </details>  
     
 ## Issues
-Various fixes were applied during development as small issues arose; however, one issue of particular interest applies to the programming and subsequent de-bugging of the code block(s) described below.  
+Various fixes were applied during development as small issues arose; however, one issue of particular interest applies to the programming and subsequent debugging of the code block(s) described below.  
   
 **Objective:**  
 When the user is prompted to input the number of subjects in a particular sample, this input is passed to a validation function which must establish that the input:  
 + is not blank   
-+ is not a decimal number that cannot be resolved into an integer without changing its numberical value (e.g. "7.2")   
++ is not a decimal number that cannot be resolved into an integer without changing its numerical value (e.g. "7.2")   
 + is not a string that cannot be resolved into an integer (eg. "program" or "g"), hereafter referred to as non-numeric text.
 + is not a negative number (e.g. "-2")  
 + is not less than 5 
@@ -411,15 +411,15 @@ Programming Approach
 </summary></br>  
 Having first ruled out blank input by checking for an empty string, there remain the issues of non-numeric text, numbers with a decimal point, negative numbers and positive values less than 5. These latter two checks must be carried out last as the program must ascertain whether the value can be converted to a valid number `type` before comparing it to another number. The program must also be able to identify one further possibility; that is, valid data.  
     
-A decimal value would be illogical in this particular context, since a sample cannot contain a fraction of a particpant or subject. For example, a study may have 39 participants but cannot logically contain 39.3 particpants.  
+A decimal value would be illogical in this particular context since a sample cannot contain a fraction of a participant or subject. For example, a study may have 39 participants but cannot logically contain 39.3 participants.  
     
 At the point of entry, all of this input is of the type `str`. However, we may refer to the user's *intent* and distinguish between text, integers and decimal numbers in this regard. For example, a user entering "7.2" intends to create either a decimal number or float, while a user entering "program" intends to create non-numeric text. Similarly, a user entering "42" intends to create an integer.  
   
-To identify an integer in `str` form, we can run a simple check with `isdigit()`. If found, we can skip all other checks except the comparison to 5. However, if `isdigit()` returns `False`, this does not aid the program in distinguishing between non-numeric text and a number with a decimal point. This is because the decimal point within the string will cause `isdigit()` to return `False`, since this method seeks to ascertain whether each individual character within the string is a digit. A decimal point, period or full stop, is evidently not a digit. It is therefore necessary to ascertain first whether the value may be considered a decimal number.  
+To identify an integer in `str` form, we can run a simple check with `isdigit()`. If found, we can skip all other checks except the comparison to 5. However, if `isdigit()` returns `False`, this does not aid the program in distinguishing between non-numeric text and a number with a decimal point. This is because the decimal point within the string will cause `isdigit()` to return `False` as this method seeks to ascertain whether each individual character within the string is a digit. A decimal point, period or full stop, is evidently not a digit. It is therefore necessary to ascertain first whether the value may be considered a decimal number.  
   
-In order to provide the best possible user experience, the program will not reject all decimal numbers but only those which cannot be used without changing their value. The `int()` method may be used to convert a value to the `int` type, however, it does so by removing all digits following the decimal point, thus changing its numeric value. This would not be desirable as it may lead to confusion for the user. Instead, the program uses try/except to ascertain whether the value can be converted to a `float`, thus preserving any digits after the decimal point. If successful, this float can be checked to ascertain whether it essentially represents a whole number ("7.0") or not ("7.2"). If it represents a whole number, the program will convert it to the `int` type ("7). If not, it wil alert the user that the input must represent a whole number.  
+In order to provide the best possible user experience, the program will not reject all decimal numbers but only those which cannot be used without changing their value. The `int()` method may be used to convert a value to the `int` type, however, it does so by removing all digits following the decimal point, thus changing its numeric value. This would not be desirable as it may lead to confusion for the user. Instead, the program uses try/except to ascertain whether the value can be converted to a `float`, thus preserving any digits after the decimal point. If successful, this float can be checked to ascertain whether it essentially represents a whole number ("7.0") or not ("7.2"). If it represents a whole number, the program will convert it to the `int` type ("7). If not, it will alert the user that the input must represent a whole number.  
   
-This check can be carried out several ways. For example, one could compare the `float` version of the value to the `int()` version (`float(x) == int(x)`) and, if equal, conclude that the float represents a whole number. In other words, casting this number to `int` does not alter its number value and therefore all digits after the decimal point must be equal to 0. Alternatively, one might check whether the float number can be divided by 1 without leaving any remainder (`float(x) % 1 == 0`). Either method might be deployed to distinguish between floats that represent a whole number and those that do not. Those that do not will trigger an error message informing the user that whole numbers are required.  
+This check can be carried out in several ways. For example, one could compare the `float` version of the value to the `int()` version (`float(x) == int(x)`) and, if equal, conclude that the float represents a whole number. In other words, casting this number to `int` does not alter its number value and therefore all digits after the decimal point must be equal to 0. Alternatively, one might check whether the float number can be divided by 1 without leaving any remainder (`float(x) % 1 == 0`). Either method might be deployed to distinguish between floats that represent a whole number and those that do not. Those that do not will trigger an error message informing the user that whole numbers are required.  
   
 This check is nested within a try/except block, so that if the value cannot be converted to a float, the program will cease to carry out any further operations within the try block and, instead, move to the except block. Values that have entered this block and reached this stage without raising any other error have been shown **not** to be composed only of digits ("42") and are **not** invalid decimal numbers ("7.2"), and must therefore be or contain some form of non-numeric data ("140g", "program", "f", etc.) At this stage, an error message can be shown informing the user that their input contains non-numeric data.  
     
@@ -431,9 +431,10 @@ As all of these validation tests are wrapped in a `try` block, an error message 
 <details><summary>
 Code  
 </summary></br>
+
 The present state of the validation function code is shown below. Note that `error_dict` contains error messages that can be reused throughout the project. For example, `{error_dict['blank_input']}` retrieves the error message relevant to blank data. This structure is to allow for re-use of recurring messages but also to facilitate future scaling.  
-  
-    `def validate_subject_qty(qty):
+    
+    def validate_subject_qty(qty):
     """
     Checks number of subjects as input by user. Raises specific
     errors if input is blank, decimal number that cannot be
@@ -463,30 +464,33 @@ The present state of the validation function code is shown below. Note that `err
         return False
     else:
         return True
-`  
+  
 </details>  
   
 <details><summary>
 Problem, Process & Solution
 </summary></br>  
 Achieving the desired result required a good deal of trial and error with various methods, but it was complicated by a peculiar error. The solution to this problem, much like the code block above, required careful consideration of the variable's type at each stage of its progress through the code.  
-  
-The error presented itself as a failure to handle valid float or decimal values. All invalid values were caught and handled correctly, and valid integers were also handled appropriately. IYet valid floats such as `7.0` caused an uncaught `invalid literal for int()` error to display in the terminal.  
-  
-  <details><summary>
-  Manual Debugging
-  </summary></br>
+</br></br>
+
+The error presented itself as a failure to handle valid float or decimal values. All invalid values were caught and handled correctly, and valid integers were also handled appropriately. Yet valid floats such as `7.0` caused an uncaught `invalid literal for int()` error to display in the terminal.  
+</br></br>
+
+<details><summary>
+Manual Debugging
+</summary></br>
+
 In order to track the variable's type throughout its progress, numbered `print(type(qty))` statements were placed at between each operation. Although somewhat inelegant, this proved an effective method of tracking the variable type. An example extract is shown below:  
   
-    `try:
+    try:
         print("1", type(qty))
         if qty == "":
             print("2", type(qty))
-            raise ValueError(f"{error_dict['blank_input']}")`  
+            raise ValueError(f"{error_dict['blank_input']}")   
   
-Proceeding to the end of the validation function with different possible values, the `type` of the variable was in accordance with the developer's expectation's at each stage. However, remembering that this function returns only `True` or `False`, the first part of the problem becomes apparent when applying the same method to the caller function after the validation function has run:  
+Proceeding to the end of the validation function with different possible values, the `type` of the variable was in accordance with the developer's expectation at each stage. However, bearing in mind that this function returns only `True` or `False`, the first part of the problem becomes apparent when applying the same method to the caller function after the validation function has run:  
   
-    `while True:
+    while True:
         qty = input(
             "Enter the number of subjects in this sample: \n")
         if validate_subject_qty(qty):
@@ -495,17 +499,17 @@ Proceeding to the end of the validation function with different possible values,
             print("17", type(qty))  # Prints `16 str`  
             break
         else:
-            continue`
+            continue
   
 Here, we can see that `qty` is still a string within the caller function. As `qty` is not returned and assigned as the result of the validation function, any operations carried out inside the validation function do not affect it. The error arises before print statement 17 can execute, meaning it is the result of the attempt to convert this string to an integer.  
-  </details>  
+</details>  
   
-  <details><summary>
-  Solution
-  </summary></br> 
-It is necessary to convert this string to a float first and then to an integer, as in the code below.  
-   
-    `while True:
+<details><summary>
+Solution
+</summary></br> 
+It is necessary to convert this string to a float first and then to an integer, as in the code below:
+ 
+    while True:
         qty = input(
             "Enter the number of subjects in this sample: \n")
         if validate_subject_qty(qty):
@@ -516,9 +520,9 @@ It is necessary to convert this string to a float first and then to an integer, 
             print("18", type(qty)) #  Prints `18 int`
             break
         else:
-            continue`  
-  
-  </details>
+            continue  
+
+</details>
 </details>
   
 </br>
