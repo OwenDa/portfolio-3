@@ -32,10 +32,10 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('pp3')
 
-# GLOBAL VARIABLE(S):
-ALPHA = 0.05  # Standard significance level
 test_records = SHEET.worksheet('test_records')  # Records sheet
 records = test_records.get_all_values()  # Records values as nested lists
+
+# STYLING
 custom_theme = Theme(
     {"menu": "bright_green",
      "highlight": "bold bright_cyan",
@@ -44,34 +44,48 @@ console = Console(theme=custom_theme)
 # Console object for use with rich.console
 
 
-# MAIN MENU AND MAIN MENU OPTIONS:
+# *** MENU FUNCTIONS ***
+
+def get_menu_options(options_list):
+    """
+    Takes a menu_options list as parament.
+    Prints menu options to body of menus.
+    """
+    for item in options_list:
+        console.print(f"    {item}", style="menu")
+
+
+def validate_menu_choice(choice, menu_options_list):
+    """
+    Error handling for menu option selection:
+    Raises an error if user choice is not within range of menu
+    options available in a given menu_options_list, is blank
+    input or non-numeric. Otherwise, returns True.
+    """
+    try:
+        option_range = len(menu_options_list)
+        if len(choice) == 0:
+            raise ValueError(f"{error_dict['blank_input']}")
+        if not choice.isdigit():
+            raise TypeError(f"{error_dict['non_numeric_detected']}")
+        choice = int(choice)
+        if choice < 1 or choice > option_range:
+            raise ValueError(f"{error_dict['menu_range']}")
+    except TypeError as e:
+        error_wrapper(e)
+        return False
+    except ValueError as e:
+        error_wrapper(e)
+        return False
+    return True
+
+
+# - Main Menu -
+
 main_menu_options = ["1. Help",
                      "2. Run Tests",
                      "3. View Records",
                      "4. Quit", ]
-
-
-def testing_mode():
-    """
-    Calls testing_main() function to enter program's testing
-    mode, first alerting the user and allowing time to read message.
-    """
-    print("Entering Testing Mode...\n")
-    sleep(1)
-    testing_main()
-
-
-def quit_func():
-    """
-    Quits program after alerting the user and providing a 1-second delay.
-    If this fails for any reason, terminates program without further action.
-    """
-    try:
-        print("Quitting program...")
-        sleep(1)
-        quit()
-    except Exception:
-        quit()
 
 
 def main_menu():
@@ -142,11 +156,7 @@ def return_to_main_menu():
         quit_func()
 
 
-# HELP SECTION:
-help_files = {"run_tests": "assets/help-docs/run-tests.txt",
-              "view_records": "assets/help-docs/view-records.txt",
-              "delete_records": "assets/help-docs/delete-records.txt",
-              "more_info": "assets/help-docs/more-info.txt", }
+# - Help Menu -
 
 help_menu_options = ["1. Return to Main Menu",
                      "2. Running Tests in T-Tester",
@@ -154,58 +164,23 @@ help_menu_options = ["1. Return to Main Menu",
                      "4. Deleting Records",
                      "5. More information", ]
 
+help_files = {"run_tests": "assets/help-docs/run-tests.txt",
+              "view_records": "assets/help-docs/view-records.txt",
+              "delete_records": "assets/help-docs/delete-records.txt",
+              "more_info": "assets/help-docs/more-info.txt", }
 
-def print_file(file_path):
+
+def main_help_func():
     """
-    Opens a given .txt file in read mode and outputs content.
-    Calls show_menu() to provide option to show help menu when user
-    is ready. Txt file will close upon exiting the 'with' block.
+    Offers user instructions to use the Help docs and calls
+    help_menu() to print list of help topics available.
+    File will close when program exits the 'with' block.
     """
-    with open(file_path, mode="r", encoding="utf-8") as f:
+    with open("assets/help-docs/help-intro.txt",
+              mode="r", encoding="utf-8") as f:
         contents = f.read(None)
         console.print(contents)
-        show_menu(help_menu)
-
-
-def show_menu(menu_name):
-    """
-    Maximises available terminal display while reading Help docs by
-    showing menu only after user input. Takes menu_name as parameter.
-    This structure allows for reuse in case of future scaling.
-    """
-    console.print(("Finished reading? "
-                   "Press Enter to show the menu."), style="highlight")
-    show = input()
-    if show:
-        menu_name()
-
-
-def help_text(topic):
-    """
-    Used within help_menu() to determine the topic shown.
-    Calls print_file() to output the contents of the correct file
-    based on key:filepath value stored in help_files dict.
-    Throws error if invalid selection is made or these actions
-    cannot be run.
-    """
-    try:
-        if topic == 2:
-            file_path = help_files["run_tests"]
-        elif topic == 3:
-            file_path = help_files["view_records"]
-        elif topic == 4:
-            file_path = help_files["delete_records"]
-        elif topic == 5:
-            file_path = help_files["more_info"]
-        else:
-            raise ValueError
-    except ValueError as e:
-        error_wrapper(e)
-    try:
-        print_file(file_path)
-    except Exception as e:
-        except_str(e)
-        return_to_main_menu()
+    help_menu()
 
 
 def help_menu():
@@ -236,37 +211,62 @@ def help_menu():
         return_to_main_menu()
 
 
-def main_help_func():
+def help_text(topic):
     """
-    Offers user instructions to use the Help docs and calls
-    help_menu() to print list of help topics available.
-    File will close when program exits the 'with' block.
+    Used within help_menu() to determine the topic shown.
+    Calls print_file() to output the contents of the correct file
+    based on key:filepath value stored in help_files dict.
+    Throws error if invalid selection is made or these actions
+    cannot be run.
     """
-    with open("assets/help-docs/help-intro.txt",
-              mode="r", encoding="utf-8") as f:
+    try:
+        if topic == 2:
+            file_path = help_files["run_tests"]
+        elif topic == 3:
+            file_path = help_files["view_records"]
+        elif topic == 4:
+            file_path = help_files["delete_records"]
+        elif topic == 5:
+            file_path = help_files["more_info"]
+        else:
+            raise ValueError
+    except ValueError as e:
+        error_wrapper(e)
+    try:
+        print_file(file_path)
+    except Exception as e:
+        except_str(e)
+        return_to_main_menu()
+
+
+def print_file(file_path):
+    """
+    Opens a given .txt file in read mode and outputs content.
+    Calls show_menu() to provide option to show help menu when user
+    is ready. Txt file will close upon exiting the 'with' block.
+    """
+    with open(file_path, mode="r", encoding="utf-8") as f:
         contents = f.read(None)
         console.print(contents)
-    help_menu()
+        show_menu(help_menu)
 
 
-# RECORDS & BUILD TABLE AREA:
+def show_menu(menu_name):
+    """
+    Maximises available terminal display while reading Help docs by
+    showing menu only after user input. Takes menu_name as parameter.
+    This structure allows for reuse in case of future scaling.
+    """
+    console.print(("Finished reading? "
+                   "Press Enter to show the menu."), style="highlight")
+    show = input()
+    if show:
+        menu_name()
+
+
+# - Records Menu -
 records_menu_options = ["1. Return to Main Menu",
                         "2. Delete Last Record Shown", ]
-
-
-def build_table():
-    """
-    Builds table from previous records stored in records
-    variable (which retrieves records from rows of Google Sheet)
-    and then shows menu of options.
-    """
-    table = Table(title="Test Records")
-    for heading in records[0]:
-        table.add_column(f"{heading}", style="bright_cyan")
-    for row in records[1::1]:
-        table.add_row(*row)
-    console.print(table, style="bright_blue", justify="center")
-    records_menu()
 
 
 def records_menu():
@@ -293,6 +293,21 @@ def records_menu():
     except Exception as e:
         except_str(e)
         return_to_main_menu()
+
+
+def build_table():
+    """
+    Builds table from previous records stored in records
+    variable (which retrieves records from rows of Google Sheet)
+    and then shows menu of options.
+    """
+    table = Table(title="Test Records")
+    for heading in records[0]:
+        table.add_column(f"{heading}", style="bright_cyan")
+    for row in records[1::1]:
+        table.add_row(*row)
+    console.print(table, style="bright_blue", justify="center")
+    records_menu()
 
 
 def delete_last_record():
@@ -324,7 +339,7 @@ def delete_last_record():
             if confirm_delete == "DELETE":
                 try:
                     test_records.delete_rows(len(records))
-                    feedback = ("Last record successfully deleted."
+                    feedback = ("Last record successfully deleted. "
                                 "Returning to previous menu...")
                     exit_with_feedback(feedback)
                 except Exception as e:
@@ -337,7 +352,50 @@ def delete_last_record():
                 exit_with_feedback(feedback)
 
 
-# DATA COLLECTION:
+# *** STATISTICAL TEST MODE ***
+ALPHA = 0.05  # Standard significance level
+
+
+def testing_mode():
+    """
+    Calls testing_main() function to enter program's testing
+    mode, first alerting the user and allowing time to read message.
+    """
+    print("Entering Testing Mode...\n")
+    sleep(1)
+    testing_main()
+
+
+def testing_main():
+    """
+    Main statistical function to run all stats testing funcs.
+    After calling all test funcs, provides appropriate output for test
+    outcome. Calls update_test_records and finally exits to Main Menu.
+    """
+    tester_id = get_tester_id()
+    sample_a = collect_data()
+    sample_b = collect_data()
+    mean_a = describe(sample_a)
+    mean_b = describe(sample_b)
+    levene_result = homogeneity_of_variance_check(sample_a, sample_b)
+    if levene_result:
+        outcome = t_test(sample_a, sample_b)
+        print(outcome)
+        if outcome == "Statistically significant difference.":
+            output_means(mean_a, mean_b)
+    else:
+        outcome = "T-test not conducted due to unequal variance."
+        print("Data is unsuitable for t-test.")
+        print("Reason: Lacks homogeneity of variance.")
+    date_time = date_and_time()
+    update_test_records(
+            date_time[0], date_time[1], tester_id, mean_a, mean_b, outcome)
+    return_to_main_menu()
+
+
+# - Data Collection -
+
+
 def get_tester_id():
     """
     Request user's name or organisational ID for records. Welcomes user
@@ -361,8 +419,9 @@ def get_tester_id():
 
 def collect_data():
     """
-    Collect sample values from user input and call funcs to
-    confirm and validate.
+    Main sample collection loop. Calls functions to gather subject quantity
+    and sample values. Calls confirmation and validation functions. Returns
+    only confirmed, validated data.
     """
     while True:
         qty = get_qty_subjects()
@@ -407,37 +466,6 @@ def get_qty_subjects():
     return qty
 
 
-def confirm_proceed(last_input):
-    """
-    Generic function in which the user can:
-    - confirm their last input if correct or return to previous step.
-    Displays error and prompts re-input in case of input other than Y/y/N/n.
-    Deployed within loops elsewhere:
-    - pass if True, continue to repeat input if False.
-    """
-    while True:
-        console.print(f"\nYou entered: {last_input}")
-        answer = input("Is this correct? Y/N \n")
-        try:
-            answer = answer.upper()
-            if answer == "Y":
-                console.print("\nProceeding to next step...\n",
-                              style="highlight")
-                sleep(.5)
-                return True
-            elif answer == "N":
-                console.print("\nReturning to previous step...\n",
-                              style="highlight")
-                sleep(.5)
-                return False
-            else:
-                raise ValueError("Press Y if correct, "
-                                 "or press N to re-enter the data.")
-        except ValueError as e:
-            error_wrapper(e)
-            continue
-
-
 def get_sample():
     """
     Requests values contained within sample. Calls format_data func
@@ -456,6 +484,40 @@ def get_sample():
             return_to_main_menu()
         else:
             return sample
+
+# Subsection: Sample Validation
+
+
+def validate_subject_qty(qty):
+    """
+    Checks number of subjects expected as input by user.
+    Raises an error if input is blank, negative number,
+    decimal that cannot be made whole number, non-numeric or
+    less than 5. Otherwise, returns True.
+    """
+    try:
+        if qty == "":
+            raise ValueError(f"{error_dict['blank_input']}")
+        if "-" in qty:
+            raise ValueError(f"{error_dict['negative_number']}")
+        if not qty.isdigit():
+            try:
+                qty = float(qty)
+            except Exception:
+                raise ValueError(f"{error_dict['non_numeric_detected']}")
+            else:
+                if qty % 1 != 0:
+                    raise ValueError(f"{error_dict['subject_int']}")
+                else:
+                    qty = int(qty)
+        qty = int(qty)
+        if qty < 5:
+            raise ValueError(f"{error_dict['subject_qty']}")
+    except Exception as e:
+        error_wrapper(e)
+        return False
+    else:
+        return True
 
 
 def format_data(data):
@@ -484,7 +546,9 @@ def validate_sample_qty(sample, qty):
     return True
 
 
-# STATISTICAL OPERATIONS:
+# - Statistical Operations -
+
+
 def describe(sample):
     """ Returns descriptive stats (mean average) of sample """
     mean_avg = round(mean(sample), 2)
@@ -530,34 +594,9 @@ def output_means(a, b):
               f"was greater than Sample A ({a}).")
 
 
-def testing_main():
-    """
-    Main statistical function to run all stats testing funcs.
-    After calling all test funcs, provides appropriate output for test
-    outcome. Calls update_test_records and finally exits to Main Menu.
-    """
-    tester_id = get_tester_id()
-    sample_a = collect_data()
-    sample_b = collect_data()
-    mean_a = describe(sample_a)
-    mean_b = describe(sample_b)
-    levene_result = homogeneity_of_variance_check(sample_a, sample_b)
-    if levene_result:
-        outcome = t_test(sample_a, sample_b)
-        print(outcome)
-        if outcome == "Statistically significant difference.":
-            output_means(mean_a, mean_b)
-    else:
-        outcome = "T-test not conducted due to unequal variance."
-        print("Data is unsuitable for t-test.")
-        print("Reason: Lacks homogeneity of variance.")
-    date_time = date_and_time()
-    update_test_records(
-            date_time[0], date_time[1], tester_id, mean_a, mean_b, outcome)
-    return_to_main_menu()
+# - Update Test Records -
 
 
-# DATA HANDLING:
 def update_test_records(*args):
     """
     Updates test records stored in Google Sheets and informs
@@ -579,7 +618,7 @@ def date_and_time():
     return test_date, test_time
 
 
-# ERROR HANDLING & ERROR MESSAGE FORMATTING:
+# *** ERROR HANDLING & ERROR MESSAGES ***
 error_dict = {
     "menu_range":
         "Invalid Selection. Please enter a number from the options shown.",
@@ -620,70 +659,51 @@ def except_str(e):
     sleep(1)
 
 
-def validate_menu_choice(choice, menu_options_list):
-    """
-    Error handling for menu option selection:
-    Raises an error if user choice is not within range of menu
-    options available in a given menu_options_list, is blank
-    input or non-numeric. Otherwise, returns True.
-    """
-    try:
-        option_range = len(menu_options_list)
-        if len(choice) == 0:
-            raise ValueError(f"{error_dict['blank_input']}")
-        if not choice.isdigit():
-            raise TypeError(f"{error_dict['non_numeric_detected']}")
-        choice = int(choice)
-        if choice < 1 or choice > option_range:
-            raise ValueError(f"{error_dict['menu_range']}")
-    except TypeError as e:
-        error_wrapper(e)
-        return False
-    except ValueError as e:
-        error_wrapper(e)
-        return False
-    return True
+# *** GENERIC FUNCTIONS ***
 
 
-def get_menu_options(options_list):
+def confirm_proceed(last_input):
     """
-    Takes a menu_options list as parament.
-    Prints menu options to body of menus.
+    Generic function in which the user can:
+    - confirm their last input if correct or return to previous step.
+    Displays error and prompts re-input in case of input other than Y/y/N/n.
+    Deployed within loops elsewhere:
+    - pass if True, continue to repeat input if False.
     """
-    for item in options_list:
-        console.print(f"    {item}", style="menu")
-
-
-def validate_subject_qty(qty):
-    """
-    Checks number of subjects expected as input by user.
-    Raises an error if input is blank, negative number,
-    decimal that cannot be made whole number, non-numeric or
-    less than 5. Otherwise, returns True.
-    """
-    try:
-        if qty == "":
-            raise ValueError(f"{error_dict['blank_input']}")
-        if "-" in qty:
-            raise ValueError(f"{error_dict['negative_number']}")
-        if not qty.isdigit():
-            try:
-                qty = float(qty)
-            except Exception:
-                raise ValueError(f"{error_dict['non_numeric_detected']}")
+    while True:
+        console.print(f"\nYou entered: {last_input}")
+        answer = input("Is this correct? Y/N \n")
+        try:
+            answer = answer.upper()
+            if answer == "Y":
+                console.print("\nProceeding to next step...\n",
+                              style="highlight")
+                sleep(.5)
+                return True
+            elif answer == "N":
+                console.print("\nReturning to previous step...\n",
+                              style="highlight")
+                sleep(.5)
+                return False
             else:
-                if qty % 1 != 0:
-                    raise ValueError(f"{error_dict['subject_int']}")
-                else:
-                    qty = int(qty)
-        qty = int(qty)
-        if qty < 5:
-            raise ValueError(f"{error_dict['subject_qty']}")
-    except Exception as e:
-        error_wrapper(e)
-        return False
-    else:
-        return True
+                raise ValueError("Press Y if correct, "
+                                 "or press N to re-enter the data.")
+        except ValueError as e:
+            error_wrapper(e)
+            continue
+
+
+def quit_func():
+    """
+    Quits program after alerting the user and providing a 1-second delay.
+    If this fails for any reason, terminates program without further action.
+    """
+    try:
+        print("Quitting program...")
+        sleep(1)
+        quit()
+    except Exception:
+        quit()
 
 
 # MAIN AS MAIN_MENU
