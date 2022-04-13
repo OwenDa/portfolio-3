@@ -241,7 +241,7 @@ Attempting to enter the following values in response to their respective input r
 **Menus**
 | Request                | Invalid Value Type               | Error Message                                                   |  
 |------------------------|----------------------------------|-----------------------------------------------------------------| 
-| Main Menu Selection    | Blank                            | Cannot be left blank. Please enter your input and press Enter.  |
+| Main Menu Selection    | Blank                            | Invalid Selection. Please enter a number from the options shown.|
 | Main Menu Selection    | Letter/symbol(s)                 | Invalid Selection. Please enter a number from the options shown.|  
 | Main Menu Selection    | Number out of option range       | Invalid Selection. Please enter a number from the options shown.|
 | Help Menu Selection    | Blank                            | Invalid Selection. Please enter a number from the options shown.|  
@@ -259,11 +259,11 @@ Attempting to enter the following values in response to their respective input r
 |----------|----------------------------------|----------------------------------------------------------------------------| 
 | Username | Blank                            | Username or ID required (e.g. SamBeckett, User1, etc.)                     |  
 | Username | Single character                 | Username must be at least 2 characters in length                           |  
-| Subjects | Blank                            | Enter an integer, e.g. '7' (Not '7.2' or 'seven'). Please try again.       |  
-| Subjects | Letter(s)                        | Enter an integer, e.g. '7' (Not '7.2' or 'seven'). Please try again.       |  
+| Subjects | Blank                            | Cannot be left blank. Please enter your input and press Enter.             |  
+| Subjects | Letter(s)                        | Non-numeric characters detected. Try again.                                |  
 | Subjects | Number below 5                   | Five or more subjects required. Try Again.                                 |  
-| Subjects | Negative number                  | Five or more subjects required. Try Again.                                 |  
-| Subjects | Float, e.g. 5.2                  | Enter an integer, e.g. '7' (Not '7.2' or 'seven'). Please try again.       |  
+| Subjects | Negative number                  | Enter a positive number, eg. 7 or 128.                                     |  
+| Subjects | Invalid float, e.g. 5.2          | "Enter an integer (e.g. '7', not '7.2'). Please try again."                |  
 | Y/N      | Blank                            | Press Y if correct, or press N to re-enter the data.                       |  
 | Y/N      | Letter other than Y/N*           | Press Y if correct, or press N to re-enter the data.                       |  
 | Y/N      | Number                           | Press Y if correct, or press N to re-enter the data.                       |   
@@ -273,7 +273,7 @@ Attempting to enter the following values in response to their respective input r
 | Sample   | Letter(s), e.g. "G", "1,2,3,r,5" | Non-numeric value(s) detected. Try again.                                  |  
 | Sample   | Punctuation, other than as float | Non-numeric value(s) detected. Try again.                                  |  
 | Sample   | Multiple decimals e.g. "5..2"    | Non-numeric value(s) detected. Try again.                                  |  
-| Y        | Any other letter                 | No other operations available at this time. Press Y to return to Main Menu.|  
+| Y        | Any other input                  | No other operations available at this time. Press Y to return to Main Menu.|  
 
 *Note that a lowercase y/n is handled automatically and does not require user intervention.  
 ** Note that multiple commas or spaces within an otherwise valid sample (1  ,2, , 3 , 4,,,5) are automatically corrected.  

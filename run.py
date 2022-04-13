@@ -517,7 +517,7 @@ def validate_subject_qty(qty):
                 else:
                     qty = int(qty)
         qty = int(qty)
-        if qty < 0:
+        if qty < 1:
             raise ValueError(f"{error_dict['negative_number']}")
         if qty < 5:
             raise ValueError(f"{error_dict['subject_qty']}")
