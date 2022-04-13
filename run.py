@@ -62,10 +62,8 @@ def validate_menu_choice(choice, menu_options_list):
     """
     try:
         option_range = len(menu_options_list)
-        if len(choice) == 0:
-            raise ValueError(f"{error_dict['blank_input']}")
-        if not choice.isdigit():
-            raise TypeError(f"{error_dict['menu_range']}")
+        if len(choice) == 0 or not choice.isdigit():
+            raise ValueError(f"{error_dict['menu_range']}")
         choice = int(choice)
         if choice < 1 or choice > option_range:
             raise ValueError(f"{error_dict['menu_range']}")
@@ -103,7 +101,7 @@ def show_main_menu():
             console.print((f"\n{standard_indent}At any time, "
                            "press Ctrl+C/Cmd+C to quit."),
                           style="menu")
-            choice = input((f"{menu_selection_prompt}"))
+            choice = input(f"{menu_selection_prompt}")
             try:
                 if validate_menu_choice(choice, main_menu_options):
                     choice = int(choice)
@@ -192,8 +190,7 @@ def help_menu():
         while True:
             console.print("\nＯｐｔｉｏｎｓ", style="menu", justify="center")
             get_menu_options(help_menu_options)
-            choice = input(
-                (f"{menu_selection_prompt}"))
+            choice = input(f"{menu_selection_prompt}")
             if validate_menu_choice(choice, help_menu_options):
                 choice = int(choice)
                 if choice == 1:
@@ -277,7 +274,7 @@ def records_menu():
             show_table()
             console.print("\nＯｐｔｉｏｎｓ", style="menu", justify="center")
             get_menu_options(records_menu_options)
-            choice = input((f"{menu_selection_prompt}"))
+            choice = input(f"{menu_selection_prompt}")
             if validate_menu_choice(choice, records_menu_options):
                 choice = int(choice)
                 if choice == 1:
@@ -327,7 +324,8 @@ def delete_last_record():
         sleep(2.5)
         records_menu()
 
-    console.print("\nCaution: Deletion cannot be undone.\n", style="highlight")
+    console.print(f"\n{standard_indent}Caution: Deletion cannot be undone.\n",
+                  style="highlight")
     print("You are about to delete the most current test record on the table.")
     while True:
         confirm_delete = input("To confirm this action, type 'DELETE'. "

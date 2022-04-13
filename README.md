@@ -241,7 +241,7 @@ Attempting to enter the following values in response to their respective input r
 **Menus**
 | Request                | Invalid Value Type               | Error Message                                                   |  
 |------------------------|----------------------------------|-----------------------------------------------------------------| 
-| Main Menu Selection    | Blank                            | Invalid Selection. Please enter a number from the options shown.|
+| Main Menu Selection    | Blank                            | Cannot be left blank. Please enter your input and press Enter.  |
 | Main Menu Selection    | Letter/symbol(s)                 | Invalid Selection. Please enter a number from the options shown.|  
 | Main Menu Selection    | Number out of option range       | Invalid Selection. Please enter a number from the options shown.|
 | Help Menu Selection    | Blank                            | Invalid Selection. Please enter a number from the options shown.|  
