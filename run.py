@@ -384,9 +384,9 @@ def testing_main():
     """
     tester_id = get_tester_id()
     console.print("\nSample A:", style="sample_separator")
-    sample_a = collect_data()
+    sample_a = collect_sample_data()
     console.print("\nSample B:", style="sample_separator")
-    sample_b = collect_data()
+    sample_b = collect_sample_data()
     mean_a = describe(sample_a)
     mean_b = describe(sample_b)
     levene_result = homogeneity_of_variance_check(sample_a, sample_b)
@@ -429,7 +429,7 @@ def get_tester_id():
             return tester_id
 
 
-def collect_data():
+def collect_sample_data():
     """
     Main sample collection loop. Calls functions to gather subject quantity
     and sample values. Calls confirmation and validation functions. Returns
