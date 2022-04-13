@@ -394,6 +394,9 @@ To verify results, using the resources given in each outcome description, the fo
 </details>  
     
 ## Issues
+Currently, the program must be re-started before changes such as new record creation or record deletion are visible on the Records Table within the View Records screen. This has been noted and the user in informed of the need to re-start before changes will be visible; however, it would be preferable to have these changes appear in realtime.
+
+**Resolved Issues**  
 Various fixes were applied during development as small issues arose; however, one issue of particular interest applies to the programming and subsequent debugging of the code block(s) described below.  
   
 **Objective:**  
@@ -474,7 +477,7 @@ Achieving the desired result required a good deal of trial and error with variou
 </br></br>
 
 The error presented itself as a failure to handle valid float or decimal values. All invalid values were caught and handled correctly, and valid integers were also handled appropriately. Yet valid floats such as `7.0` caused an uncaught `invalid literal for int()` error to display in the terminal.  
-</br></br>
+</br>
 
 <details><summary>
 Manual Debugging
