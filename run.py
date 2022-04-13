@@ -39,7 +39,8 @@ records = test_records.get_all_values()  # Records values as nested lists
 custom_theme = Theme(
     {"menu": "bright_green",
      "highlight": "bold bright_cyan",
-     "error": "bright_red"})
+     "error": "bright_red",
+     "sample_separator": "bold bright_green", })
 console = Console(theme=custom_theme)
 # Console object for use with rich.console
 
@@ -370,7 +371,7 @@ def testing_mode():
     Calls testing_main() function to enter program's testing
     mode, first alerting the user and allowing time to read message.
     """
-    print("Entering Testing Mode...\n")
+    console.print("Entering Testing Mode...\n", style="highlight")
     sleep(1)
     testing_main()
 
@@ -382,7 +383,9 @@ def testing_main():
     outcome. Calls update_test_records and finally exits to Main Menu.
     """
     tester_id = get_tester_id()
+    console.print("\nSample A:", style="sample_separator")
     sample_a = collect_data()
+    console.print("\nSample B:", style="sample_separator")
     sample_b = collect_data()
     mean_a = describe(sample_a)
     mean_b = describe(sample_b)
@@ -394,8 +397,8 @@ def testing_main():
             output_means(mean_a, mean_b)
     else:
         outcome = "T-test not conducted due to unequal variance."
-        print("Data is unsuitable for t-test.")
-        print("Reason: Lacks homogeneity of variance.")
+        print(("Levene's test was performed and homogeneity of "
+               "variance was not found."))
     date_time = date_and_time()
     update_test_records(
             date_time[0], date_time[1], tester_id, mean_a, mean_b, outcome)
@@ -460,8 +463,10 @@ def get_qty_subjects():
     while True:
         try:
             while True:
+                console.print("Enter the number of subjects in this sample.",
+                              style="highlight")
                 qty = input(
-                    "Enter the number of subjects in this sample: \n")
+                    "For example, enter '5' for a group with five subjects:\n")
                 if validate_subject_qty(qty):
                     qty = float(qty)
                     qty = int(qty)
@@ -481,7 +486,10 @@ def get_sample():
     to format input. Throws error and alerts user if data invalid.
     """
     while True:
-        raw_data = input("Enter the values separated by commas: \n")
+        console.print(("Enter the values or scores within this sample, "
+                      "separated by commas"),
+                      style="highlight")
+        raw_data = input("For example: 2, 4.5, 13, 21, 26 \n\n")
         try:
             sample = format_sample_data(raw_data)
         except ValueError:
@@ -686,7 +694,7 @@ def confirm_proceed(last_input):
             answer = answer.upper()
             if answer == "Y":
                 console.print("\nProceeding to next step...\n",
-                              style="highlight")
+                              style="green")
                 sleep(.5)
                 return True
             elif answer == "N":
