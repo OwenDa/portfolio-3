@@ -4,7 +4,7 @@ and press Enter. Your organisation may have its own protocol for usernames,
 such as an ID number or initials.
 
 When prompted, enter the number of subjects in your first sample.
-This must be an integer (ie. "5", not "five" or "5.0").
+This must be a whole number (ie. "5", not "five" or "5.0").
 After pressing enter, you will be asked to confirm.
 
 You will now be asked to input the values within that sample. You may type them

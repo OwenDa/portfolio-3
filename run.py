@@ -1,11 +1,8 @@
 # pylint: global-statement, disable=invalid-name, broad-except
 """
 Python program for data entry via terminal.
-Once data is entered, a sequence of statistical
-operations are carried out, until or unless:
-  A) data is found unsuitable (input error, unequal variances),
-  B) the expected flow of the program is completed,
-  C) the user exits the program.
+Once data is entered and validated, a sequence of statistical
+operations are carried out.
 
 """
 
@@ -117,10 +114,10 @@ def show_main_menu():
                     elif choice == 2:
                         testing_mode()
                         break
-                    elif choice == (3):
+                    elif choice == 3:
                         records_menu()
                         break
-                    elif choice == (4):
+                    elif choice == 4:
                         quit_func()
                         break
                     else:
@@ -139,7 +136,7 @@ def return_to_main_menu():
     """
     Guides user back to Main Menu screen when ready. Throws an error in the
     event of any input other than y/Y and re-prompts user. If these actions
-    cannot run for any reason, terminates program.
+    cannot run for any reason, terminates program via quit_func().
     """
     try:
         while True:
@@ -273,9 +270,9 @@ records_menu_options = ["1. Return to Main Menu",
 
 def records_menu():
     """
-    Records Area Menu: Calls functions to print menu options and to
-    validate menu selection. For valid input, calls either main_menu or
-    initiates process to delete the last record shown on table.
+    Calls functions to print Records menu options and to validate
+    menu selection. For valid input, calls either main_menu or
+    initiates process to delete last record.
     """
     try:
         while True:
@@ -322,8 +319,8 @@ def show_table():
 
 def delete_last_record():
     """
-    Allows the user to delete the last record shown on the table by
-    inputting a confirmation phrase OR exit without making changes.
+    Allows user to delete the last record in table by typing a
+    confirmation phrase OR exit without making changes.
     Throws error only in case of invalid (lowercase) confirmation phrase
     or if delete_rows() cannot be run. Provides feedback in all cases.
     """
@@ -369,7 +366,7 @@ ALPHA = 0.05  # Standard significance level
 def testing_mode():
     """
     Calls testing_main() function to enter program's testing
-    mode, first alerting the user and allowing time to read message.
+    mode, first alerting user and allowing time to read message.
     """
     console.print("Entering Testing Mode...\n", style="highlight")
     sleep(1)
@@ -574,7 +571,7 @@ def describe(sample):
 
 def homogeneity_of_variance_check(a, b):
     """
-    Performs Levene's Test to check suitability of data for t-test.
+    Performs Levene's Test to check data's suitability for t-test.
     True (p = > ALPHA) = Suitable: null hypothesis cannot be rejected
     and equality of variance assumed.
     False = Unsuitable, reject null hypothesis: data is too
@@ -617,7 +614,7 @@ def output_means(a, b):
 def update_test_records(*args):
     """
     Updates test records stored in Google Sheets and informs
-    user in the process. Currently uses *args for flexible development
+    user.. Currently uses *args for flexible development.
     """
     console.print("\nUpdating test records...\n", style="highlight")
     test_records.append_row(args)
