@@ -631,11 +631,10 @@ error_dict = {
     "menu_range":
         "Invalid Selection. Please enter a number from the options shown.",
     "no_other_operations":
-        """No other operations available at this time.
-    Press Y to return to Main Menu.""",
+        ("No other operations available at this time. "
+         "Press Y to return to Main Menu."),
     "subject_int":
-        """Enter an integer (e.g. '7', not '7.2')).
-    Please try again.""",
+        "Enter an integer (e.g. '7', not '7.2'). Please try again.",
     "subject_qty":
         "Five or more subjects required. Try again.",
     "non_numeric_detected":
