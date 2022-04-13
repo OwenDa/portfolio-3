@@ -35,9 +35,14 @@ custom_theme = Theme(
      "sample_separator": "bold bright_green", })
 console = Console(theme=custom_theme)
 # Console object for use with rich.console
+standard_indent = "                "
+# Standardised indent for consistent text formatting
 
 
-# *** MENU FUNCTIONS ***
+# *** MENU FUNCTIONS & GLOBALS ***
+menu_selection_prompt = (f"\n{standard_indent}Enter a number to make a "
+                         "selection, and then press Enter.\n")
+
 
 def get_menu_options(options_list):
     """
@@ -45,7 +50,7 @@ def get_menu_options(options_list):
     Prints menu options to body of menus.
     """
     for item in options_list:
-        console.print(f"                {item}", style="menu")
+        console.print(f"{standard_indent}{item}", style="menu")
 
 
 def validate_menu_choice(choice, menu_options_list):
@@ -92,15 +97,13 @@ def show_main_menu():
     """
     while True:
         try:
-            console.print("Ｔ－Ｔｅｓｔｅｒ\n", style="menu", justify="center")
+            console.print("\nＴ－Ｔｅｓｔｅｒ\n", style="menu", justify="center")
             console.print("Main Menu", style="menu", justify="center")
             get_menu_options(main_menu_options)
-            console.print(("\n                At any time, "
+            console.print((f"\n{standard_indent}At any time, "
                            "press Ctrl+C/Cmd+C to quit."),
                           style="menu")
-            choice = input(
-                ("                Enter a number to make a selection, "
-                 "and then press the 'Enter' key:\n"))
+            choice = input((f"{menu_selection_prompt}"))
             try:
                 if validate_menu_choice(choice, main_menu_options):
                     choice = int(choice)
@@ -190,8 +193,7 @@ def help_menu():
             console.print("\nＯｐｔｉｏｎｓ", style="menu", justify="center")
             get_menu_options(help_menu_options)
             choice = input(
-                """    Enter a number to make a selection, and then press the "Enter" key:
-                \n""")
+                (f"{menu_selection_prompt}"))
             if validate_menu_choice(choice, help_menu_options):
                 choice = int(choice)
                 if choice == 1:
@@ -275,9 +277,7 @@ def records_menu():
             show_table()
             console.print("\nＯｐｔｉｏｎｓ", style="menu", justify="center")
             get_menu_options(records_menu_options)
-            choice = input(
-                """    Enter a number to make a selection, and then press the "Enter" key:
-                \n""")
+            choice = input((f"{menu_selection_prompt}"))
             if validate_menu_choice(choice, records_menu_options):
                 choice = int(choice)
                 if choice == 1:
