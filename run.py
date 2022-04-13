@@ -1,4 +1,4 @@
-# pylint: disable=invalid-name, broad-except
+# pylint: global-statement, disable=invalid-name, broad-except
 """
 Python program for data entry via terminal.
 Once data is entered, a sequence of statistical
@@ -116,7 +116,7 @@ def main_menu():
                         testing_mode()
                         break
                     elif choice == (3):
-                        build_table()
+                        records_menu()
                         break
                     elif choice == (4):
                         quit_func()
@@ -277,6 +277,7 @@ def records_menu():
     """
     try:
         while True:
+            show_table()
             console.print("\nＯｐｔｉｏｎｓ", style="menu", justify="center")
             get_menu_options(records_menu_options)
             choice = input(
@@ -301,13 +302,21 @@ def build_table():
     variable (which retrieves records from rows of Google Sheet)
     and then shows menu of options.
     """
+    global test_records, records
+    test_records = SHEET.worksheet('test_records')  # Google Sheet worksheet
+    records = test_records.get_all_values()  # Records values as nested lists
     table = Table(title="Test Records")
     for heading in records[0]:
         table.add_column(f"{heading}", style="bright_cyan")
     for row in records[1::1]:
         table.add_row(*row)
+    return table
+
+
+def show_table():
+    """ Prints out table of records """
+    table = build_table()
     console.print(table, style="bright_blue", justify="center")
-    records_menu()
 
 
 def delete_last_record():
@@ -339,7 +348,7 @@ def delete_last_record():
             if confirm_delete == "DELETE":
                 try:
                     test_records.delete_rows(len(records))
-                    feedback = ("Last record successfully deleted. "
+                    feedback = ("\nLast record successfully deleted.\n"
                                 "Returning to previous menu...")
                     exit_with_feedback(feedback)
                 except Exception as e:
@@ -606,8 +615,8 @@ def update_test_records(*args):
     test_records.append_row(args)
     sleep(.5)
     print("Record successfully updated.")
-    print("You may need to re-start the program to view this \n"
-          "record in the 'View Records' section.")
+    print("You can view this record in the \n"
+          "'View Records' section from the Main Menu.")
 
 
 def date_and_time():

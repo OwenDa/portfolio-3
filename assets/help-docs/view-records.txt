@@ -9,6 +9,3 @@ records are created after each test process is completed.
 You may also view records from the Google Sheets spreadsheet; however,
 you must have access to the spreadsheet to do so. Contact your
 organisation's admin to request access.
-
-If you add or delete a record, changes may not be visible until the
-program has restarted.

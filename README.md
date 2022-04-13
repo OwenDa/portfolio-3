@@ -97,13 +97,13 @@ As a user, I want to...
     + While accessible as a table within the program, records are stored in a Google Sheets spreadsheet, meaning they could be easily shared within an organisation or with other parties if desired. This also means that records are accessible on multiple devices and when the program is closed or the user does not have access to the program.  
 
 - Update the externally-stored records automatically   
-    + Newly created records are added to the connected Google Sheet rather than the program itself. This is also true when deleting data; it is the Google Sheet that is being updated. The program simply retrieves this information from the Google Sheet in order to display records in a convenient manner within the terminal. Changes to the Google Sheet are, therefore, reflected within the program, although it may be necessary to restart the program in order to see the most recent version of the available records.  
+    + Newly created records are added to the connected Google Sheet rather than the program itself. This is also true when deleting data; it is the Google Sheet that is being updated. The program simply retrieves this information from the Google Sheet in order to display records in a convenient manner within the terminal. Changes to the Google Sheet are, therefore, reflected within the program.  
   
 - Store records in a manner that allows me or others to copy, extract, manipulate or delete data  
     + Records are stored in a Google Sheet spreadsheet which not only makes their content more accessible in many ways but also means that either selected data or the entire worksheet can be copied. Individual records or fields can be extracted for use in other programs. Data can also be deleted from the spreadsheet or a copy of the spreadsheet. For instance, one colleague may need access only to statistically significant results and may wish to store these in a separate spreadsheet, file or program.  
   
 - Delete a record if created in error  
-  + The last shown record within the records table can be deleted by the user. This enables duplicate tests to be removed immediately upon realising the error, or in the event that a test was carried out on a dataset containing an error, it can be removed immediately. Records older than this can only be changed from within the Google Sheets spreadsheet. To minimise the risk of accidental deletion, a warning is displayed and confirmation is required. To confirm deletion, the user is instructed to type "DELETE" in capitals. Simultaneously, the user is told that pressing Enter will cancel deletion. If a request to delete a record is aborted in this manner, the user will be directed away from the deletion screen and back to the preceding menu. A lowercase response ("delete") will prompt a message informing the user that the option is case sensitive and asking them to try again.  
+  + The last record within the records table can be deleted by the user. This enables duplicate tests to be removed immediately upon realising the error, or in the event that a test was carried out on a dataset containing an error, it can be removed immediately. Records older than this can only be changed from within the Google Sheets spreadsheet. To minimise the risk of accidental deletion, a warning is displayed and confirmation is required. To confirm deletion, the user is instructed to type "DELETE" in capitals. Simultaneously, the user is told that pressing Enter will cancel deletion. If a request to delete a record is aborted in this manner, the user will be directed away from the deletion screen and back to the preceding menu. A lowercase response ("delete") will prompt a message informing the user that the option is case sensitive and asking them to try again.  
   
 - Navigate through the program  
     + Menus allow for easy and relatively intuitive navigation. Instructions are provided alongside menus, informing the user how to make a selection. T-Tester also enables the user to return to the previous menu where relevant; for example, after cancelling the deletion of a file or after reading a help topic.  
@@ -203,7 +203,13 @@ As mentioned previously, the user may quit the program from the Main Menu. This 
 <br/><br/>
 
 ### Future Features  
-It is debatable whether deletion of records beyond the last shown record is a desirable feature. Deletion of the last shown record may be useful when a user realises, shortly after conducting a test, that the test was already carried out, used an incomplete or incorrect dataset and so on. For more selective deletion of records, access to the related Google Sheets spreadsheet is required. This limitation of the program may actually represent a useful feature in and of itself, as Google Sheets' permissions and access options allow for precise control of who may carry out such selective deletion. Nevertheless, it is possible that the program may expand its deletion options in the future.  
+It is debatable whether deletion of records other than the last record shown on the in-program records table is a desirable feature. Deletion of the last record may be useful when a user realises, shortly after conducting a test, that the test was already carried out, used an incomplete or incorrect dataset and so on.  
+  
+For more selective deletion of records, access to the related Google Sheets spreadsheet is required. This limitation of the program may actually represent a useful feature in and of itself for two related reasons:  
+    1. It prevents significant restrospective modifaction of test results  
+    2. Defering to Google Sheets' permissions and access options provides precise control of who may carry out such selective deletion.
+  
+Nevertheless, it is possible that the program may expand its deletion options in the future.  
   
 Currently, the program does not assess skewness and kurtosis. These features could be added for a more rounded and thorough set of pre-test checks.  
 
@@ -394,9 +400,6 @@ To verify results, using the resources given in each outcome description, the fo
 </details>  
     
 ## Issues
-Currently, the program must be re-started before changes such as new record creation or record deletion are visible on the Records Table within the View Records screen. This has been noted and the user in informed of the need to re-start before changes will be visible; however, it would be preferable to have these changes appear in realtime.
-
-**Resolved Issues**  
 Various fixes were applied during development as small issues arose; however, one issue of particular interest applies to the programming and subsequent debugging of the code block(s) described below.  
   
 **Objective:**  
