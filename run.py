@@ -72,10 +72,10 @@ def validate_menu_choice(choice, menu_options_list):
         if choice < 1 or choice > option_range:
             raise ValueError(f"{error_dict['menu_range']}")
     except TypeError as e:
-        error_wrapper(e)
+        format_error_message(e)
         return False
     except ValueError as e:
-        error_wrapper(e)
+        format_error_message(e)
         return False
     return True
 
@@ -88,7 +88,8 @@ main_menu_options = ["1. Help",
                      "4. Quit", ]
 
 
-def main_menu():
+def show_main_menu():
+
     """
     Main Menu and welcome screen. Prints options available and awaits input.
     Calls validation func to ensure choice is within range. Throws error and
@@ -144,12 +145,12 @@ def return_to_main_menu():
             try:
                 choice = input("Returning to Main Menu. Press Y to confirm.\n")
                 if choice.upper() == "Y":
-                    main_menu()
+                    show_main_menu()
                 else:
                     raise ValueError
             except ValueError:
                 msg = error_dict["no_other_operations"]
-                error_wrapper(msg)
+                format_error_message(msg)
                 continue
     except Exception as e:
         except_str(e)
@@ -200,7 +201,7 @@ def help_menu():
             if validate_menu_choice(choice, help_menu_options):
                 choice = int(choice)
                 if choice == 1:
-                    main_menu()
+                    show_main_menu()
                 elif choice > 1:
                     topic = choice
                     help_text(topic)
@@ -231,7 +232,7 @@ def help_text(topic):
         else:
             raise ValueError
     except ValueError as e:
-        error_wrapper(e)
+        format_error_message(e)
     try:
         print_file(file_path)
     except Exception as e:
@@ -286,7 +287,7 @@ def records_menu():
             if validate_menu_choice(choice, records_menu_options):
                 choice = int(choice)
                 if choice == 1:
-                    main_menu()
+                    show_main_menu()
                 elif choice == 2:
                     delete_last_record()
             else:
@@ -298,9 +299,8 @@ def records_menu():
 
 def build_table():
     """
-    Builds table from previous records stored in records
-    variable (which retrieves records from rows of Google Sheet)
-    and then shows menu of options.
+    Builds table from previous records stored in
+    Google Sheets worksheet "test_records".
     """
     global test_records, records
     test_records = SHEET.worksheet('test_records')  # Google Sheet worksheet
@@ -314,7 +314,7 @@ def build_table():
 
 
 def show_table():
-    """ Prints out table of records """
+    """ Retrieves table from build_table() and prints """
     table = build_table()
     console.print(table, style="bright_blue", justify="center")
 
@@ -342,7 +342,7 @@ def delete_last_record():
             if confirm_delete == "delete":
                 raise ValueError(error_dict["case_sensitive"])
         except ValueError as e:
-            error_wrapper(e)
+            format_error_message(e)
             continue
         else:
             if confirm_delete == "DELETE":
@@ -353,7 +353,7 @@ def delete_last_record():
                     exit_with_feedback(feedback)
                 except Exception as e:
                     msg = (f"Operation failed.\nError: {e}.")
-                    error_wrapper(msg)
+                    format_error_message(msg)
                     feedback = "Exiting without making changes...\n"
                     exit_with_feedback(feedback)
             else:
@@ -419,7 +419,7 @@ def get_tester_id():
             if len(tester_id) < 2:
                 raise ValueError("ID must be at least 2 characters in length.")
         except ValueError as e:
-            error_wrapper(e)
+            format_error_message(e)
             continue
         else:
             print(f"\nWelcome, {tester_id}.\n")
@@ -486,7 +486,7 @@ def get_sample():
             sample = format_sample_data(raw_data)
         except ValueError:
             msg = error_dict["non_numeric_detected"]
-            error_wrapper(msg)
+            format_error_message(msg)
             continue
         except Exception as e:
             except_str(e)
@@ -523,7 +523,7 @@ def validate_subject_qty(qty):
         if qty < 5:
             raise ValueError(f"{error_dict['subject_qty']}")
     except Exception as e:
-        error_wrapper(e)
+        format_error_message(e)
         return False
     else:
         return True
@@ -550,7 +550,7 @@ def validate_sample_qty(sample, qty):
             raise ValueError(f"{len(sample)} values entered. Expected {qty}."
                              f" Please begin this sample again.")
     except ValueError as e:
-        error_wrapper(e)
+        format_error_message(e)
         return False
     return True
 
@@ -648,7 +648,7 @@ error_dict = {
     "negative_number": "Enter a positive number, eg. 7 or 128.", }
 
 
-def error_wrapper(msg):
+def format_error_message(msg):
     """ Wraps around error messages for greater legibility """
     console.print(("\n- - - - - - - - - - - - - - - - - Error - "
                   "- - - - - - - - - - - - - - - - - "), style="error")
@@ -668,7 +668,7 @@ def except_str(e):
     sleep(1)
 
 
-# *** GENERIC FUNCTIONS ***
+# *** GENERIC FUNCTIONS & MAIN ***
 
 
 def confirm_proceed(last_input):
@@ -698,7 +698,7 @@ def confirm_proceed(last_input):
                 raise ValueError("Press Y if correct, "
                                  "or press N to re-enter the data.")
         except ValueError as e:
-            error_wrapper(e)
+            format_error_message(e)
             continue
 
 
@@ -715,5 +715,13 @@ def quit_func():
         quit()
 
 
-# MAIN AS MAIN_MENU
-main_menu()
+def main():
+    """
+    Main Function: Initiates the main menu which acts as
+    welcome screen and provides options from which all other
+    parts of the program can be accessed and operated.
+    """
+    show_main_menu()
+
+
+main()
