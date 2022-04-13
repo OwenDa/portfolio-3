@@ -1,7 +1,7 @@
 There are two ways to [bold][bright_cyan]delete a record[/][/]. Either method will permanently
 delete the record from [bold]both[/] the table and the linked spreadsheet.
 
-[bold][bright_cyan]Deleting record within T-Tester's 'View Records' Screen[/][/]
+[bold]1. Deleting record within T-Tester's View Records Screen:[/]
 Using this method, you may only delete the last record on the table.
 Ensure this is the record you wish to delete before continuing, the select
 "Delete Last Record Shown" from the Options menu below the table.
@@ -10,7 +10,7 @@ A warning message will appear, "Caution: Deletion cannot be undone." To confirm
 deletion, type "DELETE". To cancel this process without making changes, press
 Enter or type any key followed by Enter.
 
-[bold][bright_cyan]Deleting a record from the spreadsheet.[/][/]
+[bold]2. Deleting a record from the spreadsheet:[/]
 Using this method, you can delete any record or multiple records at once.
 Contact your organisation's admin to request access to the spreadsheet.
 

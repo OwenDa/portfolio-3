@@ -1,10 +1,5 @@
 # pylint: global-statement, disable=invalid-name, broad-except
-"""
-Python program for data entry via terminal.
-Once data is entered and validated, a sequence of statistical
-operations are carried out.
-
-"""
+""" Python program for statistical testing via terminal. """
 
 # IMPORTS:
 import datetime
