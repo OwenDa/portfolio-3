@@ -68,7 +68,7 @@ def validate_menu_choice(choice, menu_options_list):
         if len(choice) == 0:
             raise ValueError(f"{error_dict['blank_input']}")
         if not choice.isdigit():
-            raise TypeError(f"{error_dict['non_numeric_detected']}")
+            raise TypeError(f"{error_dict['menu_range']}")
         choice = int(choice)
         if choice < 1 or choice > option_range:
             raise ValueError(f"{error_dict['menu_range']}")
