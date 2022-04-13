@@ -45,7 +45,7 @@ def get_menu_options(options_list):
     Prints menu options to body of menus.
     """
     for item in options_list:
-        console.print(f"    {item}", style="menu")
+        console.print(f"                {item}", style="menu")
 
 
 def validate_menu_choice(choice, menu_options_list):
@@ -92,14 +92,15 @@ def show_main_menu():
     """
     while True:
         try:
-            console.print("Ｔ－Ｔｅｓｔｅｒ", style="menu", justify="center")
+            console.print("Ｔ－Ｔｅｓｔｅｒ\n", style="menu", justify="center")
             console.print("Main Menu", style="menu", justify="center")
             get_menu_options(main_menu_options)
-            console.print("\n    At any time, press Ctrl+C/Cmd+C to quit.",
+            console.print(("\n                At any time, "
+                           "press Ctrl+C/Cmd+C to quit."),
                           style="menu")
             choice = input(
-                """    Enter a number to make a selection, and then press the "Enter" key:
-                \n""")
+                ("                Enter a number to make a selection, "
+                 "and then press the 'Enter' key:\n"))
             try:
                 if validate_menu_choice(choice, main_menu_options):
                     choice = int(choice)
