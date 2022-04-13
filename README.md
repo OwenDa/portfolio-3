@@ -245,8 +245,8 @@ Attempting to enter the following values in response to their respective input r
 | Main Menu Selection    | Letter/symbol(s)                 | Invalid Selection. Please enter a number from the options shown.|  
 | Main Menu Selection    | Number out of option range       | Invalid Selection. Please enter a number from the options shown.|
 | Help Menu Selection    | Blank                            | Invalid Selection. Please enter a number from the options shown.|  
-| Main Menu Selection    | Letter/symbol(s)                 | Invalid Selection. Please enter a number from the options shown.|  
-| Main Menu Selection    | Number out of option range       | Invalid Selection. Please enter a number from the options shown.|  
+| Help Menu Selection    | Letter/symbol(s)                 | Invalid Selection. Please enter a number from the options shown.|  
+| Help Menu Selection    | Number out of option range       | Invalid Selection. Please enter a number from the options shown.|  
 | Records Menu Selection | Blank                            | Invalid Selection. Please enter a number from the options shown.|  
 | Records Menu Selection | Letter(s)/Symbol(s)              | Invalid Selection. Please enter a number from the options shown.|  
 | Records Menu Selection | Number out of option range       | Invalid Selection. Please enter a number from the options shown.|  

@@ -656,6 +656,7 @@ def format_error_message(msg):
     console.print(msg, style="highlight")
     console.print(("- - - - - - - - - - - - - - - - - - - - - - - -"
                    " - - - - - - - - - - - - - -\n"), style="error")
+    sleep(1)
 
 
 def except_str(e):
