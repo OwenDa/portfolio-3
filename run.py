@@ -517,7 +517,7 @@ def validate_subject_qty(qty):
                 else:
                     qty = int(qty)
         qty = int(qty)
-        if qty < 1:
+        if qty < 0:
             raise ValueError(f"{error_dict['negative_number']}")
         if qty < 5:
             raise ValueError(f"{error_dict['subject_qty']}")
@@ -634,7 +634,8 @@ error_dict = {
         ("No other operations available at this time. "
          "Press Y to return to Main Menu."),
     "subject_int":
-        "Enter an integer (e.g. '7', not '7.2'). Please try again.",
+        ("Enter an integer (e.g. '7', not '7.2') equal to 5 or more. "
+         "Please try again."),
     "subject_qty":
         "Five or more subjects required. Try again.",
     "non_numeric_detected":
@@ -643,7 +644,9 @@ error_dict = {
         "This option is case-sensitive. To delete, type 'DELETE'",
     "blank_input":
         "Cannot be left blank. Please enter your input and press Enter.",
-    "negative_number": "Enter a positive number, eg. 7 or 128.", }
+    "negative_number":
+        ("Negative value detected. "
+         "Enter a positive number equal to 5 or more."), }
 
 
 def format_error_message(msg):
