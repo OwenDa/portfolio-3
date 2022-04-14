@@ -50,8 +50,10 @@ T-Tester then is an adaptable tool that can be deployed to almost any scenario i
 - Allowing the user to view previous records in a formatted table within the terminal.  
 - Allowing the user to delete the last record shown within the table; for example, where a test is erroneously carried out twice.  
   
-To view images of these features, see [Features](#features). To explore these features with sample data, see "Sample Datasets" in [Testing](#testing).  
-  
+To view images of these features, see [Features](#features). To explore these features with sample data, see "Sample Datasets" in [Testing](#testing). For an overview of the process T-Tester follows during statistical testing, see the flow chart below:  
+
+ </br><img src="assets/images/screenshots/t-tester-flow-chart.png" alt="Flow chart depicting the primary process that T-Tester was developed to carry out." height="auto" width="70%">  
+  <br/><br/>
   
 ## Tech Stack  
 1. Languages:  
@@ -198,7 +200,7 @@ Beneath the table, the user has the option to return to the Main Menu or delete 
 <br/><br/>
 A warning message is shown ensuring the user understands the action they are undertaking. To confirm deletion, the user must type DELETE in capital letters, after which confirmation is given and they are returned to the previous menu.  
 
-</br><img src="assets/images/screenshots/deletion-overview.png" alt="Output reads: Caution, deletion cannot be undone. You are about to delete the most current test record on the table, followed by instructions to confirm or cancel." height="auto" width="70%">  
+</br><img src="assets/images/screenshots/deletion-overview.png" alt="Output reads: Caution, deletion cannot be undone. You are about to delete the most current test record on the table, followed by instructions to confirm or cancel." height="auto" width="90%">  
 <br/><br/>
 As is appropriate for an action of this nature, cancelling the action is easier than confirming it. To cancel the action, the user may simply press Enter. Cancelling produces the output "Exiting without making changes..." to reassure the user, and after a momentary delay to allow the user to read this message, they are returned to the previous menu.  
   
