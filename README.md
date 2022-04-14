@@ -64,6 +64,15 @@ To view images of these features, see [Features](#features). To explore these fe
     + [rich 12.2.0](https://pypi.org/project/rich/) 
     
 ## User Stories  
+It should be noted that the intended end-user of such a program can be assumed to possess certain knowledge and characteristics by virtue of having a use for T-Tester:   
+  
+- Has previous knowledge of statistics, though not necessarily to an expert level  
+- Has sought out T-Tester in order to order to carry out a predetermined, well-defined task  
+- Has a dataset they wish to analyse  
+- Is familiar with their own dataset  
+  
+Fringe cases, those in which a user meets possesses but not all of these characteristics, might include undergraduate students in certain fields, such as Psychology, using the program in an exploratory fashion. Such a user might be expected to understand that an independent t-test necessarily involves no more or less than two samples and what is meant by terms such as "subjects" and "statistical significance", but may rely upon explanatory input prompts to guide them through the program to a greater extent than a more qualified user.
+  
 As a user, I want to...  
   
 - Understand how to use the program  
@@ -207,8 +216,8 @@ As mentioned previously, the user may quit the program from the Main Menu. This 
 It is debatable whether deletion of records other than the last record shown on the in-program records table is a desirable feature. Deletion of the last record may be useful when a user realises, shortly after conducting a test, that the test was already carried out, used an incomplete or incorrect dataset and so on.  
   
 For more selective deletion of records, access to the related Google Sheets spreadsheet is required. This limitation of the program may actually represent a useful feature in and of itself for two related reasons:  
-    1. It prevents significant restrospective modifaction of test results  
-    2. Defering to Google Sheets' permissions and access options provides precise control of who may carry out such selective deletion.
+    1. It prevents significant retrospective modification of test results  
+    2. Deferring to Google Sheets' permissions and access options provides precise control of who may carry out such selective deletion.
   
 Nevertheless, it is possible that the program may expand its deletion options in the future.  
   
@@ -492,7 +501,7 @@ The error presented itself as a failure to handle valid float or decimal values.
 Manual Debugging
 </summary></br>
 
-In order to track the variable's type throughout its progress, numbered `print(type(qty))` statements were placed at between each operation. Although somewhat inelegant, this proved an effective method of tracking the variable type. An example extract is shown below:  
+In order to track the variable's type throughout its progress, numbered `print(type(qty))` statements were placed each operation. Although somewhat inelegant, this proved an effective method of tracking the variable type. An example extract is shown below:  
   
     try:
         print("1", type(qty))
