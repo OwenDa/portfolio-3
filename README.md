@@ -252,10 +252,12 @@ Attempting to enter the following values in response to their respective input r
 | Records Menu Selection | Letter(s)/Symbol(s)              | Invalid Selection. Please enter a number from the options shown.|  
 | Records Menu Selection | Number out of option range       | Invalid Selection. Please enter a number from the options shown.|  
   
-<img src="assets/images/screenshots/invalid-sample-values.png" alt="Error messages resulting from invalid sample value submission." height="auto" width="100%"> 
+<img src="assets/images/screenshots/invalid_main_menu.png" alt="Error message resulting from invalid selection in Main Menu." height="auto" width="90%"> 
 <br/><br/>
 
 **Running Tests**
+<img src="assets/images/screenshots/invalid-username-error-messages.png" alt="Error messages resulting from invalid username submission." height="auto" width="90%"> 
+</br></br>
 | Request  | Invalid Value Type               | Error Message                                                               |  
 |----------|----------------------------------|-----------------------------------------------------------------------------| 
 | Username | Blank                            | Username or ID required (e.g. SamBeckett, User1, etc.)                      |  
@@ -278,7 +280,10 @@ Attempting to enter the following values in response to their respective input r
 
 *Note that a lowercase y/n is handled automatically and does not require user intervention.  
 ** Note that multiple commas or spaces within an otherwise valid sample (1  ,2, , 3 , 4,,,5) are automatically corrected.  
-  
+<img src="assets/images/screenshots/invalid-subjects-overview.png" alt="Error messages resulting from invalid subject quantity submission." height="auto" width="90%"> 
+</br></br>
+<img src="assets/images/screenshots/invalid-sample-value-inputs.png" alt="Error messages resulting from invalid sample value submission." height="auto" width="90%"> 
+</br>
   
 **Deleting Records**
 | Request                               | Invalid Value Type| Error Message                                |  
@@ -329,7 +334,7 @@ To verify results, using the resources given in each outcome description, the fo
 > As with all test cases here, and a good deal of improvised data during development, these results were verified with IBM's SPSS. In this case, SPSS found a significant result for Levene's test, meaning the null hypotheis (equal variance) was rejected. This is in agreement with T-Tester's output.  
 ><img src="assets/images/screenshots/dataset-1-levenes-spss.png" alt="Dataset 1's outcome is confirmed by SPSS." height="auto" width="50%">  
 ><br/>
-><img src="assets/images/screenshots/dataset-1-outcome.png" alt="Dataset 1 returned the expected result." height="auto" width="90%">  
+><img src="assets/images/screenshots/test-outcome-dataset-1.png" alt="Dataset 1 returned the expected result." height="auto" width="90%">  
 >  
 <br/>
 
@@ -350,7 +355,7 @@ To verify results, using the resources given in each outcome description, the fo
   ><img src="assets/images/screenshots/dataset-2-nonsig-spss.png" alt="Dataset 2's outcome is confirmed by SPSS." height="auto" width="90%">  
   ><br/>
   >To avoid misleading the user, T-Tester does not output means for non-significant results to the terminal; however, they are preserved in the spreadsheet which is shown at the end of this section.  
-  ><img src="assets/images/screenshots/dataset-2-outcome.png" alt="Dataset 2 returned the expected result." height="auto" width="90%">  
+  ><img src="assets/images/screenshots/test-outcome-dataset-2.png" alt="Dataset 2 returned the expected result." height="auto" width="90%">  
 <br/><br/>
 
 **Test 3: Identical Data (Non-Significance)**  
@@ -371,7 +376,7 @@ To verify results, using the resources given in each outcome description, the fo
   ><img src="assets/images/screenshots/dataset-3-nonsig-spss.png" alt="Dataset 3's outcome is confirmed by SPSS." height="auto" width="90%">  
   ><br/>
   >To avoid misleading the user, T-Tester does not output means for non-significant results to the terminal; however, they are preserved in the spreadsheet which is shown at the end of this section.  
-  ><img src="assets/images/screenshots/dataset-3-outcome.png" alt="Dataset 3 returned the expected result." height="auto" width="90%">  
+  ><img src="assets/images/screenshots/test-outcome-dataset-3.png" alt="Dataset 3 returned the expected result." height="auto" width="90%">  
 <br/><br/>
 
 **Test 4: Significance**  
@@ -392,7 +397,7 @@ To verify results, using the resources given in each outcome description, the fo
 >This result is confirmed by SPSS. To begin with, the means are in agreement with T-Tester's result, and a non-significant result is reported for Levene's test, meaning the null hypothesis cannot be rejected and equal variances can be assumed. A significant result is reported for the independent t-test, meaning a statistically significant difference can be said to exist between these samples.  
 ><img src="assets/images/screenshots/dataset-4-sig-spss.png" alt="Dataset 4's outcome is confirmed by SPSS." height="auto" width="90%">  
 ><br/>
-><img src="assets/images/screenshots/dataset-4-outcome.png" alt="Dataset 4 returned the expected result." height="auto" width="90%">  
+><img src="assets/images/screenshots/test-outcome-dataset-4.png" alt="Dataset 4 returned the expected result." height="auto" width="90%">  
 <br/>
   
 **Summary of T-Tester Results**
@@ -574,5 +579,5 @@ Forking a repository does not create locally-stored copies of its files on your 
 5. [SocSciStatistics.com](https://www.socscistatistics.com/tests/levene/default.aspx) was used during testing to verify results.
 6. [GraphPad](https://www.graphpad.com/quickcalcs/ttest1.cfm) was also used during testing to the same end.  
 7. IBM's statistical package, [SPSS](https://en.wikipedia.org/wiki/SPSS), was used to verify results of test cases and during development.
-  
+8. Screenshot images were compressed with [TinyPNG.com](https://tinypng.com/)
   
