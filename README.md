@@ -159,52 +159,48 @@ The user is first asked to enter a username/ID. This ID will be saved along with
   
 <img src="assets/images/screenshots/testing-flow-overview.png" alt="Screens shown to the user in a typical test procedure flow." height="auto" width="95%">  
   <br/><br/>
-Next, the user is prompted to enter the number of subjects in the first sample. This must be five or more and entered as an integer value.  
+Next, the user is prompted to enter the number of subjects in the first sample. This must be five or more and entered as an integer value. This number will subsequently be used to verify the sample once submitted. Therefore, to ensure the number is correct, the user is prompted to confirm by typing Y or N. "N" will cause the step to be repeated, while "Y" will proceed to the next step. Lowercase input is automatically handled and will not cause an error; however, blank or otherwise empty input will require re-entry.  
   
-<img src="assets/images/screenshots/run-tests-subject-qty-flow.png" alt="The user is prompted to enter the number of subjects within a sample." height="auto" width="100%">  
+<img src="assets/images/screenshots/testing-demo-sample-a.png" alt="The user is prompted to enter the number of subjects and values of Sample A." height="auto" width="70%">  
   <br/><br/>
-This number will subsequently be used to verify the sample once submitted. Therefore, to ensure the number is correct, the user is prompted to confirm by typing Y or N. "N" will cause the step to be repeated, while "Y" will proceed to the next step. Lowercase input is automatically handled and will not cause an error; however, blank or otherwise empty input will require re-entry.
-  
-<img src="assets/images/screenshots/run-tests-confirm-subject-qty-flow.png" alt="The user is prompted to confirm the number of subjects within a sample." height="auto" width="100%"> 
+The user is asked to input the values within that sample. These can be typed or pasted in from elsewhere. To be interpreted correctly by T-Tester, the values must be separated by commas. However, duplicate commas and erroneous spaces are handled automatically by T-Tester. This means that duplicate commas will not create empty values that could trigger a disparity between the number of values entered and the number of subjects previously declared, or affect the statistical processes that follow.  
+    
+<img src="assets/images/screenshots/formatted-sample-values.png" alt="Otherwise valid sample value entered with duplicate commas or spaces will not cause an error." height="auto" width="70%"> 
 <br/><br/>
-The user is asked to input the values within that sample. These can be typed or pasted in from elsewhere. To be interpreted correctly by T-Tester, the values must be separated by commas. However, duplicate commas and erroneous spaces are handled automatically by T-Tester. This means that duplicate commas will not create empty values that could trigger a disparity between the number of values entered and the number of subjects previously declared, or affect the statistical processes that follow. T-Tester will also check the number of values is greater than four. Independent t-tests are famously robust and work well with small sample sizes, and five or more may be considered a reasonable threshold.  
+ T-Tester will also check the number of values is greater than four. Independent t-tests are famously robust and work well with small sample sizes, and five or more may be considered a reasonable threshold. Once two valid samples have been input, T-Tester performs Levene's test for homogeneity of variances. This aids in ensuring that an independent t-test will be suitable for use with the data provided. If homogeneity of variance is found, T-Tester will proceed to conduct an independent t-test. Otherwise, T-Tester will report the result of Levene's test and create a record recording the outcome.  
   
-<img src="assets/images/screenshots/formatted-sample-values.jpg" alt="Otherwise valid sample value entered with duplicate commas or spaces will not cause an error." height="auto" width="60%"> 
-<br/><br/>
-T-Tester also performs Levene's test for homogeneity of variances. This aids in ensuring that an independent t-test will be suitable for use with the data provided. If homogeneity of variance is found, T-Tester will proceed to conduct an independent t-test.  
-
-<img src="assets/images/screenshots/dataset-1-outcome.png" alt="A lack of homogeneity of variance will stop the program from conducting further tests but will be reported to the user and recorded." height="auto" width="60%">  
+<img src="assets/images/screenshots/test-outcome-dataset-1.png" alt="A lack of homogeneity of variance will stop the program from conducting further tests but will be reported to the user and recorded." height="auto" width="70%">  
   <br/><br/>
-The results of the independent t-test are then reported in terms of their significance, with means being reported alongside any significant results. The user is also informed that the connected spreadsheet has been updated with a newly created records of test results.
+Where data is not deemed unsuitable, an independent t-test will be carried out. Results of the independent t-test are then reported in terms of their significance, with means being reported alongside any significant results. The user is also informed that the program has updated the test records with this new test result.  
   
-<img src="assets/images/screenshots/nonsig-and-sig-outputs.png" alt="Results are output in terms of their significance." height="auto" width="100%"> 
+<img src="assets/images/screenshots/t-test-only-outcomes.png" alt="Results are output in terms of their significance." height="auto" width="100%">  
 <br/><br/>
 A table of past results (records) can be viewed within T-Tester, although the results are, in fact, stored in a Google Sheets spreadsheet, meaning they can be easily shared, copied, extracted for use elsewhere and so on. 
 
-<img src="assets/images/screenshots/spreadsheet.png" alt="Records are stored in a Google Sheets spreadsheet." height="auto" width="60%">  
+<img src="assets/images/screenshots/spreadsheet.png" alt="Records are stored in a Google Sheets spreadsheet." height="auto" width="70%">  
 <br/><br/>
 To view past records within the program, the user can select View Records from the Main Menu. This will open the records section which contains a table showing results of previous tests. Each row within this table is an individual record of a completed test process. All completed test processes are stored, regardless of outcome.  
 
-<img src="assets/images/screenshots/view-records-tables.png" alt="A table of past results available to view within the program." height="auto" width="60%">  
+<img src="assets/images/screenshots/view-records-tables.png" alt="A table of past results available to view within the program." height="auto" width="70%">  
 <br/><br/>
 Beneath the table, the user has the option to return to the Main Menu or delete the last record currently shown on the table. This is a permanent deletion and will also affect the Google Sheets spreadsheet. Historical edits within Google Sheets, if available, are the only means of undoing this deletion. Depending on how access to the spreadsheet is granted within an organisation, this may mean that only upper administrators have the option to selectively delete records and/or restore them. The user of the program, however, will still be able to remove their last test should they discover it used incomplete data or was already performed, for instance.  
 
-<img src="assets/images/screenshots/view-records-options.png" alt="Options presented to the user within the View Records section." height="auto" width="60%">  
+<img src="assets/images/screenshots/view-records-options.png" alt="Options presented to the user within the View Records section." height="auto" width="70%">  
 <br/><br/>
 A warning message is shown ensuring the user understands the action they are undertaking. To confirm deletion, the user must type DELETE in capital letters, after which confirmation is given and they are returned to the previous menu.  
 
-<img src="assets/images/screenshots/delete-records-successful-flow.png" alt="Output reads: Caution, deletion cannot be undone. You are about to delete the most current test record on the table, followed by instructions to confirm or cancel." height="auto" width="60%">  
+<img src="assets/images/screenshots/deletion-overview.png" alt="Output reads: Caution, deletion cannot be undone. You are about to delete the most current test record on the table, followed by instructions to confirm or cancel." height="auto" width="70%">  
 <br/><br/>
 As is appropriate for an action of this nature, cancelling the action is easier than confirming it. To cancel the action, the user may simply press Enter. Cancelling produces the output "Exiting without making changes..." to reassure the user, and after a momentary delay to allow the user to read this message, they are returned to the previous menu.  
   
 The only invalid input at this time is "delete" written in lower case letters. Requiring the user to turn on CapsLock or hold Shift ensures that a moment can elapse in which they can be certain they wish to proceed with this action. This is similar to the confirmation-of-deletion process used by MailChimp, for example, where a user is required to type "PERMANENTLY DELETE" in capital letters before taking irreversible action.  
 
-<img src="assets/images/screenshots/delete-records-invalid-input.png" alt="Output reads: This option is case-sensitive. To delete, type 'DELETE'." height="auto" width="60%">  
+<img src="assets/images/screenshots/deletion-process-invalid.png" alt="Output reads: This option is case-sensitive. To delete, type 'DELETE' and displays the word in uppercase letters." height="auto" width="70%">  
 <br/><br/>
 
 As mentioned previously, the user may quit the program from the Main Menu. This produces the output "Quitting program..." and after a delay of 1 second, the program will terminate.  
-
-<img src="assets/images/screenshots/quitting-screenshot.png" alt="Output reads simply, 'Quitting program'." height="auto" width="60%">  
+  
+<img src="assets/images/screenshots/quitting-program.png" alt="Output reads simply, 'Quitting program'." height="auto" width="70%">  
 <br/><br/>
 
 ### Future Features  
@@ -224,7 +220,7 @@ Finally, other forms of t-test, such as the paired samples t-test, could be adde
     
 ## Testing  
 Manual testing, including exploratory testing, was carried out throughout development. New features were tested as they were added and before committing changes. Certain features were pushed and tested within the deployed environment to ensure that rendering was as intended. [PEP8online.com](http://pep8online.com/checkresult) was frequently used during development to validate code.  
-<img src="assets/images/screenshots/pep8online-screenshot.png" alt="All Python code in the project passes through PEP8online.com without errors or warnings." height="auto" width="90%">  
+<img src="assets/images/screenshots/pep8online-validation.png" alt="All Python code in the project passes through PEP8online.com without errors or warnings." height="auto" width="90%">  
 <br/>
   
 In the initial stages of developing the statistical portion of the program, and again during a dedicated testing phase toward the end of development, the results of the sample datasets below were verified in IBM's statistical package, [SPSS](https://en.wikipedia.org/wiki/SPSS).  
