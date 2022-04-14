@@ -483,7 +483,7 @@ The present state of the validation function code is shown below. Note that `err
         if qty < 5:
             raise ValueError(f"{error_dict['subject_qty']}")
     except Exception as e:
-        error_wrapper(e)
+        format_error_message(e)
         return False
     else:
         return True
