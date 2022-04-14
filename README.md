@@ -264,15 +264,31 @@ Attempting to enter the following values in response to their respective input r
 | Records Menu Selection | Number out of option range       | Invalid Selection. Please enter a number from the options shown.|  
   
 </br><img src="assets/images/screenshots/invalid-main-menu.png" alt="Error message resulting from invalid selection in Main Menu." height="auto" width="90%"> 
-<br/><br/>
+<br/><br/><br/>
 
-**Running Tests**  
-As the requirements for valid data within testing mode are largely the requirements of the t-test - and the user can be presumed to understand the purpose of, and therefore the type of data required for, the t-test - error messages should first be aimed at explaining precisely what makes the input invalid rather than simply providing a description of valid input. The user's error is likely to derive from a typographical error or formatting issue rather than a lack of understanding; for example, additional characters accidentally captured during copy/paste, unusual data formatting conventions etc.
+**Running Tests**   
   
-In other words, the end-user is not guessing what constitutes valid input. Prompts have been made helpful for novice users and testers, but error messages should be made as helpful as possible in aiding the user to see the specific fault within their previous input.  
+</br><img src="assets/images/screenshots/invalid-username-error-messages.png" alt="Error messages resulting from invalid username submission." height="auto" width="90%"> <br/>
+    
+    
+*Top-Down vs. Bottom-Up Error Messaging*  
   
-</br><img src="assets/images/screenshots/invalid-username-error-messages.png" alt="Error messages resulting from invalid username submission." height="auto" width="90%"> 
-</br></br>  
+Conventional error messaging often seeks to provide an example of valid input, offering the user the fastest route to correcting their error. For the purposes of discussion, this might be described as top-down error messaging; the user is informed of the error and receives the most general message likely to be of use for that particular input field. This is useful where the user may not understand what is required or expected. It prevents confusion by providing a clear example of what is required, rather than leaving the user guessing as to what constitutes valid input.  
+
+In contrast, a bottom-up approach to error messaging would provide specific feedback on the reasons the input is invalid. In many cases, this would be cumbersome and unhelpful; however, there are circumstances in which bottom-up error messaging may be of greater benefit to the user.
+
+Remembering that T-Test's end-user has entered the program with a well-defined and predetermined task in mind, that is, to conduct a t-test, it can be presumed that the user has some knowledge of t-tests and a dataset upon which they wish to conduct the test. In other words, the end-user is not guessing as to the nature of the required input, nor are they improvising their data.  
+  
+As the requirements for valid data within testing mode are largely the requirements of the t-test, invalid input is most likely to arise from a typographical error or formatting issue rather than a lack of understanding as to what type of data is required. For example, additional characters accidentally captured during copy/paste, unusual data formatting conventions and so on.  
+
+The size of the user's dataset will vary between tests and, in very large datasets with a great many sample values, finding the precise cause of an error message may require more than a casual glance over the previous input. To aid the user in searching for the exact cause of the fault, so that they may correct it, error messages should attempt to provide details as to the cause of the problem (e.g. "46 values entered. Expected 47", "Non-numeric value(s) detected", or "Negative value(s) detected" and so on).  
+  
+Another way of looking at this distinction between approaches in error messaging might be to say that examples of valid data are *prescriptive* error messages, while details as to the exact cause of the fault can be considered *descriptive* error messages. The latter is likely to be of greater benefit to a technically-knowledgable end-user with a pre-existing dataset.  
+
+Input prompts have been made helpful for novice users and testers, in addition to the Help documentation available within the program; however, error messages should be made as helpful as possible in aiding the typical end-user to identify and correct the specific fault within their previous input.  
+    
+     
+
 | Request  | Invalid Value Type               | Error Message                                                               |  
 |----------|----------------------------------|-----------------------------------------------------------------------------| 
 | Username | Blank                            | Username or ID required (e.g. SamBeckett, User1, etc.)                      |  
@@ -280,7 +296,7 @@ In other words, the end-user is not guessing what constitutes valid input. Promp
 | Subjects | Blank                            | Cannot be left blank. Please enter your input and press Enter.              |  
 | Subjects | Letter(s)                        | Non-numeric characters detected. Try again.                                 |  
 | Subjects | Number below 5                   | Five or more subjects required. Try Again.                                  |  
-| Subjects | Negative number                  | Negative value detected. Enter a positive number equal to 5 or more.        |  
+| Subjects | Negative number                  | Negative value(s) detected. Enter a positive number equal to 5 or more.        |  
 | Subjects | Invalid float, e.g. 5.2          | Enter an integer (e.g. '7', not '7.2') equal to 5 or more. Please try again.|  
 | Y/N      | Blank                            | Press Y if correct, or press N to re-enter the data.                        |  
 | Y/N      | Letter other than Y/N*           | Press Y if correct, or press N to re-enter the data.                        |  
@@ -294,10 +310,10 @@ In other words, the end-user is not guessing what constitutes valid input. Promp
 | Y        | Any other input                  | No other operations available at this time. Press Y to return to Main Menu. |  
 
 *Note that a lowercase y/n is handled automatically and does not require user intervention.  
-** Note that multiple commas or spaces within an otherwise valid sample (1  ,2, , 3 , 4,,,5) are automatically corrected. 
+** Note that multiple commas or spaces within an otherwise valid sample (1  ,2, , 3 , 4,,,5) are automatically corrected.  
 *** When entering the number of subjects, commas and spaces are automatically removed.  
 </br><img src="assets/images/screenshots/invalid-subjects-overview.png" alt="Error messages resulting from invalid subject quantity submission." height="auto" width="90%"> 
-</br></br>
+
 </br><img src="assets/images/screenshots/invalid-sample-value-inputs.png" alt="Error messages resulting from invalid sample value submission." height="auto" width="90%"> 
 </br>
   

@@ -656,7 +656,7 @@ error_dict = {
     "blank_input":
         "Cannot be left blank. Please enter your input and press Enter.",
     "negative_number":
-        ("Negative value detected. "
+        ("Negative value(s) detected. "
          "Enter a positive number equal to 5 or more."), }
 
 
