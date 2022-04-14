@@ -143,16 +143,21 @@ Individual error messages are discussed in [Test Cases](#test-cases). The [Test 
   
 ## Features  
 Upon launching, T-Tester greets the user with a Main Menu, presenting the options available to the user and offering instructions on how to select an option. Available options include a Help section, the ability to run statistical tests, an area in which to view records and, if desired, delete records. The final option allows the user to quit the program.  
-
-<img src="assets/images/screenshots/main-menu-flow.png" alt="An overview of the screens available from the Main Menu, including the error message shown in the event of an invalid selection." height="auto" width="95%">  
-  <br/><br/>
-T-Tester has a built-in help section allowing the user to access instructions for use.  
-
-<img src="assets/images/screenshots/help-section-flow.png" alt="An overview of the screens available from within the Help section, including the error message shown in the event of an invalid selection." height="auto" width="95%">  
-  <br/><br/>
-T-Tester's primary function is to carry out an independent t-test, comparing the means of two samples and determining the statistical significance of any difference identified. This function is accessible from the "Run Tests" option of the Main Menu. The user is then asked to enter a username/ID. This ID will be saved along with the results of the test process when completed. The ID may be anything the user wishes, provided it is two or more characters in length. This allows for initials to be used as an ID if desired. If the username is less than two characters in length or the user submits empty input, an error message is shown and the user is prompted to enter the information again. All error messages requiring re-entry are detailed in [Testing](#test-cases) as test cases.  
   
-<img src="assets/images/screenshots/run-tests-username-flow.png" alt="The user is asked to enter an ID." height="auto" width="60%">  
+<img src="assets/images/screenshots/main-menu-all-screens.png" alt="An overview of the screens available from the Main Menu, including the error message shown in the event of an invalid selection." height="auto" width="95%">  
+  <br/><br/>
+T-Tester has a built-in help section allowing the user to access instructions for use. Aside from option 1, which returns the user to the Main Menu, each option in this section opens a brief help document on a given aspect of the program.  
+  
+<img src="assets/images/screenshots/help-menu-all-screens.png" alt="An overview of the screens available from within the Help section, including the error message shown in the event of an invalid selection." height="auto" width="95%">  
+  <br/><br/>
+T-Tester's primary function is to carry out an independent t-test, comparing the means of two samples and determining the statistical significance of any difference identified. This function is accessible from the "Run Tests" option of the Main Menu.  
+
+
+
+
+The user is first asked to enter a username/ID. This ID will be saved along with the results of the test process when completed. The ID may be anything the user wishes, provided it is two or more characters in length. This allows for initials to be used as an ID if desired. If the username is less than two characters in length or the user submits empty input, an error message is shown and the user is prompted to enter the information again. All error messages requiring re-entry are detailed in [Testing](#test-cases) as test cases.  
+  
+<img src="assets/images/screenshots/testing-flow-overview.png" alt="Screens shown to the user in a typical test procedure flow." height="auto" width="95%">  
   <br/><br/>
 Next, the user is prompted to enter the number of subjects in the first sample. This must be five or more and entered as an integer value.  
   
