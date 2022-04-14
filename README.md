@@ -266,7 +266,11 @@ Attempting to enter the following values in response to their respective input r
 </br><img src="assets/images/screenshots/invalid-main-menu.png" alt="Error message resulting from invalid selection in Main Menu." height="auto" width="90%"> 
 <br/><br/>
 
-**Running Tests**
+**Running Tests**  
+As the requirements for valid data within testing mode are largely the requirements of the t-test - and the user can be presumed to understand the purpose of, and therefore the type of data required for, the t-test - error messages should first be aimed at explaining precisely what makes the input invalid rather than simply providing a description of valid input. The user's error is likely to derive from a typographical error or formatting issue rather than a lack of understanding; for example, additional characters accidentally captured during copy/paste, unusual data formatting conventions etc.
+  
+In other words, the end-user is not guessing what constitutes valid input. Prompts have been made helpful for novice users and testers, but error messages should be made as helpful as possible in aiding the user to see the specific fault within their previous input.  
+  
 </br><img src="assets/images/screenshots/invalid-username-error-messages.png" alt="Error messages resulting from invalid username submission." height="auto" width="90%"> 
 </br></br>  
 | Request  | Invalid Value Type               | Error Message                                                               |  
@@ -284,13 +288,13 @@ Attempting to enter the following values in response to their respective input r
 | Sample   | Blank**                          | 0 values entered. Expected [subjects]. Please begin this sample again.      |    
 | Sample   | Comma(s) only**                  | 0 values entered. Expected [subjects]. Please begin this sample again.      |  
 | Sample   | Number of values != [subjects]   | [x] values entered. Expected [subjects]. Please begin this sample again.    |     
-| Sample   | Letter(s), e.g. "G", "1,2,3,r,5" | Non-numeric value(s) detected. Try again.                                   |   
+| Sample   | Non-numeric, e.g. "G", "1,2,r.." | Non-numeric value(s) detected. Try again.                                   |   
 | Sample   | Punctuation, other than as float | Non-numeric value(s) detected. Try again.                                   |  
 | Sample   | Multiple decimals e.g. "5..2"    | Non-numeric value(s) detected. Try again.                                   |  
 | Y        | Any other input                  | No other operations available at this time. Press Y to return to Main Menu. |  
 
 *Note that a lowercase y/n is handled automatically and does not require user intervention.  
-** Note that multiple commas or spaces within an otherwise valid sample (1  ,2, , 3 , 4,,,5) are automatically corrected.  
+** Note that multiple commas or spaces within an otherwise valid sample (1  ,2, , 3 , 4,,,5) are automatically corrected. 
 </br><img src="assets/images/screenshots/invalid-subjects-overview.png" alt="Error messages resulting from invalid subject quantity submission." height="auto" width="90%"> 
 </br></br>
 </br><img src="assets/images/screenshots/invalid-sample-value-inputs.png" alt="Error messages resulting from invalid sample value submission." height="auto" width="90%"> 
