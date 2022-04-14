@@ -230,7 +230,7 @@ Additional inputs could be added to the program's testing feature, such as a "Te
 Finally, other forms of t-test, such as the paired samples t-test, could be added.
     
 ## Testing  
-Manual testing, including exploratory testing, was carried out throughout development. Both [Google's Chrome browser](https://www.google.com/intl/en_ie/chrome/) and [Mozilla's Firefox](https://www.mozilla.org/en-US/firefox/new/) were used during testing. New features were tested as they were added and before committing changes. Certain features were pushed and tested within the deployed environment to ensure that rendering was as intended. [PEP8online.com](http://pep8online.com/checkresult) was frequently used during development to validate code.  
+Manual testing, including exploratory testing, was carried out throughout development. Both [Google's Chrome browser](https://www.google.com/intl/en_ie/chrome/) and [Mozilla's Firefox](https://www.mozilla.org/en-US/firefox/new/) were used during testing. New features were tested as they were added and before committing changes. Certain features were pushed and tested within the deployed environment to ensure that rendering was as intended. [PEP8online.com](http://pep8online.com/) was frequently used during development to validate code.  
 </br><img src="assets/images/screenshots/pep8online-validation.png" alt="All Python code in the project passes through PEP8online.com without errors or warnings." height="auto" width="90%">  
 <br/>
   
@@ -387,7 +387,7 @@ To verify results, using the resources given in each outcome description, the fo
   >[SocSciStatistics.com](https://www.socscistatistics.com/tests/levene/default.aspx) output: "The requirement of homogeneity is met."
   >
   >[GraphPad](https://www.graphpad.com/quickcalcs/ttest1.cfm) output: "By conventional criteria, this difference is considered to be not statistically significant."  
-
+  >
   >As before, this result is confirmed by SPSS as shown in the image below. Identical means are given, homogeneity of variances is confirmed (naturally, since the samples are identical), and no significant difference is found.  
   ></br><img src="assets/images/screenshots/dataset-3-nonsig-spss.png" alt="Dataset 3's outcome is confirmed by SPSS." height="auto" width="90%">  
   ><br/>
