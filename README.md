@@ -230,7 +230,7 @@ Additional inputs could be added to the program's testing feature, such as a "Te
 Finally, other forms of t-test, such as the paired samples t-test, could be added.
     
 ## Testing  
-Manual testing, including exploratory testing, was carried out throughout development. New features were tested as they were added and before committing changes. Certain features were pushed and tested within the deployed environment to ensure that rendering was as intended. [PEP8online.com](http://pep8online.com/checkresult) was frequently used during development to validate code.  
+Manual testing, including exploratory testing, was carried out throughout development. Both [Google's Chrome browser](https://www.google.com/intl/en_ie/chrome/) and [Mozilla's Firefox](https://www.mozilla.org/en-US/firefox/new/) were used during testing. New features were tested as they were added and before committing changes. Certain features were pushed and tested within the deployed environment to ensure that rendering was as intended. [PEP8online.com](http://pep8online.com/checkresult) was frequently used during development to validate code.  
 </br><img src="assets/images/screenshots/pep8online-validation.png" alt="All Python code in the project passes through PEP8online.com without errors or warnings." height="auto" width="90%">  
 <br/>
   
