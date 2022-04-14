@@ -2,7 +2,7 @@
 
 T-Tester is a simple and adaptable tool that runs in the terminal and can be adapted to any number of business needs and other scenarios.  
   
-<img src="assets/images/screenshots/main-menu.png" alt="Main Menu of T-Tester" height="auto" width="70%">  
+</br><img src="assets/images/screenshots/main-menu.png" alt="Main Menu of T-Tester" height="auto" width="70%">  
   <br/><br/>
   
 ## Contents
@@ -144,11 +144,11 @@ Individual error messages are discussed in [Test Cases](#test-cases). The [Test 
 ## Features  
 Upon launching, T-Tester greets the user with a Main Menu, presenting the options available to the user and offering instructions on how to select an option. Available options include a Help section, the ability to run statistical tests, an area in which to view records and, if desired, delete records. The final option allows the user to quit the program.  
   
-<img src="assets/images/screenshots/main-menu-all-screens.png" alt="An overview of the screens available from the Main Menu, including the error message shown in the event of an invalid selection." height="auto" width="95%">  
+</br><img src="assets/images/screenshots/main-menu-all-screens.png" alt="An overview of the screens available from the Main Menu, including the error message shown in the event of an invalid selection." height="auto" width="95%">  
   <br/><br/>
 T-Tester has a built-in help section allowing the user to access instructions for use. Aside from option 1, which returns the user to the Main Menu, each option in this section opens a brief help document on a given aspect of the program.  
   
-<img src="assets/images/screenshots/help-menu-all-screens.png" alt="An overview of the screens available from within the Help section, including the error message shown in the event of an invalid selection." height="auto" width="95%">  
+</br><img src="assets/images/screenshots/help-menu-all-screens.png" alt="An overview of the screens available from within the Help section, including the error message shown in the event of an invalid selection." height="auto" width="95%">  
   <br/><br/>
 T-Tester's primary function is to carry out an independent t-test, comparing the means of two samples and determining the statistical significance of any difference identified. This function is accessible from the "Run Tests" option of the Main Menu.  
 
@@ -157,50 +157,50 @@ T-Tester's primary function is to carry out an independent t-test, comparing the
 
 The user is first asked to enter a username/ID. This ID will be saved along with the results of the test process when completed. The ID may be anything the user wishes, provided it is two or more characters in length. This allows for initials to be used as an ID if desired. If the username is less than two characters in length or the user submits empty input, an error message is shown and the user is prompted to enter the information again. All error messages requiring re-entry are detailed in [Testing](#test-cases) as test cases.  
   
-<img src="assets/images/screenshots/testing-flow-overview.png" alt="Screens shown to the user in a typical test procedure flow." height="auto" width="95%">  
+</br><img src="assets/images/screenshots/testing-flow-overview.png" alt="Screens shown to the user in a typical test procedure flow." height="auto" width="95%">  
   <br/><br/>
 Next, the user is prompted to enter the number of subjects in the first sample. This must be five or more and entered as an integer value. This number will subsequently be used to verify the sample once submitted. Therefore, to ensure the number is correct, the user is prompted to confirm by typing Y or N. "N" will cause the step to be repeated, while "Y" will proceed to the next step. Lowercase input is automatically handled and will not cause an error; however, blank or otherwise empty input will require re-entry.  
   
-<img src="assets/images/screenshots/testing-demo-sample-a.png" alt="The user is prompted to enter the number of subjects and values of Sample A." height="auto" width="70%">  
+</br><img src="assets/images/screenshots/testing-demo-sample-a.png" alt="The user is prompted to enter the number of subjects and values of Sample A." height="auto" width="70%">  
   <br/><br/>
 The user is asked to input the values within that sample. These can be typed or pasted in from elsewhere. To be interpreted correctly by T-Tester, the values must be separated by commas. However, duplicate commas and erroneous spaces are handled automatically by T-Tester. This means that duplicate commas will not create empty values that could trigger a disparity between the number of values entered and the number of subjects previously declared, or affect the statistical processes that follow.  
     
-<img src="assets/images/screenshots/formatted-sample-values.png" alt="Otherwise valid sample value entered with duplicate commas or spaces will not cause an error." height="auto" width="70%"> 
+</br><img src="assets/images/screenshots/formatted-sample-values.png" alt="Otherwise valid sample value entered with duplicate commas or spaces will not cause an error." height="auto" width="70%"> 
 <br/><br/>
  T-Tester will also check the number of values is greater than four. Independent t-tests are famously robust and work well with small sample sizes, and five or more may be considered a reasonable threshold. Once two valid samples have been input, T-Tester performs Levene's test for homogeneity of variances. This aids in ensuring that an independent t-test will be suitable for use with the data provided. If homogeneity of variance is found, T-Tester will proceed to conduct an independent t-test. Otherwise, T-Tester will report the result of Levene's test and create a record recording the outcome.  
   
-<img src="assets/images/screenshots/test-outcome-dataset-1.png" alt="A lack of homogeneity of variance will stop the program from conducting further tests but will be reported to the user and recorded." height="auto" width="70%">  
+</br><img src="assets/images/screenshots/test-outcome-dataset-1.png" alt="A lack of homogeneity of variance will stop the program from conducting further tests but will be reported to the user and recorded." height="auto" width="70%">  
   <br/><br/>
 Where data is not deemed unsuitable, an independent t-test will be carried out. Results of the independent t-test are then reported in terms of their significance, with means being reported alongside any significant results. The user is also informed that the program has updated the test records with this new test result.  
   
-<img src="assets/images/screenshots/t-test-only-outcomes.png" alt="Results are output in terms of their significance." height="auto" width="100%">  
+</br><img src="assets/images/screenshots/t-test-only-outcomes.png" alt="Results are output in terms of their significance." height="auto" width="100%">  
 <br/><br/>
 A table of past results (records) can be viewed within T-Tester, although the results are, in fact, stored in a Google Sheets spreadsheet, meaning they can be easily shared, copied, extracted for use elsewhere and so on. 
 
-<img src="assets/images/screenshots/spreadsheet.png" alt="Records are stored in a Google Sheets spreadsheet." height="auto" width="70%">  
+</br><img src="assets/images/screenshots/spreadsheet.png" alt="Records are stored in a Google Sheets spreadsheet." height="auto" width="70%">  
 <br/><br/>
 To view past records within the program, the user can select View Records from the Main Menu. This will open the records section which contains a table showing results of previous tests. Each row within this table is an individual record of a completed test process. All completed test processes are stored, regardless of outcome.  
 
-<img src="assets/images/screenshots/view-records-tables.png" alt="A table of past results available to view within the program." height="auto" width="70%">  
+</br><img src="assets/images/screenshots/view-records-tables.png" alt="A table of past results available to view within the program." height="auto" width="70%">  
 <br/><br/>
 Beneath the table, the user has the option to return to the Main Menu or delete the last record currently shown on the table. This is a permanent deletion and will also affect the Google Sheets spreadsheet. Historical edits within Google Sheets, if available, are the only means of undoing this deletion. Depending on how access to the spreadsheet is granted within an organisation, this may mean that only upper administrators have the option to selectively delete records and/or restore them. The user of the program, however, will still be able to remove their last test should they discover it used incomplete data or was already performed, for instance.  
 
-<img src="assets/images/screenshots/view-records-options.png" alt="Options presented to the user within the View Records section." height="auto" width="70%">  
+</br><img src="assets/images/screenshots/view-records-options.png" alt="Options presented to the user within the View Records section." height="auto" width="70%">  
 <br/><br/>
 A warning message is shown ensuring the user understands the action they are undertaking. To confirm deletion, the user must type DELETE in capital letters, after which confirmation is given and they are returned to the previous menu.  
 
-<img src="assets/images/screenshots/deletion-overview.png" alt="Output reads: Caution, deletion cannot be undone. You are about to delete the most current test record on the table, followed by instructions to confirm or cancel." height="auto" width="70%">  
+</br><img src="assets/images/screenshots/deletion-overview.png" alt="Output reads: Caution, deletion cannot be undone. You are about to delete the most current test record on the table, followed by instructions to confirm or cancel." height="auto" width="70%">  
 <br/><br/>
 As is appropriate for an action of this nature, cancelling the action is easier than confirming it. To cancel the action, the user may simply press Enter. Cancelling produces the output "Exiting without making changes..." to reassure the user, and after a momentary delay to allow the user to read this message, they are returned to the previous menu.  
   
 The only invalid input at this time is "delete" written in lower case letters. Requiring the user to turn on CapsLock or hold Shift ensures that a moment can elapse in which they can be certain they wish to proceed with this action. This is similar to the confirmation-of-deletion process used by MailChimp, for example, where a user is required to type "PERMANENTLY DELETE" in capital letters before taking irreversible action.  
 
-<img src="assets/images/screenshots/deletion-process-invalid.png" alt="Output reads: This option is case-sensitive. To delete, type 'DELETE' and displays the word in uppercase letters." height="auto" width="70%">  
+</br><img src="assets/images/screenshots/deletion-process-invalid.png" alt="Output reads: This option is case-sensitive. To delete, type 'DELETE' and displays the word in uppercase letters." height="auto" width="70%">  
 <br/><br/>
 
 As mentioned previously, the user may quit the program from the Main Menu. This produces the output "Quitting program..." and after a delay of 1 second, the program will terminate.  
   
-<img src="assets/images/screenshots/quitting-program.png" alt="Output reads simply, 'Quitting program'." height="auto" width="70%">  
+</br><img src="assets/images/screenshots/quitting-program.png" alt="Output reads simply, 'Quitting program'." height="auto" width="70%">  
 <br/><br/>
 
 ### Future Features  
@@ -212,7 +212,7 @@ For more selective deletion of records, access to the related Google Sheets spre
   
 Nevertheless, it is possible that the program may expand its deletion options in the future.  
   
-Currently, the program does not assess skewness and kurtosis. These features could be added for a more rounded and thorough set of pre-test checks.  
+Currently, the program does not assess skewness and kurtosis. Like the t-test itself, T-Tester assumes that data are normally distributed. These features could be added for a more rounded and thorough set of pre-test checks (see [Statology.org](https://www.statology.org/skewness-kurtosis-python/) and/or [ScyPy Docs](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.skew.html))
 
 Additional inputs could be added to the program's testing feature, such as a "Tester Notes" input. This input could then be added to an additional field in the records kept. The usefulness of such a feature may depend on how the program is being used. The optimal design would be one in which the user can configure which fields are needed within their records and which fields are unnecessary. To be truly useful, these settings would need to be stored in a lasting manner. Only the necessary inputs would then be requested during the testing process.  
   
@@ -220,11 +220,11 @@ Finally, other forms of t-test, such as the paired samples t-test, could be adde
     
 ## Testing  
 Manual testing, including exploratory testing, was carried out throughout development. New features were tested as they were added and before committing changes. Certain features were pushed and tested within the deployed environment to ensure that rendering was as intended. [PEP8online.com](http://pep8online.com/checkresult) was frequently used during development to validate code.  
-<img src="assets/images/screenshots/pep8online-validation.png" alt="All Python code in the project passes through PEP8online.com without errors or warnings." height="auto" width="90%">  
+</br><img src="assets/images/screenshots/pep8online-validation.png" alt="All Python code in the project passes through PEP8online.com without errors or warnings." height="auto" width="90%">  
 <br/>
   
 In the initial stages of developing the statistical portion of the program, and again during a dedicated testing phase toward the end of development, the results of the sample datasets below were verified in IBM's statistical package, [SPSS](https://en.wikipedia.org/wiki/SPSS).  
-<img src="assets/images/screenshots/dataset-1-data-view-spss.png" alt="Example of Dataset 1 in Data View within SPSS." height="auto" width="90%">  
+</br><img src="assets/images/screenshots/dataset-1-data-view-spss.png" alt="Example of Dataset 1 in Data View within SPSS." height="auto" width="90%">  
 <br/>
   
 Additionally, to further verify results and aid the reader of this document to carry out similar tests, [SocSciStatistics.com](https://www.socscistatistics.com/tests/levene/default.aspx) was also used to confirm results given by T-Tester when checking for homogeneity of variance (Levene's Test). This is freely available online and does not require specialised software.  
@@ -252,11 +252,11 @@ Attempting to enter the following values in response to their respective input r
 | Records Menu Selection | Letter(s)/Symbol(s)              | Invalid Selection. Please enter a number from the options shown.|  
 | Records Menu Selection | Number out of option range       | Invalid Selection. Please enter a number from the options shown.|  
   
-<img src="assets/images/screenshots/invalid_main_menu.png" alt="Error message resulting from invalid selection in Main Menu." height="auto" width="90%"> 
+</br><img src="assets/images/screenshots/invalid-main-menu.png" alt="Error message resulting from invalid selection in Main Menu." height="auto" width="90%"> 
 <br/><br/>
 
 **Running Tests**
-<img src="assets/images/screenshots/invalid-username-error-messages.png" alt="Error messages resulting from invalid username submission." height="auto" width="90%"> 
+</br><img src="assets/images/screenshots/invalid-username-error-messages.png" alt="Error messages resulting from invalid username submission." height="auto" width="90%"> 
 </br></br>
 | Request  | Invalid Value Type               | Error Message                                                               |  
 |----------|----------------------------------|-----------------------------------------------------------------------------| 
@@ -280,9 +280,9 @@ Attempting to enter the following values in response to their respective input r
 
 *Note that a lowercase y/n is handled automatically and does not require user intervention.  
 ** Note that multiple commas or spaces within an otherwise valid sample (1  ,2, , 3 , 4,,,5) are automatically corrected.  
-<img src="assets/images/screenshots/invalid-subjects-overview.png" alt="Error messages resulting from invalid subject quantity submission." height="auto" width="90%"> 
+</br><img src="assets/images/screenshots/invalid-subjects-overview.png" alt="Error messages resulting from invalid subject quantity submission." height="auto" width="90%"> 
 </br></br>
-<img src="assets/images/screenshots/invalid-sample-value-inputs.png" alt="Error messages resulting from invalid sample value submission." height="auto" width="90%"> 
+</br><img src="assets/images/screenshots/invalid-sample-value-inputs.png" alt="Error messages resulting from invalid sample value submission." height="auto" width="90%"> 
 </br>
   
 **Deleting Records**
@@ -332,9 +332,9 @@ To verify results, using the resources given in each outcome description, the fo
 >In Dataset 1, the two samples collected from the user are unsuitable for an independent t-test and will fail when the program checks for homogeneity of variances (Levene's Test), causing the program to bypass the t-test. This can be verified by inputting the same numbers to an online Levene's Test tool, such as [SocSciStatistics.com](https://www.socscistatistics.com/tests/levene/default.aspx) which will output "The requirement of homogeneity is not met".  
 >  
 > As with all test cases here, and a good deal of improvised data during development, these results were verified with IBM's SPSS. In this case, SPSS found a significant result for Levene's test, meaning the null hypotheis (equal variance) was rejected. This is in agreement with T-Tester's output.  
-><img src="assets/images/screenshots/dataset-1-levenes-spss.png" alt="Dataset 1's outcome is confirmed by SPSS." height="auto" width="50%">  
+></br><img src="assets/images/screenshots/dataset-1-levenes-spss.png" alt="Dataset 1's outcome is confirmed by SPSS." height="auto" width="50%">  
 ><br/>
-><img src="assets/images/screenshots/test-outcome-dataset-1.png" alt="Dataset 1 returned the expected result." height="auto" width="90%">  
+></br><img src="assets/images/screenshots/test-outcome-dataset-1.png" alt="Dataset 1 returned the expected result." height="auto" width="90%">  
 >  
 <br/>
 
@@ -352,10 +352,10 @@ To verify results, using the resources given in each outcome description, the fo
   >  
   >As an additional test, compare the values given by GraphPad for each group's Mean at the bottom of the screen to those stored in the Google Sheets spreadsheet. In this case, both record 22.00 for Sample A and 14.86 for Sample B.  
   >This result is confirmed by SPSS as shown in the image below. To begin with, the means are in agreement, although SPSS does not round to the same number of decimal places. A non-significant result (p = > .05) for Levene's test confirms homogeneity of variances. And finally, a non-significant result is shown for the independent t-test.  
-  ><img src="assets/images/screenshots/dataset-2-nonsig-spss.png" alt="Dataset 2's outcome is confirmed by SPSS." height="auto" width="90%">  
+  ></br><img src="assets/images/screenshots/dataset-2-nonsig-spss.png" alt="Dataset 2's outcome is confirmed by SPSS." height="auto" width="90%">  
   ><br/>
   >To avoid misleading the user, T-Tester does not output means for non-significant results to the terminal; however, they are preserved in the spreadsheet which is shown at the end of this section.  
-  ><img src="assets/images/screenshots/test-outcome-dataset-2.png" alt="Dataset 2 returned the expected result." height="auto" width="90%">  
+  ></br><img src="assets/images/screenshots/test-outcome-dataset-2.png" alt="Dataset 2 returned the expected result." height="auto" width="90%">  
 <br/><br/>
 
 **Test 3: Identical Data (Non-Significance)**  
@@ -373,10 +373,10 @@ To verify results, using the resources given in each outcome description, the fo
   >[GraphPad](https://www.graphpad.com/quickcalcs/ttest1.cfm) output: "By conventional criteria, this difference is considered to be not statistically significant."  
 
   >As before, this result is confirmed by SPSS as shown in the image below. Identical means are given, homogeneity of variances is confirmed (naturally, since the samples are identical), and no significant difference is found.  
-  ><img src="assets/images/screenshots/dataset-3-nonsig-spss.png" alt="Dataset 3's outcome is confirmed by SPSS." height="auto" width="90%">  
+  ></br><img src="assets/images/screenshots/dataset-3-nonsig-spss.png" alt="Dataset 3's outcome is confirmed by SPSS." height="auto" width="90%">  
   ><br/>
   >To avoid misleading the user, T-Tester does not output means for non-significant results to the terminal; however, they are preserved in the spreadsheet which is shown at the end of this section.  
-  ><img src="assets/images/screenshots/test-outcome-dataset-3.png" alt="Dataset 3 returned the expected result." height="auto" width="90%">  
+  ></br><img src="assets/images/screenshots/test-outcome-dataset-3.png" alt="Dataset 3 returned the expected result." height="auto" width="90%">  
 <br/><br/>
 
 **Test 4: Significance**  
@@ -395,13 +395,13 @@ To verify results, using the resources given in each outcome description, the fo
 >[GraphPad](https://www.graphpad.com/quickcalcs/ttest1.cfm) output: "By conventional criteria, this difference is considered to be extremely statistically significant."  Mean averages for Sample A and Sample B are 82.82 and 68.88 respectively.  
 >  
 >This result is confirmed by SPSS. To begin with, the means are in agreement with T-Tester's result, and a non-significant result is reported for Levene's test, meaning the null hypothesis cannot be rejected and equal variances can be assumed. A significant result is reported for the independent t-test, meaning a statistically significant difference can be said to exist between these samples.  
-><img src="assets/images/screenshots/dataset-4-sig-spss.png" alt="Dataset 4's outcome is confirmed by SPSS." height="auto" width="90%">  
+></br><img src="assets/images/screenshots/dataset-4-sig-spss.png" alt="Dataset 4's outcome is confirmed by SPSS." height="auto" width="90%">  
 ><br/>
-><img src="assets/images/screenshots/test-outcome-dataset-4.png" alt="Dataset 4 returned the expected result." height="auto" width="90%">  
+></br><img src="assets/images/screenshots/test-outcome-dataset-4.png" alt="Dataset 4 returned the expected result." height="auto" width="90%">  
 <br/>
   
 **Summary of T-Tester Results**
-<img src="assets/images/screenshots/spreadsheet.png" alt="Results of all four test cases as presented in the spreadsheet." height="auto" width="90%">  
+</br><img src="assets/images/screenshots/spreadsheet.png" alt="Results of all four test cases as presented in the spreadsheet." height="auto" width="90%">  
 <br/><br/>
 </details>  
     
@@ -562,10 +562,10 @@ The site was deployed to Heroku using the following procedure. Before beginning,
 
 ### Forking & Cloning Repositories  
 Forking a repository allows one to make a copy with which to experiment without affecting or jeopardising the original. This does not require any special permissions from or direct contact with the original developer provided the repository in question is public rather than private. You may wish to do this either to experiment with and learn from another party's code or aid in improving an open-source project by offering changes (note that forking is distinct from [branching](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches)). To do this, one must have a GitHub account and be logged in. Then, simply visit the main page of the repository in question, and select the "Fork" option located in the upper-right corner (desktop) as shown in the image below. [Learn more about forks from GitHub Docs](https://docs.github.com/en/get-started/quickstart/fork-a-repo#forking-a-repository).  
-<img src="assets/images/fork-repository-example.png" alt="Example of GitHub interface showing the option to fork a repository." width="50%" height="auto"> 
+</br><img src="assets/images/fork-repository-example.png" alt="Example of GitHub interface showing the option to fork a repository." width="50%" height="auto"> 
 <br/><br/>
 Forking a repository does not create locally-stored copies of its files on your computer. To achieve this, you will also need to Clone the repository. For example, you may wish to do this if you wish to have a functioning copy of another party's code in under to compile and execute it locally. Cloning options are found under the "Code" drop-down button of a repository's main page, as shown in the image below. [Learn more about cloning from GitHub Docs](https://docs.github.com/en/get-started/quickstart/fork-a-repo#cloning-your-forked-repository).  
-<img src="assets/images/clone-repository-example.png" alt="Example of GitHub interface showing the available cloning options." width="50%" height="auto">  
+</br><img src="assets/images/clone-repository-example.png" alt="Example of GitHub interface showing the available cloning options." width="50%" height="auto">  
 <br/><br/>
 </details>  
   
