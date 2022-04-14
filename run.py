@@ -1,4 +1,4 @@
-# pylint: global-statement, disable=invalid-name, broad-except
+# pylint: disable=invalid-name, broad-except
 """ Python program for statistical testing via terminal. """
 
 # IMPORTS:
@@ -454,10 +454,10 @@ def get_qty_subjects():
     while True:
         try:
             while True:
-                console.print("Enter the number of subjects in this sample.",
+                console.print("How many subjects are in this sample?",
                               style="highlight")
                 qty = input(
-                    "For example, enter '5' for a group with five subjects:\n")
+                    "Sample size must be 5 or more:\n")
                 if validate_subject_qty(qty):
                     qty = float(qty)
                     qty = int(qty)

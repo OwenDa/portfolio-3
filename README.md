@@ -268,7 +268,7 @@ Attempting to enter the following values in response to their respective input r
 
 **Running Tests**
 </br><img src="assets/images/screenshots/invalid-username-error-messages.png" alt="Error messages resulting from invalid username submission." height="auto" width="90%"> 
-</br></br>
+</br></br>  
 | Request  | Invalid Value Type               | Error Message                                                               |  
 |----------|----------------------------------|-----------------------------------------------------------------------------| 
 | Username | Blank                            | Username or ID required (e.g. SamBeckett, User1, etc.)                      |  
