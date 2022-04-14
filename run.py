@@ -459,6 +459,7 @@ def get_qty_subjects():
                 qty = input(
                     "Sample size must be 5 or more:\n")
                 if validate_subject_qty(qty):
+                    qty = format_subject_data(qty)
                     qty = float(qty)
                     qty = int(qty)
                     break
@@ -496,6 +497,15 @@ def get_sample():
 # Subsection: Sample Validation
 
 
+def format_subject_data(qty):
+    """ Removes commas and spaces from subject quantity input to handle
+    without undue error message. Helpful if user develops habitual
+    comma-entry during other inputs. """
+    qty = qty.replace(" ", "")
+    qty = qty.replace(",", "")
+    return qty
+
+
 def validate_subject_qty(qty):
     """
     Checks number of subjects as input by user. Raises specific
@@ -504,6 +514,7 @@ def validate_subject_qty(qty):
     negative number or less than 5. Otherwise, returns True.
     """
     try:
+        qty = format_subject_data(qty)
         if qty == "":
             raise ValueError(f"{error_dict['blank_input']}")
         if not qty.isdigit():

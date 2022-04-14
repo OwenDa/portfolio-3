@@ -295,6 +295,7 @@ In other words, the end-user is not guessing what constitutes valid input. Promp
 
 *Note that a lowercase y/n is handled automatically and does not require user intervention.  
 ** Note that multiple commas or spaces within an otherwise valid sample (1  ,2, , 3 , 4,,,5) are automatically corrected. 
+*** When entering the number of subjects, commas and spaces are automatically removed.  
 </br><img src="assets/images/screenshots/invalid-subjects-overview.png" alt="Error messages resulting from invalid subject quantity submission." height="auto" width="90%"> 
 </br></br>
 </br><img src="assets/images/screenshots/invalid-sample-value-inputs.png" alt="Error messages resulting from invalid sample value submission." height="auto" width="90%"> 
