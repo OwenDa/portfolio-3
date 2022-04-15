@@ -1,4 +1,4 @@
-There are two ways to [bold][bright_cyan]delete a record[/][/]. Either method will permanently
+There are two ways to [bold][bright_cyan]Delete a Record[/][/]. Either method will permanently
 delete the record from [bold]both[/] the table and the linked spreadsheet.
 
 [bold]1. Deleting record within T-Tester's View Records Screen:[/]

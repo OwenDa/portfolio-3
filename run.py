@@ -115,7 +115,7 @@ def show_main_menu():
                         records_menu()
                         break
                     elif choice == 4:
-                        quit_func()
+                        quit_procedure()
                         break
                     else:
                         raise Exception
@@ -123,17 +123,17 @@ def show_main_menu():
                     continue
             except Exception as e:
                 except_str(e)
-                quit_func()
+                quit_procedure()
         except Exception as e:
             except_str(e)
-            quit_func()
+            quit_procedure()
 
 
 def return_to_main_menu():
     """
     Guides user back to Main Menu screen when ready. Throws an error in the
     event of any input other than y/Y and re-prompts user. If these actions
-    cannot run for any reason, terminates program via quit_func().
+    cannot run for any reason, terminates program via quit_procedure().
     """
     try:
         while True:
@@ -149,7 +149,7 @@ def return_to_main_menu():
                 continue
     except Exception as e:
         except_str(e)
-        quit_func()
+        quit_procedure()
 
 
 # - Help Menu -
@@ -673,7 +673,7 @@ def format_error_message(msg):
 def except_str(e):
     """
     Formatted feedback for Exceptions. Does not interfere with BaseException.
-    In use, paired with quit_func() or return_to_main_menu() depending on
+    In use, paired with quit_procedure() or return_to_main_menu() depending on
     failure (ie. failure to load Main Menu vs failure to load Help menu).
     """
     print("Sorry, something went wrong.")
@@ -715,13 +715,14 @@ def confirm_proceed(last_input):
             continue
 
 
-def quit_func():
+def quit_procedure():
     """
     Quits program after alerting the user and providing a 1-second delay.
     If this fails for any reason, terminates program without further action.
     """
     try:
         print("Quitting program...")
+        print("Goodbye.")
         sleep(1)
         quit()
     except Exception:
