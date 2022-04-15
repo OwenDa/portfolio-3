@@ -230,10 +230,16 @@ Additional inputs could be added to the program's testing feature, such as a "Te
 Finally, other forms of t-test, such as the paired samples t-test, could be added.
     
 ## Testing  
-Manual testing, including exploratory testing, was carried out throughout development. Both [Google's Chrome browser](https://www.google.com/intl/en_ie/chrome/) and [Mozilla's Firefox](https://www.mozilla.org/en-US/firefox/new/) were used during testing. New features were tested as they were added and before committing changes. Certain features were pushed and tested within the deployed environment to ensure that rendering was as intended. [PEP8online.com](http://pep8online.com/) was frequently used during development to validate code.  
+Manual testing, including exploratory testing, was carried out throughout development. Both [Google's Chrome browser](https://www.google.com/intl/en_ie/chrome/) and [Mozilla's Firefox](https://www.mozilla.org/en-US/firefox/new/) were used during testing. New features were tested as they were added and before committing changes. Certain features were pushed and tested within the deployed environment to ensure that rendering was as intended.  
+  
+[PEP8online.com](http://pep8online.com/) was frequently used during development to validate code, and T-Tester's code triggers neither errors nor warnings.  
 </br><img src="assets/images/screenshots/pep8online-validation.png" alt="All Python code in the project passes through PEP8online.com without errors or warnings." height="auto" width="100%">  
 <br/>
-  
+
+It may be worth noting that, depending on the linter used, single-letter argument or variable names (e.g. 'a', 'f') may trigger a warning for failure to conform to snake_case. The aforementioned validator, [PEP8online.com](http://pep8online.com/), does not issue warnings or errors for any aspect of the project code; however, Pylint (2.12.2) will issue this warning along with warnings for the use of `Exception`, which is used within the program to run the custom quit procedure in the event that a core function cannot run for any reason, as well as making the developer aware of the use of the `global` keyword. To reduce this background noise and ensure meaningful and important warnings are seen, Pylint disable messages may be used; however, these should be removed at intervals and when adding or testing new features.  
+</br><img src="assets/images/pylint-disable.jpg" alt="Disabling select messages from Pylint version 2.12.2" height="auto" width="60%">  
+<br/>
+
 In the initial stages of developing the statistical portion of the program, and again during a dedicated testing phase toward the end of development, the results of the sample datasets below were verified in IBM's statistical package, [SPSS](https://en.wikipedia.org/wiki/SPSS).  
 </br><img src="assets/images/screenshots/dataset-1-data-view-spss.png" alt="Example of Dataset 1 in Data View within SPSS." height="auto" width="100%">  
 <br/>
